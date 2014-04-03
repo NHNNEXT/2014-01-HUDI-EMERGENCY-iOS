@@ -1,0 +1,6 @@
+
+/* Class = "IBUIButton"; normalTitle = "앨범에 저장"; ObjectID = "VCZ-0K-I0b"; */
+"VCZ-0K-I0b.normalTitle" = "Save To Album";
+
+/* Class = "IBUIButton"; normalTitle = "사진 추가"; ObjectID = "i2Y-pi-Mc1"; */
+"i2Y-pi-Mc1.normalTitle" = "Add photo";
