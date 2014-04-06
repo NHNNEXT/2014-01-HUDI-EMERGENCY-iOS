@@ -58,7 +58,23 @@
 }
 
 - (IBAction)deleteCurPola:(id)sender{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"사진 삭제" message:@"이 사진을 삭제 하겠습니까?" delegate:self cancelButtonTitle:@"취소" otherButtonTitles:@"네", nil];
+//    NSLog(@"%i",[polaroidImageArray count]);
+    if (![polaroidImageArray count]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"NO PHOTO", @"Local", @"사진 없다")
+                                                        message:nil
+                                                       delegate:self
+                                              cancelButtonTitle:nil
+                                              otherButtonTitles:NSLocalizedStringFromTable(@"OK", @"Local", @"확인"), nil];
+        
+        [alert show];
+        return;
+    }
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"REMOVE THIS PHOTO?", @"Local", @"이 사진을 삭제 하겠습니까?")
+                                                    message:nil
+                                                   delegate:self
+                                          cancelButtonTitle:NSLocalizedStringFromTable(@"CANCEL", @"Local", @"취소")
+                                          otherButtonTitles:NSLocalizedStringFromTable(@"OK", @"Local", @"확인"), nil];
     
     [alert show];
 }
@@ -66,7 +82,7 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     //경고창의 타이틀을 비교해서 경고창을 구별한다.
-    if ( [[alertView title] isEqualToString:@"사진 삭제"])
+    if ( [[alertView title] isEqualToString:NSLocalizedStringFromTable(@"REMOVE THIS PHOTO?", @"Local", @"이 사진을 삭제 하겠습니까?")])
 	{
         if(buttonIndex==1){
             [self deletePolaView:currentPage];
@@ -103,7 +119,7 @@
     curPagePola = nil;
     
     
-    NSLog(@"어레이 카운트 : %i", [polaroidImageArray count]);
+    NSLog(@"어레이 카운트 : %d", (int)[polaroidImageArray count]);
     NSLog(@"컨텐츠 사이즈 : %f", self.poraroidScrollView.contentSize.width);
 //    nslog(@"%@",self.poraroidScrollView.contentOffset.x);
 }
@@ -114,7 +130,7 @@
     // Update the page when more than 50% of the previous/next page is visible
     CGFloat pageWidth = self.poraroidScrollView.frame.size.width;
     currentPage = floor((self.poraroidScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    NSLog(@"%i",currentPage);
+    NSLog(@"%d",(int)currentPage);
 //    self.pageControl.currentPage = page;
 }
 
@@ -132,6 +148,15 @@
 }
 
 #pragma mark UIActionSheet Delegate
+- (void)willPresentActionSheet:(UIActionSheet *)actionSheet{
+    for (UIView *subview in actionSheet.subviews) {
+        if ([subview isKindOfClass:[UIButton class]]) {
+            UIButton *button = (UIButton *)subview;
+            [button setTitleColor:[UIColor colorWithRed:41.0/255.0 green:128.0/255.0 blue:185.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+        }
+    }
+}
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     UIImagePickerController *imagepickerController = [[UIImagePickerController alloc] init];
@@ -173,6 +198,18 @@
 }
 
 - (IBAction)saveToImage:(id)sender{
+    //사진 없으면 에러 메시지 
+    if (![polaroidImageArray count]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"NO PHOTO", @"Local", @"사진 없다")
+                                                        message:nil
+                                                       delegate:self
+                                              cancelButtonTitle:nil
+                                              otherButtonTitles:NSLocalizedStringFromTable(@"OK", @"Local", @"확인"), nil];
+        
+        [alert show];
+        return;
+    }
+    
     // capture 이미지 생성
     UIImage* captureImage = [self captureContentsInScrollView];
     if(!captureImage) return;

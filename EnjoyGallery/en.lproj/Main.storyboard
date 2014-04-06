@@ -35,40 +35,35 @@
                                 </subviews>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i2Y-pi-Mc1">
-                                <rect key="frame" x="20" y="469" width="120" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add a Photo"/>
-                                <connections>
-                                    <action selector="BtnPressedz:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="w4C-42-fcc"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VCZ-0K-I0b">
-                                <rect key="frame" x="180" y="469" width="121" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Save To Album"/>
-                                <connections>
-                                    <action selector="saveToImage:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="LBq-uK-nFX"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4FY-CC-hJP">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e08-Uy-Zzr">
-                                        <rect key="frame" x="20" y="11" width="73" height="44"/>
+                                        <rect key="frame" x="129" y="11" width="62" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Remove"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="Delete"/>
                                         <connections>
                                             <action selector="deleteCurPola:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="7VP-Ae-G4j"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bjc-oD-a4p">
-                                        <rect key="frame" x="241" y="11" width="59" height="44"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i2Y-pi-Mc1">
+                                        <rect key="frame" x="20" y="11" width="62" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Edit"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="Add"/>
                                         <connections>
-                                            <action selector="deleteCurPola:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="cgA-2c-YdR"/>
+                                            <action selector="BtnPressedz:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="w4C-42-fcc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VCZ-0K-I0b">
+                                        <rect key="frame" x="238" y="11" width="62" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="Save"/>
+                                        <connections>
+                                            <action selector="saveToImage:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="LBq-uK-nFX"/>
                                         </connections>
                                     </button>
                                 </subviews>
