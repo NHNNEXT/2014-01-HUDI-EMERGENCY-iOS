@@ -1,0 +1,13 @@
+ /*
+  Localizable.strings
+  EnjoyGallery
+
+  Created by 이상진 on 2014. 4. 2..
+  Copyright (c) 2014년 EntusApps. All rights reserved.
+*/
+
+"CANCEL" = "Cancle";
+"완료" = "Complete!";
+"에러" = "Error!";
+"TAKE" = "Take a Photo";
+"앨범에서 사진 선택" = "Load From Album";
