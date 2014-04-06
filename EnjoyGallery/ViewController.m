@@ -58,12 +58,30 @@
 }
 
 - (IBAction)deleteCurPola:(id)sender{
-    [self deletePolaView:currentPage];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"사진 삭제" message:@"이 사진을 삭제 하겠습니까?" delegate:self cancelButtonTitle:@"취소" otherButtonTitles:@"네", nil];
+    
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    //경고창의 타이틀을 비교해서 경고창을 구별한다.
+    if ( [[alertView title] isEqualToString:@"사진 삭제"])
+	{
+        if(buttonIndex==1){
+            [self deletePolaView:currentPage];
+        }else {
+			
+        }
+        
+	}
+	
 }
 
 
 #pragma mark Delete PolaView
 - (void)deletePolaView:(NSUInteger)index{
+    
     
     PolaView *curPagePola = [polaroidImageArray objectAtIndex:index];
 //    NSUInteger index = [polaroidImageArray indexOfObject:sender];
@@ -85,7 +103,7 @@
     curPagePola = nil;
     
     
-    NSLog(@"어레이 카운트 : %li", [polaroidImageArray count]);
+    NSLog(@"어레이 카운트 : %i", [polaroidImageArray count]);
     NSLog(@"컨텐츠 사이즈 : %f", self.poraroidScrollView.contentSize.width);
 //    nslog(@"%@",self.poraroidScrollView.contentOffset.x);
 }
@@ -96,7 +114,7 @@
     // Update the page when more than 50% of the previous/next page is visible
     CGFloat pageWidth = self.poraroidScrollView.frame.size.width;
     currentPage = floor((self.poraroidScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    NSLog(@"%li",currentPage);
+    NSLog(@"%i",currentPage);
 //    self.pageControl.currentPage = page;
 }
 

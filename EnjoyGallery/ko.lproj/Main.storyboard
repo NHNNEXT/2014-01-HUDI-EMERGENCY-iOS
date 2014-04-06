@@ -56,11 +56,19 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e08-Uy-Zzr">
-                                        <rect key="frame" x="100" y="11" width="120" height="44"/>
+                                        <rect key="frame" x="20" y="11" width="47" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="이 페이지 삭제"/>
+                                        <state key="normal" title="삭제"/>
                                         <connections>
                                             <action selector="deleteCurPola:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="7VP-Ae-G4j"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bjc-oD-a4p">
+                                        <rect key="frame" x="241" y="11" width="59" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="편집"/>
+                                        <connections>
+                                            <action selector="deleteCurPola:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="cgA-2c-YdR"/>
                                         </connections>
                                     </button>
                                 </subviews>
