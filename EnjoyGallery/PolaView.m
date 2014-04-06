@@ -6,9 +6,9 @@
 //  Copyright (c) 2014년 EntusApps. All rights reserved.
 //
 
-#import "PolaGallery.h"
+#import "PolaView.h"
 
-@implementation PolaGallery
+@implementation PolaView
 
 - (id)initWithImage:(UIImage*)image Date:(NSDate*)date ScrollView:(UIScrollView*)scrollview
 {

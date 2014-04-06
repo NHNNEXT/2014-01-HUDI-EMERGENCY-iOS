@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "PolaGallery.h"
+#import "PolaView.h"
 
 @interface ViewController ()
 
@@ -52,7 +52,7 @@
 
 #pragma mark Add Image
 - (void)addImage:(UIImage*)image date:(NSDate*)date{
-    PolaGallery *pola = [PolaGallery new];
+    PolaView *pola = [PolaView new];
     pola = [pola initWithImage:image Date:date ScrollView:self.poraroidScrollView];
     [polaroidImageArray addObject:pola];
 }

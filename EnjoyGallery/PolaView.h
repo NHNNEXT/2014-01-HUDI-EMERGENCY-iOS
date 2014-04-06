@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PolaGallery : UIView<UINavigationBarDelegate,UIScrollViewDelegate>
+@interface PolaView : UIView<UINavigationBarDelegate,UIScrollViewDelegate>{
+    
+}
 
 - (id)initWithImage:(UIImage*)image Date:(NSDate*)date ScrollView:(UIScrollView*)scrollview;
 
