@@ -50,11 +50,38 @@
 }
 
 
-#pragma mark Add Image
+#pragma mark Add PolaView
 - (void)addImage:(UIImage*)image date:(NSDate*)date{
     PolaView *pola = [PolaView new];
-    pola = [pola initWithImage:image Date:date ScrollView:self.poraroidScrollView];
+    pola = [pola addPolaWithImage:image Date:date ScrollView:self.poraroidScrollView];
     [polaroidImageArray addObject:pola];
+}
+
+#pragma mark Delete PolaView
+- (IBAction)deletePolaView:(id)sender{
+    
+    PolaView *firstPola = [polaroidImageArray firstObject];
+    int index=0;
+    
+    //스크롤뷰 컨텐츠사이즈 조절
+    [self.poraroidScrollView setContentSize:CGSizeMake(self.poraroidScrollView.contentSize.width-260, 355)];
+    
+    for (int i=index; i<[polaroidImageArray count]; i++) {
+        UIView *thisPola = [polaroidImageArray objectAtIndex:i];
+        [thisPola setFrame:CGRectMake(thisPola.frame.origin.x-260, thisPola.frame.origin.y, thisPola.frame.size.width, thisPola.frame.size.height)];
+    }
+    
+    [self.poraroidScrollView setContentOffset:CGPointMake(0, 0) animated:TRUE];
+    
+    
+    [polaroidImageArray removeObject:firstPola];
+    
+    [firstPola removeFromSuperview];
+    firstPola = nil;
+    
+    
+    NSLog(@"어레이 카운트 : %d ", [polaroidImageArray count]);
+    NSLog(@"컨텐츠 사이즈 : %f", self.poraroidScrollView.contentSize.width);
 }
 
 
@@ -95,7 +122,10 @@
     [assetslibrary assetForURL:[editingInfo objectForKey:@"UIImagePickerControllerReferenceURL"]
                    resultBlock:^(ALAsset *asset) {
                        NSDate *myDate = [asset valueForProperty:ALAssetPropertyDate];
-                       
+                       //지금 찍어서 데이트가 없으면 현재 시간을 입력.
+                       if (!myDate) {
+                           myDate = [[NSDate alloc]init];
+                       }
                        [self addImage:image date:myDate];
                    } failureBlock:^(NSError *error) {
                        NSLog(@"Error");

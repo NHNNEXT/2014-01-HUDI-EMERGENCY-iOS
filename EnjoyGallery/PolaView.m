@@ -10,11 +10,24 @@
 
 @implementation PolaView
 
-- (id)initWithImage:(UIImage*)image Date:(NSDate*)date ScrollView:(UIScrollView*)scrollview
+//- (id)initWithFrame:(CGRect)frame
+//{
+//    self = [super initWithFrame:frame];
+//    if (self) {
+//        // Initialization code
+//    }
+//    return self;
+//}
+
+- (id)addPolaWithImage:(UIImage*)image Date:(NSDate*)date ScrollView:(UIScrollView*)scrollview
 {
+    
+    polaImage = image;
+    polaDate = date;
+    polaScrollView = scrollview;
+    
     //스크롤뷰 컨텐츠사이즈 조절
     [scrollview setContentSize:CGSizeMake(scrollview.contentSize.width+260, 355)];
-    
     
     CGRect twineViewFrame = CGRectMake(-38, -30, 320, 10);
     CGRect woodenClipViewFrame = CGRectMake(105, -55, 20, 82);
@@ -80,7 +93,15 @@
     return poraView;
 }
 
-
+- (void)deletePola:(NSMutableArray*)array index:(int)index{
+    //스크롤뷰 컨텐츠사이즈 조절
+    [polaScrollView setContentSize:CGSizeMake(polaScrollView.contentSize.width+260, 355)];
+    
+    for (int i=index; i<[array count]; i++) {
+        UIView *thisPola = [array objectAtIndex:index];
+        [thisPola setFrame:CGRectMake(thisPola.frame.origin.x-260, thisPola.frame.origin.y, thisPola.frame.size.width, thisPola.frame.size.height)];
+    }
+}
 
 
 //메모리 관리 위해 화면에서 사라진 이미지는 히든.

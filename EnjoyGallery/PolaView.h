@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface PolaView : UIView<UINavigationBarDelegate,UIScrollViewDelegate>{
-    
+    UIImage *polaImage;
+    NSDate *polaDate;
+    UIScrollView *polaScrollView;
 }
 
-- (id)initWithImage:(UIImage*)image Date:(NSDate*)date ScrollView:(UIScrollView*)scrollview;
-
+- (id)addPolaWithImage:(UIImage*)image Date:(NSDate*)date ScrollView:(UIScrollView*)scrollview;
+- (void)deletePola:(NSMutableArray*)array index:(int)index;
 @end
