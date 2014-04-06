@@ -57,31 +57,47 @@
     [polaroidImageArray addObject:pola];
 }
 
+- (IBAction)deleteCurPola:(id)sender{
+    [self deletePolaView:currentPage];
+}
+
+
 #pragma mark Delete PolaView
-- (IBAction)deletePolaView:(id)sender{
+- (void)deletePolaView:(NSUInteger)index{
     
-    PolaView *firstPola = [polaroidImageArray firstObject];
-    int index=0;
+    PolaView *curPagePola = [polaroidImageArray objectAtIndex:index];
+//    NSUInteger index = [polaroidImageArray indexOfObject:sender];
     
     //스크롤뷰 컨텐츠사이즈 조절
     [self.poraroidScrollView setContentSize:CGSizeMake(self.poraroidScrollView.contentSize.width-260, 355)];
     
-    for (int i=index; i<[polaroidImageArray count]; i++) {
+    for (NSUInteger i=index; i<[polaroidImageArray count]; i++) {
         UIView *thisPola = [polaroidImageArray objectAtIndex:i];
         [thisPola setFrame:CGRectMake(thisPola.frame.origin.x-260, thisPola.frame.origin.y, thisPola.frame.size.width, thisPola.frame.size.height)];
     }
     
-    [self.poraroidScrollView setContentOffset:CGPointMake(0, 0) animated:TRUE];
+//    [self.poraroidScrollView setContentOffset:CGPointMake(0, 0) animated:TRUE];
     
     
-    [polaroidImageArray removeObject:firstPola];
+    [polaroidImageArray removeObject:curPagePola];
     
-    [firstPola removeFromSuperview];
-    firstPola = nil;
+    [curPagePola removeFromSuperview];
+    curPagePola = nil;
     
     
-    NSLog(@"어레이 카운트 : %d ", [polaroidImageArray count]);
+    NSLog(@"어레이 카운트 : %li", [polaroidImageArray count]);
     NSLog(@"컨텐츠 사이즈 : %f", self.poraroidScrollView.contentSize.width);
+//    nslog(@"%@",self.poraroidScrollView.contentOffset.x);
+}
+
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)sender {
+    // Update the page when more than 50% of the previous/next page is visible
+    CGFloat pageWidth = self.poraroidScrollView.frame.size.width;
+    currentPage = floor((self.poraroidScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    NSLog(@"%li",currentPage);
+//    self.pageControl.currentPage = page;
 }
 
 

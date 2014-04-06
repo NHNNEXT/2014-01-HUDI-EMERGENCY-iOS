@@ -58,9 +58,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e08-Uy-Zzr">
                                         <rect key="frame" x="100" y="11" width="120" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="맨처음꺼 삭제"/>
+                                        <state key="normal" title="이 페이지 삭제"/>
                                         <connections>
-                                            <action selector="deletePolaView:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="HbK-7F-TOp"/>
+                                            <action selector="deleteCurPola:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="7VP-Ae-G4j"/>
                                         </connections>
                                     </button>
                                 </subviews>

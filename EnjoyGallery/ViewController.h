@@ -12,6 +12,7 @@
 
 @interface ViewController : UIViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIScrollViewDelegate>{
     
+    NSUInteger currentPage;
     NSMutableArray *polaroidImageArray;
 }
 
