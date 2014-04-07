@@ -19,6 +19,8 @@
 		1F40FB3518EBEE8400090511 /* Local.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F40FB3718EBEE8400090511 /* Local.strings */; };
 		1F86AA5318F1BE5B003D9791 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F86AA5118F1BE5B003D9791 /* Main.storyboard */; };
 		1F86AA5618F1C582003D9791 /* PolaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F86AA5518F1C582003D9791 /* PolaView.m */; };
+		1F86AA6018F22B3D003D9791 /* default4.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F86AA5F18F22B3D003D9791 /* default4.png */; };
+		1F86AA6218F22B65003D9791 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F86AA6118F22B65003D9791 /* Default-568h@2x.png */; };
 		1FCF10F618E0228300440273 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FCF10F518E0228300440273 /* Foundation.framework */; };
 		1FCF10F818E0228300440273 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FCF10F718E0228300440273 /* CoreGraphics.framework */; };
 		1FCF10FA18E0228300440273 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FCF10F918E0228300440273 /* UIKit.framework */; };
@@ -63,6 +65,9 @@
 		1F86AA5518F1C582003D9791 /* PolaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolaView.m; sourceTree = "<group>"; };
 		1F86AA5718F1CF71003D9791 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ko; path = ko.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1F86AA5D18F1F4D4003D9791 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1F86AA5E18F22B19003D9791 /* default3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default3.png; path = ../default3.png; sourceTree = "<group>"; };
+		1F86AA5F18F22B3D003D9791 /* default4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default4.png; sourceTree = "<group>"; };
+		1F86AA6118F22B65003D9791 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		1FCF10F218E0228300440273 /* EnjoyGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnjoyGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FCF10F518E0228300440273 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1FCF10F718E0228300440273 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -112,6 +117,8 @@
 		1F40FB2418EBE4D400090511 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				1F86AA5E18F22B19003D9791 /* default3.png */,
+				1F86AA5F18F22B3D003D9791 /* default4.png */,
 				1F13CD5318E7F9D800E4208B /* pattern.png */,
 				1F13CD5118E7724300E4208B /* NanumBrush.ttf */,
 				1F13CD4918E6EAD000E4208B /* ico_photo.png */,
@@ -128,6 +135,7 @@
 		1FCF10E918E0228300440273 = {
 			isa = PBXGroup;
 			children = (
+				1F86AA6118F22B65003D9791 /* Default-568h@2x.png */,
 				1FCF10FB18E0228300440273 /* EnjoyGallery */,
 				1FCF111A18E0228300440273 /* EnjoyGalleryTests */,
 				1FCF10F418E0228300440273 /* Frameworks */,
@@ -291,8 +299,10 @@
 				1FCF110018E0228300440273 /* InfoPlist.strings in Resources */,
 				1F13CD5218E7724300E4208B /* NanumBrush.ttf in Resources */,
 				1F86AA5318F1BE5B003D9791 /* Main.storyboard in Resources */,
+				1F86AA6218F22B65003D9791 /* Default-568h@2x.png in Resources */,
 				1F13CD4618E61C2200E4208B /* 나무집게1.png in Resources */,
 				1F13CD4C18E6EAD000E4208B /* ico_photo@2x.png in Resources */,
+				1F86AA6018F22B3D003D9791 /* default4.png in Resources */,
 				1F40FB3518EBEE8400090511 /* Local.strings in Resources */,
 				1F13CD4F18E75BD100E4208B /* ico_save.png in Resources */,
 				1F13CD4418E60A7C00E4208B /* blurBG.png in Resources */,
@@ -453,13 +463,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EnjoyGallery/EnjoyGallery-Prefix.pch";
 				INFOPLIST_FILE = "EnjoyGallery/EnjoyGallery-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -468,13 +478,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EnjoyGallery/EnjoyGallery-Prefix.pch";
 				INFOPLIST_FILE = "EnjoyGallery/EnjoyGallery-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -29,11 +29,17 @@
     //스크롤뷰 컨텐츠사이즈 조절
     [scrollview setContentSize:CGSizeMake(scrollview.contentSize.width+260, 355)];
     
-    CGRect twineViewFrame = CGRectMake(-38, -30, 320, 10);
-    CGRect woodenClipViewFrame = CGRectMake(105, -55, 20, 82);
+    CGRect pageViewFrame = CGRectMake(scrollview.contentSize.width-250, 0, 240, 335);
+    
+    CGRect twineViewFrame = CGRectMake(-40, 20, 320, 10);
+    CGRect woodenClipViewFrame = CGRectMake(105, 0, 20, 82);
     CGRect imageViewFrame = CGRectMake(10, 10, 220, 220);
-    CGRect poraViewFrame = CGRectMake(scrollview.contentSize.width-250,55, 240, 270);
+    CGRect poraViewFrame = CGRectMake(0,55, 240, 270);
     CGRect dateLabelViewFrame = CGRectMake(10,235, 220, 30);
+    
+    UIView *pageView = [[UIView alloc]initWithFrame:pageViewFrame];
+    
+    
     
     UIView *poraView = [[UIView alloc]initWithFrame:poraViewFrame];
     [poraView setBackgroundColor:[UIColor whiteColor]];
@@ -65,10 +71,11 @@
     [dateLabel setTextColor:[UIColor blackColor]];
     
     //이미지 기울기
-    //    [UIView beginAnimations:nil context:nil];
-    //    [UIView setAnimationDuration:0.01];
-    //    poraView.transform = CGAffineTransformMakeRotation(((int)arc4random_uniform(2)-1)*(M_PI/180));
-    //    [UIView commitAnimations];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.01];
+    poraView.transform = CGAffineTransformMakeRotation(((int)arc4random_uniform(4)-2)*(M_PI/180));
+    woodenClipImageView.transform = CGAffineTransformMakeRotation(((int)arc4random_uniform(6)-3)*(M_PI/180));
+    [UIView commitAnimations];
     
     //그림자 만들기
     //그림자 버그 발견 : 스크롤할때 스크롤뷰 사이드에도 그림자 생김.
@@ -76,21 +83,22 @@
     //        poraView.layer.shadowOpacity = 1;
     //        poraView.layer.shadowColor = [UIColor blackColor].CGColor;
     
-    [poraView addSubview:twineImageView];
     [poraView addSubview:imageView];
-    [poraView addSubview:woodenClipImageView];
     [poraView addSubview:dateLabel];
     
+    [pageView addSubview:poraView];
+    [pageView addSubview:twineImageView];
+    [pageView addSubview:woodenClipImageView];
     ////메모 : 안티 얼라이어싱 하는법 = infoPlist에 Renders with edge antialisasing필드 추가 값은 YES////
     
-    [scrollview addSubview:poraView];
+    [scrollview addSubview:pageView];
 //    [polaroidImageArray addObject:poraView];
     
     //사진 추가되면 추가된 곳으로 이동.
 //    [polaroidImageArray.lastObject setHidden:NO];
     [scrollview setContentOffset:CGPointMake(scrollview.contentSize.width-260, 0) animated:TRUE];
     
-    return poraView;
+    return pageView;
 }
 
 - (void)deletePola:(NSMutableArray*)array index:(int)index{

@@ -52,6 +52,12 @@
 
 #pragma mark Add PolaView
 - (void)addImage:(UIImage*)image date:(NSDate*)date{
+//    for (int i=0; i<100; i++) {
+//        PolaView *pola = [PolaView new];
+//        pola = [pola addPolaWithImage:image Date:date ScrollView:self.poraroidScrollView];
+//        [polaroidImageArray addObject:pola];
+//    }
+
     PolaView *pola = [PolaView new];
     pola = [pola addPolaWithImage:image Date:date ScrollView:self.poraroidScrollView];
     [polaroidImageArray addObject:pola];
@@ -231,7 +237,7 @@
         return;
     }
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:str delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:str message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
     
     [alert show];
     
