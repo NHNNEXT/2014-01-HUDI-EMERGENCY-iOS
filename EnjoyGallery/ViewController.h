@@ -11,7 +11,7 @@
 #import <ImageIO/ImageIO.h>
 
 @interface ViewController : UIViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIScrollViewDelegate,UIAlertViewDelegate>{
-    
+    ALAssetsLibrary* assetslibrary;
     NSUInteger currentPage;
     NSMutableArray *polaroidImageArray;
 }

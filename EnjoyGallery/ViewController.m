@@ -183,7 +183,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker
         didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
-    ALAssetsLibrary* assetslibrary = [[ALAssetsLibrary alloc] init];
+    assetslibrary = [[ALAssetsLibrary alloc] init];
     [assetslibrary assetForURL:[editingInfo objectForKey:@"UIImagePickerControllerReferenceURL"]
                    resultBlock:^(ALAsset *asset) {
                        NSDate *myDate = [asset valueForProperty:ALAssetPropertyDate];

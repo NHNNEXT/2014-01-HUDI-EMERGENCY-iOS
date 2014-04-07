@@ -71,11 +71,11 @@
     [dateLabel setTextColor:[UIColor blackColor]];
     
     //이미지 기울기
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.01];
-    poraView.transform = CGAffineTransformMakeRotation(((int)arc4random_uniform(4)-2)*(M_PI/180));
-    woodenClipImageView.transform = CGAffineTransformMakeRotation(((int)arc4random_uniform(6)-3)*(M_PI/180));
-    [UIView commitAnimations];
+//    [UIView beginAnimations:nil context:nil];
+//    [UIView setAnimationDuration:0.01];
+//    poraView.transform = CGAffineTransformMakeRotation(((int)arc4random_uniform(4)-2)*(M_PI/180));
+//    woodenClipImageView.transform = CGAffineTransformMakeRotation(((int)arc4random_uniform(6)-3)*(M_PI/180));
+//    [UIView commitAnimations];
     
     //그림자 만들기
     //그림자 버그 발견 : 스크롤할때 스크롤뷰 사이드에도 그림자 생김.
