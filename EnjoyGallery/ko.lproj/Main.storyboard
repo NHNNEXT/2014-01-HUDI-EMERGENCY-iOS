@@ -75,7 +75,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
-                        <outlet property="poraroidScrollView" destination="5hJ-Ed-Bju" id="qkK-QG-zxz"/>
+                        <outlet property="polaroidScrollView" destination="5hJ-Ed-Bju" id="apH-k5-Lvz"/>
                         <outlet property="touchableview" destination="ElD-52-8o3" id="29l-Gv-3wc"/>
                         <outlet property="wrapView" destination="kh9-bI-dsS" id="OQF-ov-SZR"/>
                     </connections>
