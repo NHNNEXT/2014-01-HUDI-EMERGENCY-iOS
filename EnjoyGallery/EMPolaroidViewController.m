@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 EntusApps. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "PolaView.h"
+#import "EMPolaroidViewController.h"
+#import "EMPolaGalleryView.h"
 
-@interface ViewController ()
+@interface EMPolaroidViewController ()
 
 @end
 
-@implementation ViewController
+@implementation EMPolaroidViewController
 
 - (void)viewDidLoad
 {
@@ -34,15 +34,15 @@
     
     
     //스크롤뷰 컨텐츠사이즈 설정
-    [self.poraroidScrollView setContentSize:CGSizeMake(0, 355)];
+    [self.polaroidScrollView setContentSize:CGSizeMake(0, 355)];
     
     //스크롤뷰 커스텀 페이징
-    [self.poraroidScrollView setClipsToBounds:FALSE];
-    [self.poraroidScrollView setDelegate:self];
-    [self.poraroidScrollView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"blurBG.png"]]];
+    [self.polaroidScrollView setClipsToBounds:FALSE];
+    [self.polaroidScrollView setDelegate:self];
+    [self.polaroidScrollView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"blurBG.png"]]];
     [self.touchableview setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"blurBG.png"]]];
     
-//    [self.touchableview addGestureRecognizer:self.poraroidScrollView.panGestureRecognizer];
+//    [self.touchableview addGestureRecognizer:self.polaroidScrollView.panGestureRecognizer];
 //    [self.touchableview setClipsToBounds:TRUE];
     
     
@@ -54,12 +54,12 @@
 - (void)addImage:(UIImage*)image date:(NSDate*)date{
 //    for (int i=0; i<100; i++) {
 //        PolaView *pola = [PolaView new];
-//        pola = [pola addPolaWithImage:image Date:date ScrollView:self.poraroidScrollView];
+//        pola = [pola addPolaWithImage:image Date:date ScrollView:self.polaroidScrollView];
 //        [polaroidImageArray addObject:pola];
 //    }
 
     PolaView *pola = [PolaView new];
-    pola = [pola addPolaWithImage:image Date:date ScrollView:self.poraroidScrollView];
+    pola = [pola addPolaWithImage:image Date:date ScrollView:self.polaroidScrollView];
     [polaroidImageArray addObject:pola];
 }
 
@@ -109,14 +109,14 @@
 //    NSUInteger index = [polaroidImageArray indexOfObject:sender];
     
     //스크롤뷰 컨텐츠사이즈 조절
-    [self.poraroidScrollView setContentSize:CGSizeMake(self.poraroidScrollView.contentSize.width-260, 355)];
+    [self.polaroidScrollView setContentSize:CGSizeMake(self.polaroidScrollView.contentSize.width-260, 355)];
     
     for (NSUInteger i=index; i<[polaroidImageArray count]; i++) {
         UIView *thisPola = [polaroidImageArray objectAtIndex:i];
         [thisPola setFrame:CGRectMake(thisPola.frame.origin.x-260, thisPola.frame.origin.y, thisPola.frame.size.width, thisPola.frame.size.height)];
     }
     
-//    [self.poraroidScrollView setContentOffset:CGPointMake(0, 0) animated:TRUE];
+//    [self.polaroidScrollView setContentOffset:CGPointMake(0, 0) animated:TRUE];
     
     
     [polaroidImageArray removeObject:curPagePola];
@@ -126,16 +126,16 @@
     
     
     NSLog(@"어레이 카운트 : %d", (int)[polaroidImageArray count]);
-    NSLog(@"컨텐츠 사이즈 : %f", self.poraroidScrollView.contentSize.width);
-//    nslog(@"%@",self.poraroidScrollView.contentOffset.x);
+    NSLog(@"컨텐츠 사이즈 : %f", self.polaroidScrollView.contentSize.width);
+//    nslog(@"%@",self.polaroidScrollView.contentOffset.x);
 }
 
 
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
     // Update the page when more than 50% of the previous/next page is visible
-    CGFloat pageWidth = self.poraroidScrollView.frame.size.width;
-    currentPage = floor((self.poraroidScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    CGFloat pageWidth = self.polaroidScrollView.frame.size.width;
+    currentPage = floor((self.polaroidScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     NSLog(@"%d",(int)currentPage);
 //    self.pageControl.currentPage = page;
 }
@@ -251,16 +251,16 @@
     UIImage *capture = nil;
     
     // UIScrollView의 기존 frame을 저장
-    CGRect originScrollViewFrame = self.poraroidScrollView.frame;
+    CGRect originScrollViewFrame = self.polaroidScrollView.frame;
     
     // capture할 영역을 지정. UIScrollView의 컨텐츠 사이즈
-    CGSize captureSize = CGSizeMake(self.poraroidScrollView.contentSize.width, self.poraroidScrollView.contentSize.height);
+    CGSize captureSize = CGSizeMake(self.polaroidScrollView.contentSize.width, self.polaroidScrollView.contentSize.height);
     
     // bitmap graphic context 생성
     UIGraphicsBeginImageContextWithOptions(captureSize, YES, 0.0);
     
     // UIScrollView의 frame을 content 영역으로 변경
-    self.poraroidScrollView.frame = CGRectMake(0, 0, captureSize.width, captureSize.height);
+    self.polaroidScrollView.frame = CGRectMake(0, 0, captureSize.width, captureSize.height);
     
     // UIScrollView frame영역을 bitmap image context에 그림
     [self.touchableview.layer renderInContext:UIGraphicsGetCurrentContext()];
@@ -269,7 +269,7 @@
     capture = UIGraphicsGetImageFromCurrentImageContext();
     
     // UIScrollView의 frame을 원래대로 변경 (변경하지 않으면 스크롤이 안됨)
-    self.poraroidScrollView.frame = originScrollViewFrame;
+    self.polaroidScrollView.frame = originScrollViewFrame;
     
     // bitmap image context 종료
     UIGraphicsEndImageContext();

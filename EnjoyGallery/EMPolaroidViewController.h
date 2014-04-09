@@ -10,14 +10,14 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <ImageIO/ImageIO.h>
 
-@interface ViewController : UIViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIScrollViewDelegate,UIAlertViewDelegate>{
+@interface EMPolaroidViewController : UIViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIScrollViewDelegate,UIAlertViewDelegate>{
     ALAssetsLibrary* assetslibrary;
     NSUInteger currentPage;
     NSMutableArray *polaroidImageArray;
 }
 
-@property (strong, nonatomic) IBOutlet UIScrollView *poraroidScrollView;
-//@property (strong, nonatomic) IBOutlet UIPageControl *poraroidPageControl;
+@property (strong, nonatomic) IBOutlet UIScrollView *polaroidScrollView;
+//@property (strong, nonatomic) IBOutlet UIPageControl *polaroidPageControl;
 @property (strong, nonatomic) IBOutlet UIView *touchableview;
 @property (strong, nonatomic) IBOutlet UIView *wrapView;
 

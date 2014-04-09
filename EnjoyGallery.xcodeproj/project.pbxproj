@@ -18,7 +18,7 @@
 		1F13CD5418E7F9D800E4208B /* pattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F13CD5318E7F9D800E4208B /* pattern.png */; };
 		1F40FB3518EBEE8400090511 /* Local.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F40FB3718EBEE8400090511 /* Local.strings */; };
 		1F86AA5318F1BE5B003D9791 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F86AA5118F1BE5B003D9791 /* Main.storyboard */; };
-		1F86AA5618F1C582003D9791 /* PolaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F86AA5518F1C582003D9791 /* PolaView.m */; };
+		1F86AA5618F1C582003D9791 /* EMPolaGalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F86AA5518F1C582003D9791 /* EMPolaGalleryView.m */; };
 		1F86AA6018F22B3D003D9791 /* default4.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F86AA5F18F22B3D003D9791 /* default4.png */; };
 		1F86AA6218F22B65003D9791 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F86AA6118F22B65003D9791 /* Default-568h@2x.png */; };
 		1FCF10F618E0228300440273 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FCF10F518E0228300440273 /* Foundation.framework */; };
@@ -27,7 +27,7 @@
 		1FCF110018E0228300440273 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1FCF10FE18E0228300440273 /* InfoPlist.strings */; };
 		1FCF110218E0228300440273 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCF110118E0228300440273 /* main.m */; };
 		1FCF110618E0228300440273 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCF110518E0228300440273 /* AppDelegate.m */; };
-		1FCF110C18E0228300440273 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCF110B18E0228300440273 /* ViewController.m */; };
+		1FCF110C18E0228300440273 /* EMPolaroidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCF110B18E0228300440273 /* EMPolaroidViewController.m */; };
 		1FCF110E18E0228300440273 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FCF110D18E0228300440273 /* Images.xcassets */; };
 		1FCF111518E0228300440273 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FCF111418E0228300440273 /* XCTest.framework */; };
 		1FCF111618E0228300440273 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FCF10F518E0228300440273 /* Foundation.framework */; };
@@ -61,8 +61,8 @@
 		1F40FB3B18EBF3AD00090511 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1F40FB3C18EBF3AD00090511 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Local.strings; sourceTree = "<group>"; };
 		1F40FB3D18EBF3AD00090511 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		1F86AA5418F1C582003D9791 /* PolaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolaView.h; sourceTree = "<group>"; };
-		1F86AA5518F1C582003D9791 /* PolaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolaView.m; sourceTree = "<group>"; };
+		1F86AA5418F1C582003D9791 /* EMPolaGalleryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPolaGalleryView.h; sourceTree = "<group>"; };
+		1F86AA5518F1C582003D9791 /* EMPolaGalleryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPolaGalleryView.m; sourceTree = "<group>"; };
 		1F86AA5718F1CF71003D9791 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ko; path = ko.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1F86AA5D18F1F4D4003D9791 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1F86AA5E18F22B19003D9791 /* default3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default3.png; path = ../default3.png; sourceTree = "<group>"; };
@@ -78,8 +78,8 @@
 		1FCF110318E0228300440273 /* EnjoyGallery-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EnjoyGallery-Prefix.pch"; sourceTree = "<group>"; };
 		1FCF110418E0228300440273 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1FCF110518E0228300440273 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1FCF110A18E0228300440273 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		1FCF110B18E0228300440273 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		1FCF110A18E0228300440273 /* EMPolaroidViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EMPolaroidViewController.h; sourceTree = "<group>"; };
+		1FCF110B18E0228300440273 /* EMPolaroidViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EMPolaroidViewController.m; sourceTree = "<group>"; };
 		1FCF110D18E0228300440273 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1FCF111318E0228300440273 /* EnjoyGalleryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EnjoyGalleryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FCF111418E0228300440273 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -171,10 +171,10 @@
 				1FCF110418E0228300440273 /* AppDelegate.h */,
 				1FCF110518E0228300440273 /* AppDelegate.m */,
 				1F86AA5118F1BE5B003D9791 /* Main.storyboard */,
-				1F86AA5418F1C582003D9791 /* PolaView.h */,
-				1F86AA5518F1C582003D9791 /* PolaView.m */,
-				1FCF110A18E0228300440273 /* ViewController.h */,
-				1FCF110B18E0228300440273 /* ViewController.m */,
+				1F86AA5418F1C582003D9791 /* EMPolaGalleryView.h */,
+				1F86AA5518F1C582003D9791 /* EMPolaGalleryView.m */,
+				1FCF110A18E0228300440273 /* EMPolaroidViewController.h */,
+				1FCF110B18E0228300440273 /* EMPolaroidViewController.m */,
 				1FCF110D18E0228300440273 /* Images.xcassets */,
 				1FCF10FC18E0228300440273 /* Supporting Files */,
 				1F40FB3718EBEE8400090511 /* Local.strings */,
@@ -324,8 +324,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F86AA5618F1C582003D9791 /* PolaView.m in Sources */,
-				1FCF110C18E0228300440273 /* ViewController.m in Sources */,
+				1F86AA5618F1C582003D9791 /* EMPolaGalleryView.m in Sources */,
+				1FCF110C18E0228300440273 /* EMPolaroidViewController.m in Sources */,
 				1FCF110618E0228300440273 /* AppDelegate.m in Sources */,
 				1FCF110218E0228300440273 /* main.m in Sources */,
 			);
