@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface LoginViewViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIImageView *background;
-@property (weak, nonatomic) IBOutlet UITextField *emailText;
-@property (weak, nonatomic) IBOutlet UITextField *pwText;
+@property (weak, nonatomic) IBOutlet UIImageView *bgImage;
+@property (weak, nonatomic) IBOutlet UITextField *emailField;
+@property (weak, nonatomic) IBOutlet UITextField *pwField;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIButton *signUpButton;
+
+
 
 @end

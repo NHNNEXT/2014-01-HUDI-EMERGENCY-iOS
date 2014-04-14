@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1518690618FB79B000C8A19B /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 1518690518FB79B000C8A19B /* green.png */; };
+		1518690C18FB7E6100C8A19B /* polaroid-wall (1).jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1518690B18FB7E6100C8A19B /* polaroid-wall (1).jpg */; };
+		1518691218FB841700C8A19B /* arrowbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1518691118FB841700C8A19B /* arrowbg.png */; };
 		154C0DF918FAE4BA00D74851 /* LoginViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 154C0DF818FAE4BA00D74851 /* LoginViewViewController.m */; };
-		15AC76C818FB057900725149 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 15AC76C718FB057900725149 /* bg.jpg */; };
+		15900A5C18FB857B00097911 /* gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 15900A5B18FB857B00097911 /* gray.png */; };
+		15900A5E18FB8CF200097911 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 15900A5D18FB8CF200097911 /* arrow.png */; };
 		15AC76CC18FB0E4E00725149 /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 15AC76CB18FB0E4E00725149 /* white.png */; };
 		15AC76CE18FB101100725149 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 15AC76CD18FB101100725149 /* user.png */; };
 		15AC76D218FB108100725149 /* pw.png in Resources */ = {isa = PBXBuildFile; fileRef = 15AC76D118FB108100725149 /* pw.png */; };
@@ -55,9 +59,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1518690518FB79B000C8A19B /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
+		1518690B18FB7E6100C8A19B /* polaroid-wall (1).jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "polaroid-wall (1).jpg"; sourceTree = "<group>"; };
+		1518691118FB841700C8A19B /* arrowbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowbg.png; sourceTree = "<group>"; };
 		154C0DF718FAE4BA00D74851 /* LoginViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewViewController.h; sourceTree = "<group>"; };
 		154C0DF818FAE4BA00D74851 /* LoginViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewViewController.m; sourceTree = "<group>"; };
-		15AC76C718FB057900725149 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
+		15900A5B18FB857B00097911 /* gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray.png; sourceTree = "<group>"; };
+		15900A5D18FB8CF200097911 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		15AC76CB18FB0E4E00725149 /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white.png; sourceTree = "<group>"; };
 		15AC76CD18FB101100725149 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		15AC76D118FB108100725149 /* pw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pw.png; sourceTree = "<group>"; };
@@ -132,12 +140,16 @@
 		1F40FB2418EBE4D400090511 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				15900A5D18FB8CF200097911 /* arrow.png */,
+				15900A5B18FB857B00097911 /* gray.png */,
+				1518691118FB841700C8A19B /* arrowbg.png */,
+				1518690B18FB7E6100C8A19B /* polaroid-wall (1).jpg */,
+				1518690518FB79B000C8A19B /* green.png */,
 				15AC76D718FB2A4100725149 /* bar.png */,
 				15AC76D518FB135B00725149 /* logbutton.png */,
 				15AC76CD18FB101100725149 /* user.png */,
 				15AC76D118FB108100725149 /* pw.png */,
 				15AC76CB18FB0E4E00725149 /* white.png */,
-				15AC76C718FB057900725149 /* bg.jpg */,
 				1F86AA5E18F22B19003D9791 /* default3.png */,
 				1F86AA5F18F22B3D003D9791 /* default4.png */,
 				1F13CD5318E7F9D800E4208B /* pattern.png */,
@@ -315,6 +327,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F13CD5418E7F9D800E4208B /* pattern.png in Resources */,
+				1518690618FB79B000C8A19B /* green.png in Resources */,
+				1518691218FB841700C8A19B /* arrowbg.png in Resources */,
+				15900A5E18FB8CF200097911 /* arrow.png in Resources */,
 				1FCF110E18E0228300440273 /* Images.xcassets in Resources */,
 				15AC76CE18FB101100725149 /* user.png in Resources */,
 				1F13CD5018E75BD100E4208B /* ico_save@2x.png in Resources */,
@@ -322,15 +337,16 @@
 				1F13CD4B18E6EAD000E4208B /* ico_photo.png in Resources */,
 				15AC76D618FB135B00725149 /* logbutton.png in Resources */,
 				1FCF110018E0228300440273 /* InfoPlist.strings in Resources */,
+				1518690C18FB7E6100C8A19B /* polaroid-wall (1).jpg in Resources */,
 				1F13CD5218E7724300E4208B /* NanumBrush.ttf in Resources */,
 				15AC76CC18FB0E4E00725149 /* white.png in Resources */,
 				1F86AA5318F1BE5B003D9791 /* Main.storyboard in Resources */,
+				15900A5C18FB857B00097911 /* gray.png in Resources */,
 				1F86AA6218F22B65003D9791 /* Default-568h@2x.png in Resources */,
 				1F13CD4618E61C2200E4208B /* 나무집게1.png in Resources */,
 				1F13CD4C18E6EAD000E4208B /* ico_photo@2x.png in Resources */,
 				1F86AA6018F22B3D003D9791 /* default4.png in Resources */,
 				1F40FB3518EBEE8400090511 /* Local.strings in Resources */,
-				15AC76C818FB057900725149 /* bg.jpg in Resources */,
 				15AC76D218FB108100725149 /* pw.png in Resources */,
 				15AC76D818FB2A4100725149 /* bar.png in Resources */,
 				1F13CD4F18E75BD100E4208B /* ico_save.png in Resources */,
