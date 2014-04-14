@@ -60,7 +60,7 @@
         [_pwField becomeFirstResponder];
     }else{
         [theTextField resignFirstResponder];
-        [self moveImage:_bgImage duration:15.0 curve:UIViewAnimationCurveLinear x:-100.0 y:-30.0];
+        //connect "login action "
     }
     return YES;
 }
