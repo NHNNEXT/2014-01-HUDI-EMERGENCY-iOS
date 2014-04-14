@@ -1,5 +1,5 @@
 //
-//  LoginViewViewController.h
+//  EMLoginViewController.h
 //  EnjoyGallery
 //
 //  Created by LeeYoungNam on 4/14/14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginViewViewController : UIViewController <UITextFieldDelegate>
+@interface EMLoginViewController : UIViewController <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *bgImage;
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *pwField;

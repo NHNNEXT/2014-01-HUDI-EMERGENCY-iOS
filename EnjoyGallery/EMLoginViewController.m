@@ -1,17 +1,17 @@
 //
-//  LoginViewViewController.m
+//  EMLoginViewController.m
 //  EnjoyGallery
 //
 //  Created by LeeYoungNam on 4/14/14.
 //  Copyright (c) 2014 EntusApps. All rights reserved.
 //
 
-#import "LoginViewViewController.h"
+#import "EMLoginViewController.h"
 
-@interface LoginViewViewController ()
+@interface EMLoginViewController ()
 @end
 
-@implementation LoginViewViewController
+@implementation EMLoginViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
