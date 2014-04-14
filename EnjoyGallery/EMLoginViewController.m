@@ -30,14 +30,13 @@
     //keyboard Hide
     
     //button color & radius
-    _loginButton.backgroundColor = [UIColor colorWithRed:(76/255.0) green:(217/255.0) blue:(100/255.0) alpha:1];
+    _loginButton.backgroundColor = [UIColor colorWithRed:(178/255.0) green:(177/255.0) blue:(201/255.0) alpha:1];
     _loginButton.layer.cornerRadius = 5.0f;
     _signUpButton.backgroundColor = [UIColor colorWithRed:(143/255.0) green:(150/255.0) blue:(144/255.0) alpha:1];
 
     
     // Move the image
-    [self moveImage:_bgImage duration:15.0
-              curve:UIViewAnimationCurveLinear x:100.0 y:30.0];
+    [self moveImage:_bgImage duration:15.0 curve:UIViewAnimationCurveLinear x:100.0 y:30.0];
     
 }
 
