@@ -27,6 +27,8 @@
 
     [super viewDidLoad];
     
+    //keyboard Hide
+    
     //button color & radius
     _loginButton.backgroundColor = [UIColor colorWithRed:(76/255.0) green:(217/255.0) blue:(100/255.0) alpha:1];
     _loginButton.layer.cornerRadius = 5.0f;
@@ -38,6 +40,13 @@
               curve:UIViewAnimationCurveLinear x:100.0 y:30.0];
     
 }
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    //hides keyboard when another part of layout was touched
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
+}
+
 - (void)moveImage:(UIImageView *)image duration:(NSTimeInterval)duration
             curve:(int)curve x:(CGFloat)x y:(CGFloat)y
 {
@@ -60,6 +69,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end
 
