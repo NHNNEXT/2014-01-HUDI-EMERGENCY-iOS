@@ -17,7 +17,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
@@ -26,6 +26,9 @@
 {
 
     [super viewDidLoad];
+    
+    _emailField.delegate = self;
+    _pwField.delegate=self;
     
     //time bar hide
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
@@ -44,6 +47,22 @@
     // Move the image
     [self moveImage:_bgImage duration:15.0 curve:UIViewAnimationCurveLinear x:100.0 y:30.0];
     
+    //textFiled return key chnage
+    _emailField.returnKeyType = UIReturnKeyNext;
+    _pwField.returnKeyType = UIReturnKeyGo;
+    
+}
+
+
+//keyboard return change -> next & login button
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+    if(theTextField==_emailField){
+        [_pwField becomeFirstResponder];
+    }else{
+        [theTextField resignFirstResponder];
+        [self moveImage:_bgImage duration:15.0 curve:UIViewAnimationCurveLinear x:-100.0 y:-30.0];
+    }
+    return YES;
 }
 
 - (BOOL)prefersStatusBarHidden {
