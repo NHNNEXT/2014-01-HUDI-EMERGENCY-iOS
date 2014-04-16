@@ -17,7 +17,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
@@ -27,17 +27,46 @@
 
     [super viewDidLoad];
     
-    //keyboard Hide
+    _emailField.delegate = self;
+    _pwField.delegate=self;
+    
+    //time bar hide
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        // iOS 7
+        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    } else {
+        // iOS 6
+        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+    }
     
     //button color & radius
     _loginButton.backgroundColor = [UIColor colorWithRed:(178/255.0) green:(177/255.0) blue:(201/255.0) alpha:1];
     _loginButton.layer.cornerRadius = 5.0f;
-    _signUpButton.backgroundColor = [UIColor colorWithRed:(143/255.0) green:(150/255.0) blue:(144/255.0) alpha:1];
 
     
     // Move the image
     [self moveImage:_bgImage duration:15.0 curve:UIViewAnimationCurveLinear x:100.0 y:30.0];
     
+    //textFiled return key chnage
+    _emailField.returnKeyType = UIReturnKeyNext;
+    _pwField.returnKeyType = UIReturnKeyGo;
+    
+}
+
+
+//keyboard return change -> next & login button
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+    if(theTextField==_emailField){
+        [_pwField becomeFirstResponder];
+    }else{
+        [theTextField resignFirstResponder];
+        //connect "login action "
+    }
+    return YES;
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
