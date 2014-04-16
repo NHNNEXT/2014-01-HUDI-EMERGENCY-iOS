@@ -8,6 +8,7 @@
 
 #import "EMPolaroidViewController.h"
 #import "EMPolaGalleryView.h"
+#import "SIAlertView.h"
 
 @interface EMPolaroidViewController ()
 
@@ -45,8 +46,6 @@
 //    [self.touchableview addGestureRecognizer:self.polaroidScrollView.panGestureRecognizer];
 //    [self.touchableview setClipsToBounds:TRUE];
     
-    
-
 }
 
 
@@ -64,40 +63,44 @@
 }
 
 - (IBAction)deleteCurPola:(id)sender{
-//    NSLog(@"%i",[polaroidImageArray count]);
+    
+    //사진 없으면 에러창 띄움
     if (![polaroidImageArray count]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"NO PHOTO", @"Local", @"사진 없다")
-                                                        message:nil
-                                                       delegate:self
-                                              cancelButtonTitle:nil
-                                              otherButtonTitles:NSLocalizedStringFromTable(@"OK", @"Local", @"확인"), nil];
+        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Error!"  andMessage:NSLocalizedStringFromTable(@"NO PHOTO", @"Local", @"사진 없다")];
         
-        [alert show];
+        [alertView addButtonWithTitle:NSLocalizedStringFromTable(@"OK", @"Local", @"확인")
+                                 type:SIAlertViewButtonTypeCancel
+                              handler:^(SIAlertView *alert) {
+                                  NSLog(@"확인 클릭!");
+                              }];
+        alertView.transitionStyle = SIAlertViewTransitionStyleDropDown;
+        [alertView show];
+        
         return;
     }
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"REMOVE THIS PHOTO?", @"Local", @"이 사진을 삭제 하겠습니까?")
-                                                    message:nil
-                                                   delegate:self
-                                          cancelButtonTitle:NSLocalizedStringFromTable(@"CANCEL", @"Local", @"취소")
-                                          otherButtonTitles:NSLocalizedStringFromTable(@"OK", @"Local", @"확인"), nil];
-    
-    [alert show];
-}
 
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    //경고창의 타이틀을 비교해서 경고창을 구별한다.
-    if ( [[alertView title] isEqualToString:NSLocalizedStringFromTable(@"REMOVE THIS PHOTO?", @"Local", @"이 사진을 삭제 하겠습니까?")])
-	{
-        if(buttonIndex==1){
-            [self deletePolaView:currentPage];
-        }else {
-			
-        }
-        
-	}
-	
+    
+    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:nil
+                                                     andMessage:NSLocalizedStringFromTable(@"REMOVE THIS PHOTO?", @"Local", @"이 사진을 삭제 하겠습니까?")];
+    
+    [alertView addButtonWithTitle:NSLocalizedStringFromTable(@"Cancle", @"Local", @"취소")
+                             type:SIAlertViewButtonTypeCancel
+                          handler:^(SIAlertView *alert) {
+                              NSLog(@"취소 클릭!");
+                          }];
+    
+    [alertView addButtonWithTitle:NSLocalizedStringFromTable(@"OK", @"Local", @"확인")
+                             type:SIAlertViewButtonTypeDestructive
+                          handler:^(SIAlertView *alert) {
+                              NSLog(@"확인 클릭!");
+                              [self deletePolaView:currentPage];
+                          }];
+    
+    alertView.transitionStyle = SIAlertViewTransitionStyleDropDown;
+    [alertView show];
+    
+    
 }
 
 
@@ -147,10 +150,12 @@
     UIActionSheet *actionsheet = [[UIActionSheet alloc]
                                   initWithTitle:nil
                                   delegate:self
-                                  cancelButtonTitle:NSLocalizedStringFromTable(@"CANCEL", @"Local", @"Cancle!")
+                                  cancelButtonTitle:NSLocalizedStringFromTable(@"Cancle", @"Local", @"Cancle!")
                                   destructiveButtonTitle:nil
                                   otherButtonTitles:NSLocalizedStringFromTable(@"TAKE", @"Local",@"Take a Photo"), NSLocalizedStringFromTable(@"앨범에서 사진 선택", @"Local",@"Load From Album"), nil];
     [actionsheet showInView:self.view];
+    
+    
 }
 
 #pragma mark UIActionSheet Delegate
@@ -206,13 +211,15 @@
 - (IBAction)saveToImage:(id)sender{
     //사진 없으면 에러 메시지 
     if (![polaroidImageArray count]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"NO PHOTO", @"Local", @"사진 없다")
-                                                        message:nil
-                                                       delegate:self
-                                              cancelButtonTitle:nil
-                                              otherButtonTitles:NSLocalizedStringFromTable(@"OK", @"Local", @"확인"), nil];
+        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Error!"  andMessage:NSLocalizedStringFromTable(@"NO PHOTO", @"Local", @"사진 없다")];
         
-        [alert show];
+        [alertView addButtonWithTitle:NSLocalizedStringFromTable(@"OK", @"Local", @"확인")
+                                 type:SIAlertViewButtonTypeCancel
+                              handler:^(SIAlertView *alert) {
+                                  NSLog(@"확인 클릭!");
+                              }];
+        alertView.transitionStyle = SIAlertViewTransitionStyleDropDown;
+        [alertView show];
         return;
     }
     
@@ -234,12 +241,18 @@
     
     if (error) {
         str =NSLocalizedStringFromTable(@"에러",@"Local", @"Error!");
-        return;
     }
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:str message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:str  andMessage:nil];
     
-    [alert show];
+    [alertView addButtonWithTitle:NSLocalizedStringFromTable(@"OK", @"Local", @"확인")
+                             type:SIAlertViewButtonTypeDestructive
+                          handler:^(SIAlertView *alert) {
+                              NSLog(@"확인 클릭!");
+                          }];
+    alertView.transitionStyle = SIAlertViewTransitionStyleDropDown;
+    [alertView show];
+    
     
 }
 

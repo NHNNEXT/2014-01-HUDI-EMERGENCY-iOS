@@ -10,6 +10,10 @@
 
 @implementation PolaView
 
+@synthesize polaDate;
+@synthesize polaImage;
+@synthesize polaScrollView;
+
 //- (id)initWithFrame:(CGRect)frame
 //{
 //    self = [super initWithFrame:frame];
@@ -21,15 +25,14 @@
 
 - (id)addPolaWithImage:(UIImage*)image Date:(NSDate*)date ScrollView:(UIScrollView*)scrollview
 {
-    
-    polaImage = image;
-    polaDate = date;
-    polaScrollView = scrollview;
+    [self setPolaImage:image];
+    [self setPolaDate:date];
+    [self setPolaScrollView:scrollview];
     
     //스크롤뷰 컨텐츠사이즈 조절
-    [scrollview setContentSize:CGSizeMake(scrollview.contentSize.width+260, 355)];
+    [polaScrollView setContentSize:CGSizeMake(polaScrollView.contentSize.width+260, 355)];
     
-    CGRect pageViewFrame = CGRectMake(scrollview.contentSize.width-250, 0, 240, 335);
+    CGRect pageViewFrame = CGRectMake(polaScrollView.contentSize.width-250, 0, 240, 335);
     
     CGRect twineViewFrame = CGRectMake(-40, 20, 320, 10);
     CGRect woodenClipViewFrame = CGRectMake(105, 0, 20, 82);
@@ -47,7 +50,7 @@
     
     //이미지뷰 설정
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:imageViewFrame];
-    [imageView setImage:image];
+    [imageView setImage:polaImage];
     
     //노끈 생성
     UIImageView *twineImageView = [[UIImageView alloc]initWithFrame:twineViewFrame];
@@ -62,7 +65,7 @@
     //라벨 생성
     UILabel *dateLabel = [[UILabel alloc]initWithFrame:dateLabelViewFrame];
     
-    NSString *dateString = [NSDateFormatter localizedStringFromDate:date
+    NSString *dateString = [NSDateFormatter localizedStringFromDate:polaDate
                                                           dateStyle:NSDateFormatterShortStyle
                                                           timeStyle:NSDateFormatterShortStyle];
     

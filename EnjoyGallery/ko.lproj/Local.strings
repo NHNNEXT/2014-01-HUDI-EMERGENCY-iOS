@@ -6,7 +6,7 @@
   Copyright (c) 2014년 EntusApps. All rights reserved.
 */
 
-"CANCEL" = "취소";
+"Cancle" = "취소";
 "완료" = "완료";
 "에러" = "에러";
 "TAKE" = "사진 촬영";
