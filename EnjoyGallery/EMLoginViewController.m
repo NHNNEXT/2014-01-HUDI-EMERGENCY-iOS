@@ -7,6 +7,7 @@
 //
 
 #import "EMLoginViewController.h"
+#import "EMSignUpViewController.h"
 
 @interface EMLoginViewController ()
 @end
@@ -30,6 +31,8 @@
     _emailField.delegate = self;
     _pwField.delegate=self;
     
+
+    
     //time bar hide
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
         // iOS 7
@@ -42,6 +45,9 @@
     //button color & radius
     _loginButton.backgroundColor = [UIColor colorWithRed:(178/255.0) green:(177/255.0) blue:(201/255.0) alpha:1];
     _loginButton.layer.cornerRadius = 5.0f;
+    
+    //pwSet
+    _pwField.secureTextEntry = YES;
 
     
     // Move the image
@@ -99,5 +105,16 @@
 }
 
 
+- (IBAction)moveSignUp:(id)sender {
+    EMSignUpViewController *signUpViewController = [[EMSignUpViewController alloc]init];
+    [self.view addSubview:signUpViewController.view];
+    [UIView beginAnimations:@"flipview" context:nil];
+    [UIView setAnimationDuration:1];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
+
+
+    [UIView commitAnimations];
+}
 @end
 

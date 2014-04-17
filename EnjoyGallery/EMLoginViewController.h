@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EMLoginViewController : UIViewController <UITextFieldDelegate>
+@interface EMLoginViewController : UIViewController <UITextFieldDelegate, UINavigationControllerDelegate, UINavigationBarDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *bgImage;
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *pwField;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *signUpButton;
+- (IBAction)moveSignUp:(id)sender;
 
 
 
