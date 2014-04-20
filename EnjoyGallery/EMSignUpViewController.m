@@ -108,8 +108,7 @@
     UIDatePicker *picker = (UIDatePicker*)self.birth.inputView;
     NSDateFormatter *dateForm = [[NSDateFormatter alloc] init];
     [dateForm setDateFormat:@"yyyy-MM-dd"];
-    self.birthDay.text = [dateForm stringFromDate:picker.date];
-    self.birth.text = @" ";
+    self.birth.text = [dateForm stringFromDate:picker.date];
     [self.gender resignFirstResponder];
 
 }
@@ -141,4 +140,77 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)actionSignup:(id)sender {
+    NSInteger result = 0;
+    @try {
+        
+        if([[self.email text] isEqualToString:@""] || [[self.name text] isEqualToString:@""]
+           ||[self.pw.text isEqualToString:@""] ||[self.pwCheck.text isEqualToString:@""] ||[self.gender.text isEqualToString:@""] ||[self.birth.text isEqualToString:@""]) {
+            [self alertStatus:@"Please enter All" :@"SignUp Failed :(" :0];
+        } else {
+            //send
+            
+            NSString *post =[[NSString alloc] initWithFormat:@"email=%@&password=%@password-confirm=%@name=%@birth-day=%@gender=%@",[self.email text],[self.pw text], [self.pwCheck text], [self.name text], [self.birth text], [self.gender text]];
+            
+            
+            //url text ...flask
+            NSURL *url=[NSURL URLWithString:@"http://127.0.0.1:5000/signup"];
+            NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+            NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+            
+            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+            [request setURL:url];
+            [request setHTTPMethod:@"POST"];
+            [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+            [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+            [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+            [request setHTTPBody:postData];
+            
+            
+            //reponse
+            NSError *error = [[NSError alloc] init];
+            NSHTTPURLResponse *response = nil;
+            NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+            
+            
+            if ([response statusCode] >= 200 && [response statusCode] < 300)
+            {
+                NSError *error = nil;
+                NSDictionary *jsonData = [NSJSONSerialization
+                                          JSONObjectWithData:urlData
+                                          options:NSJSONReadingMutableContainers
+                                          error:&error];
+                
+                result = [jsonData[@"code"] integerValue];
+                
+                if(result == 200)
+                {
+                    [self alertStatus:@"signup success" :@"gogogogo!" :0];
+                    
+                }else { //회원가입 실패  실패처리
+                    NSString *error_msg = (NSString *) jsonData[@"message"];
+                    [self alertStatus:error_msg :@"SignUp Failed:(" :0];
+                }
+            } else {//연결에러
+                [self alertStatus:@"Not Connection" :@"SignUp Failed :(" :0];
+            }
+        }
+    }
+    
+    //예외처리
+    @catch (NSException * e) {
+        NSLog(@"Exception: %@", e);
+        [self alertStatus:@"SignUp Failed :(" :@"Error!" :0];
+    }
+}
+
+//예외처리
+- (void) alertStatus:(NSString *)msg :(NSString *)title :(int) tag
+{
+    UIAlertView *alertView = [[UIAlertView alloc]
+                              initWithTitle:title message:msg delegate:self cancelButtonTitle:@"Ok"
+                              otherButtonTitles:nil, nil];
+    alertView.tag = tag;
+    [alertView show];
+}
 @end

@@ -118,11 +118,11 @@
 
 
 -(IBAction)actionLogin:(id)sender{
-    NSInteger success = 0;
+    NSInteger result = 0;
     @try {
         
         if([[self.emailField text] isEqualToString:@""] || [[self.pwField text] isEqualToString:@""] ) {
-            [self alertStatus:@"Please enter Email and Password" :@"Login in Failed!" :0];
+            [self alertStatus:@"Please enter Email and Password" :@"Login Failed :(" :0];
         } else {
             
             //send
@@ -131,7 +131,7 @@
             
             
             //url text ...flask
-            NSURL *url=[NSURL URLWithString:@"http://127.0.0.1:5000/signup"];
+            NSURL *url=[NSURL URLWithString:@"http://127.0.0.1:5000/login"];
             NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
             NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
             
@@ -149,33 +149,28 @@
             NSHTTPURLResponse *response = nil;
             NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
             
-            NSLog(@"Response code: %ld", (long)[response statusCode]);
-
-            
-            
             if ([response statusCode] >= 200 && [response statusCode] < 300)
             {
-                NSString *responseData = [[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
-                NSLog(@"Response ==> %@", responseData);
-                
                 NSError *error = nil;
                 NSDictionary *jsonData = [NSJSONSerialization
                                           JSONObjectWithData:urlData
                                           options:NSJSONReadingMutableContainers
                                           error:&error];
                 
-                success = [jsonData[@"code"] integerValue];
+                result = [jsonData[@"code"] integerValue];
                 
-                if(success == 200)
+                if(result == 200)
                 {
                     [self alertStatus:@"login success" :@"gogogogo!" :0];
                     
+                }else if (result == 202){
+                  //이메일 인증해주세요로 연결.
                 } else { //로그인 실패처리
                     NSString *error_msg = (NSString *) jsonData[@"message"];
-                    [self alertStatus:error_msg :@"Login in Failed!" :0];
+                    [self alertStatus:error_msg :@"Login Failed :(" :0];
                 }
             } else {//연결에러
-                [self alertStatus:@"Connection Failed" :@"Login in Failed!" :0];
+                [self alertStatus:@"not Connection" :@"Login Failed :(" :0];
             }
         }
     }
@@ -183,7 +178,7 @@
     //예외처리
     @catch (NSException * e) {
         NSLog(@"Exception: %@", e);
-        [self alertStatus:@"Sign in Failed." :@"Error!" :0];
+        [self alertStatus:@"Login Failed :(" :@"Error!" :0];
     }
 }
 

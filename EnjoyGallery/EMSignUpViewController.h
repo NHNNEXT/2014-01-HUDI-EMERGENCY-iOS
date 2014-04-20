@@ -19,7 +19,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *gender;
 @property (strong, nonatomic)NSArray *genderList;
-@property (weak, nonatomic) IBOutlet UILabel *birthDay;
+- (IBAction)actionSignup:(id)sender;
 
 
 @end
