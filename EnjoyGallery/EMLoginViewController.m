@@ -104,8 +104,9 @@
 
 
 - (IBAction)moveSignUp:(id)sender {
-    EMSignUpViewController *signUpViewController = [[EMSignUpViewController alloc]init];
-    [self.view addSubview:signUpViewController.view];
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    EMSignUpViewController *signUpViewController = (EMSignUpViewController*)[storyBoard  instantiateViewControllerWithIdentifier:@"signUpViewController"];    
+
     [UIView beginAnimations:@"flipview" context:nil];
     [UIView setAnimationDuration:1];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
@@ -113,6 +114,7 @@
 
 
     [UIView commitAnimations];
+    [self.view addSubview:signUpViewController.view];
 }
 
 
@@ -164,7 +166,7 @@
                     [self alertStatus:@"login success" :@"gogogogo!" :0];
                     
                 }else if (result == 202){
-                  //이메일 인증해주세요로 연결.
+                    [self alertStatus:self.emailField.text :@"Plz verify email :)" :0];
                 } else { //로그인 실패처리
                     NSString *error_msg = (NSString *) jsonData[@"message"];
                     [self alertStatus:error_msg :@"Login Failed :(" :0];
