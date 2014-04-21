@@ -7,6 +7,7 @@
 //
 
 #import "EMLoginViewController.h"
+#import "EMSignUpViewController.h"
 
 @interface EMLoginViewController ()
 @end
@@ -26,9 +27,9 @@
 {
 
     [super viewDidLoad];
-    
     _emailField.delegate = self;
     _pwField.delegate=self;
+    
     
     //time bar hide
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
@@ -42,6 +43,9 @@
     //button color & radius
     _loginButton.backgroundColor = [UIColor colorWithRed:(178/255.0) green:(177/255.0) blue:(201/255.0) alpha:1];
     _loginButton.layer.cornerRadius = 5.0f;
+    
+    //pwSet
+    _pwField.secureTextEntry = YES;
 
     
     // Move the image
@@ -60,7 +64,7 @@
         [_pwField becomeFirstResponder];
     }else{
         [theTextField resignFirstResponder];
-        //connect "login action "
+        [self actionLogin:self];
     }
     return YES;
 }
@@ -97,6 +101,97 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+- (IBAction)moveSignUp:(id)sender {
+    EMSignUpViewController *signUpViewController = [[EMSignUpViewController alloc]init];
+    [self.view addSubview:signUpViewController.view];
+    [UIView beginAnimations:@"flipview" context:nil];
+    [UIView setAnimationDuration:1];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
+
+
+    [UIView commitAnimations];
+}
+
+
+
+-(IBAction)actionLogin:(id)sender{
+    NSInteger result = 0;
+    @try {
+        
+        if([[self.emailField text] isEqualToString:@""] || [[self.pwField text] isEqualToString:@""] ) {
+            [self alertStatus:@"Please enter Email and Password" :@"Login Failed :(" :0];
+        } else {
+            
+            //send
+            NSString *post =[[NSString alloc] initWithFormat:@"email=%@&password=%@",[self.emailField text],[self.pwField text]];
+            NSLog(@"PostData: %@",post);
+            
+            
+            //url text ...flask
+            NSURL *url=[NSURL URLWithString:@"http://127.0.0.1:5000/login"];
+            NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+            NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+            
+            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+            [request setURL:url];
+            [request setHTTPMethod:@"POST"];
+            [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+            [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+            [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+            [request setHTTPBody:postData];
+            
+            
+            //reponse
+            NSError *error = [[NSError alloc] init];
+            NSHTTPURLResponse *response = nil;
+            NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+            
+            if ([response statusCode] >= 200 && [response statusCode] < 300)
+            {
+                NSError *error = nil;
+                NSDictionary *jsonData = [NSJSONSerialization
+                                          JSONObjectWithData:urlData
+                                          options:NSJSONReadingMutableContainers
+                                          error:&error];
+                
+                result = [jsonData[@"code"] integerValue];
+                
+                if(result == 200)
+                {
+                    [self alertStatus:@"login success" :@"gogogogo!" :0];
+                    
+                }else if (result == 202){
+                  //이메일 인증해주세요로 연결.
+                } else { //로그인 실패처리
+                    NSString *error_msg = (NSString *) jsonData[@"message"];
+                    [self alertStatus:error_msg :@"Login Failed :(" :0];
+                }
+            } else {//연결에러
+                [self alertStatus:@"not Connection" :@"Login Failed :(" :0];
+            }
+        }
+    }
+    
+    //예외처리
+    @catch (NSException * e) {
+        NSLog(@"Exception: %@", e);
+        [self alertStatus:@"Login Failed :(" :@"Error!" :0];
+    }
+}
+
+//예외처리
+- (void) alertStatus:(NSString *)msg :(NSString *)title :(int) tag
+{
+    UIAlertView *alertView = [[UIAlertView alloc]
+                              initWithTitle:title message:msg delegate:self cancelButtonTitle:@"Ok"
+                              otherButtonTitles:nil, nil];
+    alertView.tag = tag;
+    [alertView show];
+}
+
 
 
 @end
