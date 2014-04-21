@@ -151,21 +151,28 @@
         } else {
             //send
             
-            NSString *post =[[NSString alloc] initWithFormat:@"email=%@&password=%@password-confirm=%@name=%@birth-day=%@gender=%@",[self.email text],[self.pw text], [self.pwCheck text], [self.name text], [self.birth text], [self.gender text]];
-            
-            
-            //url text ...flask
-            NSURL *url=[NSURL URLWithString:@"http://127.0.0.1:5000/signup"];
-            NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-            NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+            //set json
+            NSDictionary *newDatasetInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                                            self.email.text, @"email",
+                                            self.pw.text, @"password",
+                                            self.pwCheck.text, @"password-confirm",
+                                            self.name.text, @"name",
+                                            self.birth.text, @"birth-day",
+                                            self.gender.text, @"gender",
+                                            nil];
+            NSError *jsonError;
+            NSData* jsonData = [NSJSONSerialization dataWithJSONObject:newDatasetInfo options:kNilOptions error:&jsonError];
             
             NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+            NSURL *url=[NSURL URLWithString:@"http://10.73.39.78:8080/gradation/intro/signup"];
             [request setURL:url];
             [request setHTTPMethod:@"POST"];
-            [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+            [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
             [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-            [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-            [request setHTTPBody:postData];
+            [request setHTTPBody:jsonData];
+            
+            NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+            [connection start];
             
             
             //reponse
@@ -189,7 +196,7 @@
                     [self alertStatus:@"Plz verify email :)" :@"Signup success" :0];
                     
                 }else { //회원가입 실패  실패처리
-                    NSString *error_msg = (NSString *) jsonData[@"message"];
+                    NSString * error_msg = (NSString *) jsonData[@"message"];
                     [self alertStatus:error_msg :@"SignUp Failed:(" :0];
                 }
             } else {//연결에러
