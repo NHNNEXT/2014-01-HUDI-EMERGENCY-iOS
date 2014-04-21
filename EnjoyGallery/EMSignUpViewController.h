@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *gender;
 @property (strong, nonatomic)NSArray *genderList;
 - (IBAction)actionSignup:(id)sender;
+- (IBAction)backButton:(id)sender;
 
 
 

@@ -187,7 +187,6 @@
                 if(result == 200)
                 {
                     [self alertStatus:@"Plz verify email :)" :@"Signup success" :0];
-                    //이전화면으로
                     
                 }else { //회원가입 실패  실패처리
                     NSString *error_msg = (NSString *) jsonData[@"message"];
@@ -206,7 +205,6 @@
     }
 }
 
-
 //예외처리
 - (void) alertStatus:(NSString *)msg :(NSString *)title :(int) tag
 {
@@ -216,4 +214,11 @@
     alertView.tag = tag;
     [alertView show];
 }
+
+- (IBAction)backButton:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:Nil];
+}
+
+
+
 @end
