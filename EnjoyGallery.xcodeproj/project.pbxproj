@@ -28,19 +28,6 @@
 		1F13CD5218E7724300E4208B /* NanumBrush.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1F13CD5118E7724300E4208B /* NanumBrush.ttf */; };
 		1F13CD5418E7F9D800E4208B /* pattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F13CD5318E7F9D800E4208B /* pattern.png */; };
 		1F40FB3518EBEE8400090511 /* Local.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F40FB3718EBEE8400090511 /* Local.strings */; };
-		1F50F82B18FE8F3A00FD9ABD /* ricepaper-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F50F81F18FE8F3A00FD9ABD /* ricepaper-1.png */; };
-		1F50F82C18FE8F3A00FD9ABD /* ricepaper-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F50F82018FE8F3A00FD9ABD /* ricepaper-2.png */; };
-		1F50F82D18FE8F3A00FD9ABD /* ricepaper-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F50F82118FE8F3A00FD9ABD /* ricepaper-3.png */; };
-		1F50F82E18FE8F3A00FD9ABD /* ricepaper-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F50F82218FE8F3A00FD9ABD /* ricepaper-4.png */; };
-		1F50F82F18FE8F3A00FD9ABD /* ricepaper-5.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F50F82318FE8F3A00FD9ABD /* ricepaper-5.png */; };
-		1F50F83018FE8F3A00FD9ABD /* ricepaper-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F50F82418FE8F3A00FD9ABD /* ricepaper-6.png */; };
-		1F50F83118FE8F3A00FD9ABD /* ricepaper-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F50F82518FE8F3A00FD9ABD /* ricepaper-7.png */; };
-		1F50F83218FE8F3A00FD9ABD /* ricepaper-8.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F50F82618FE8F3A00FD9ABD /* ricepaper-8.png */; };
-		1F50F83318FE8F3A00FD9ABD /* ricepaper-9.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F50F82718FE8F3A00FD9ABD /* ricepaper-9.png */; };
-		1F50F83418FE8F3A00FD9ABD /* ricepaper-10.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F50F82818FE8F3A00FD9ABD /* ricepaper-10.png */; };
-		1F50F83518FE8F3A00FD9ABD /* ricepaper-11.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F50F82918FE8F3A00FD9ABD /* ricepaper-11.png */; };
-		1F50F83618FE8F3A00FD9ABD /* ricepaper-12.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F50F82A18FE8F3A00FD9ABD /* ricepaper-12.png */; };
-		1F50F83818FE9AAE00FD9ABD /* ricepaper-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F50F83718FE9AAE00FD9ABD /* ricepaper-1@2x.png */; };
 		1F86AA5318F1BE5B003D9791 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F86AA5118F1BE5B003D9791 /* Main.storyboard */; };
 		1F86AA5618F1C582003D9791 /* EMPolaGalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F86AA5518F1C582003D9791 /* EMPolaGalleryView.m */; };
 		1F86AA6018F22B3D003D9791 /* default4.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F86AA5F18F22B3D003D9791 /* default4.png */; };
@@ -99,19 +86,6 @@
 		1F40FB3B18EBF3AD00090511 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1F40FB3C18EBF3AD00090511 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Local.strings; sourceTree = "<group>"; };
 		1F40FB3D18EBF3AD00090511 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		1F50F81F18FE8F3A00FD9ABD /* ricepaper-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ricepaper-1.png"; sourceTree = "<group>"; };
-		1F50F82018FE8F3A00FD9ABD /* ricepaper-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ricepaper-2.png"; sourceTree = "<group>"; };
-		1F50F82118FE8F3A00FD9ABD /* ricepaper-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ricepaper-3.png"; sourceTree = "<group>"; };
-		1F50F82218FE8F3A00FD9ABD /* ricepaper-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ricepaper-4.png"; sourceTree = "<group>"; };
-		1F50F82318FE8F3A00FD9ABD /* ricepaper-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ricepaper-5.png"; sourceTree = "<group>"; };
-		1F50F82418FE8F3A00FD9ABD /* ricepaper-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ricepaper-6.png"; sourceTree = "<group>"; };
-		1F50F82518FE8F3A00FD9ABD /* ricepaper-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ricepaper-7.png"; sourceTree = "<group>"; };
-		1F50F82618FE8F3A00FD9ABD /* ricepaper-8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ricepaper-8.png"; sourceTree = "<group>"; };
-		1F50F82718FE8F3A00FD9ABD /* ricepaper-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ricepaper-9.png"; sourceTree = "<group>"; };
-		1F50F82818FE8F3A00FD9ABD /* ricepaper-10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ricepaper-10.png"; sourceTree = "<group>"; };
-		1F50F82918FE8F3A00FD9ABD /* ricepaper-11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ricepaper-11.png"; sourceTree = "<group>"; };
-		1F50F82A18FE8F3A00FD9ABD /* ricepaper-12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ricepaper-12.png"; sourceTree = "<group>"; };
-		1F50F83718FE9AAE00FD9ABD /* ricepaper-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ricepaper-1@2x.png"; sourceTree = "<group>"; };
 		1F86AA5418F1C582003D9791 /* EMPolaGalleryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPolaGalleryView.h; sourceTree = "<group>"; };
 		1F86AA5518F1C582003D9791 /* EMPolaGalleryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPolaGalleryView.m; sourceTree = "<group>"; };
 		1F86AA5718F1CF71003D9791 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ko; path = ko.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -170,7 +144,6 @@
 		1F40FB2418EBE4D400090511 /* img */ = {
 			isa = PBXGroup;
 			children = (
-				1F50F81E18FE8F2E00FD9ABD /* pattern */,
 				15900A5D18FB8CF200097911 /* arrow.png */,
 				15900A5B18FB857B00097911 /* gray.png */,
 				1518691118FB841700C8A19B /* arrowbg.png */,
@@ -194,26 +167,6 @@
 				1F13CD4318E60A7C00E4208B /* blurBG.png */,
 			);
 			name = img;
-			sourceTree = "<group>";
-		};
-		1F50F81E18FE8F2E00FD9ABD /* pattern */ = {
-			isa = PBXGroup;
-			children = (
-				1F50F81F18FE8F3A00FD9ABD /* ricepaper-1.png */,
-				1F50F83718FE9AAE00FD9ABD /* ricepaper-1@2x.png */,
-				1F50F82018FE8F3A00FD9ABD /* ricepaper-2.png */,
-				1F50F82118FE8F3A00FD9ABD /* ricepaper-3.png */,
-				1F50F82218FE8F3A00FD9ABD /* ricepaper-4.png */,
-				1F50F82318FE8F3A00FD9ABD /* ricepaper-5.png */,
-				1F50F82418FE8F3A00FD9ABD /* ricepaper-6.png */,
-				1F50F82518FE8F3A00FD9ABD /* ricepaper-7.png */,
-				1F50F82618FE8F3A00FD9ABD /* ricepaper-8.png */,
-				1F50F82718FE8F3A00FD9ABD /* ricepaper-9.png */,
-				1F50F82818FE8F3A00FD9ABD /* ricepaper-10.png */,
-				1F50F82918FE8F3A00FD9ABD /* ricepaper-11.png */,
-				1F50F82A18FE8F3A00FD9ABD /* ricepaper-12.png */,
-			);
-			name = pattern;
 			sourceTree = "<group>";
 		};
 		1FCF10E918E0228300440273 = {
@@ -382,41 +335,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F13CD5418E7F9D800E4208B /* pattern.png in Resources */,
-				1F50F83118FE8F3A00FD9ABD /* ricepaper-7.png in Resources */,
 				1518690618FB79B000C8A19B /* green.png in Resources */,
 				1518691218FB841700C8A19B /* arrowbg.png in Resources */,
 				15900A5E18FB8CF200097911 /* arrow.png in Resources */,
 				1FCF110E18E0228300440273 /* Images.xcassets in Resources */,
-				1F50F83618FE8F3A00FD9ABD /* ricepaper-12.png in Resources */,
 				15AC76CE18FB101100725149 /* user.png in Resources */,
 				1F13CD5018E75BD100E4208B /* ico_save@2x.png in Resources */,
-				1F50F83218FE8F3A00FD9ABD /* ricepaper-8.png in Resources */,
-				1F50F83018FE8F3A00FD9ABD /* ricepaper-6.png in Resources */,
 				1F13CD4818E6204300E4208B /* twine.png in Resources */,
 				1F13CD4B18E6EAD000E4208B /* ico_photo.png in Resources */,
-				1F50F82B18FE8F3A00FD9ABD /* ricepaper-1.png in Resources */,
-				1F50F83518FE8F3A00FD9ABD /* ricepaper-11.png in Resources */,
 				15AC76D618FB135B00725149 /* logbutton.png in Resources */,
 				1FCF110018E0228300440273 /* InfoPlist.strings in Resources */,
 				1518690C18FB7E6100C8A19B /* polaroid-wall (1).jpg in Resources */,
-				1F50F82E18FE8F3A00FD9ABD /* ricepaper-4.png in Resources */,
 				1F13CD5218E7724300E4208B /* NanumBrush.ttf in Resources */,
 				15AC76CC18FB0E4E00725149 /* white.png in Resources */,
 				1F86AA5318F1BE5B003D9791 /* Main.storyboard in Resources */,
-				1F50F82F18FE8F3A00FD9ABD /* ricepaper-5.png in Resources */,
 				15900A5C18FB857B00097911 /* gray.png in Resources */,
 				1F86AA6218F22B65003D9791 /* Default-568h@2x.png in Resources */,
 				1F13CD4618E61C2200E4208B /* 나무집게1.png in Resources */,
 				1F13CD4C18E6EAD000E4208B /* ico_photo@2x.png in Resources */,
-				1F50F82C18FE8F3A00FD9ABD /* ricepaper-2.png in Resources */,
-				1F50F83418FE8F3A00FD9ABD /* ricepaper-10.png in Resources */,
 				1F86AA6018F22B3D003D9791 /* default4.png in Resources */,
-				1F50F83318FE8F3A00FD9ABD /* ricepaper-9.png in Resources */,
 				1F40FB3518EBEE8400090511 /* Local.strings in Resources */,
 				15AC76D218FB108100725149 /* pw.png in Resources */,
 				15AC76D818FB2A4100725149 /* bar.png in Resources */,
-				1F50F83818FE9AAE00FD9ABD /* ricepaper-1@2x.png in Resources */,
-				1F50F82D18FE8F3A00FD9ABD /* ricepaper-3.png in Resources */,
 				1F13CD4F18E75BD100E4208B /* ico_save.png in Resources */,
 				1F13CD4418E60A7C00E4208B /* blurBG.png in Resources */,
 			);
