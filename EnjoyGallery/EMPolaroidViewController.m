@@ -10,6 +10,13 @@
 #import "EMPolaGalleryView.h"
 #import "SIAlertView.h"
 
+#define BG_COLOR_R 63/255.0
+#define BG_COLOR_G 73/255.0
+#define BG_COLOR_B 83/255.0
+#define BTN_COLOR_R 63/255.0
+#define BTN_COLOR_G 73/255.0
+#define BTN_COLOR_B 83/255.0
+
 @interface EMPolaroidViewController ()
 
 @end
@@ -40,8 +47,17 @@
     //스크롤뷰 커스텀 페이징
     [self.polaroidScrollView setClipsToBounds:FALSE];
     [self.polaroidScrollView setDelegate:self];
-    [self.polaroidScrollView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"blurBG.png"]]];
-    [self.touchableview setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"blurBG.png"]]];
+    
+//    [self.polaroidScrollView setBackgroundColor:[UIColor colorWithRed:BG_COLOR_R green:BG_COLOR_G blue:BG_COLOR_B alpha:1]];
+//    [self.touchableview setBackgroundColor:[UIColor colorWithRed:BG_COLOR_R green:BG_COLOR_G blue:BG_COLOR_B alpha:1]];
+//    [self.wrapView setBackgroundColor:[UIColor colorWithRed:BG_COLOR_R green:BG_COLOR_G blue:BG_COLOR_B alpha:1]];
+    
+    [self.polaroidScrollView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"ricepaper-1.png"]]];
+    [self.touchableview setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"ricepaper-1.png"]]];
+//    [self.wrapView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"ricepaper-1.png"]]];
+    
+//    [self.polaroidScrollView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"blurBG.png"]]];
+//    [self.touchableview setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"blurBG.png"]]];
     
 //    [self.touchableview addGestureRecognizer:self.polaroidScrollView.panGestureRecognizer];
 //    [self.touchableview setClipsToBounds:TRUE];
@@ -73,7 +89,7 @@
                               handler:^(SIAlertView *alert) {
                                   NSLog(@"확인 클릭!");
                               }];
-        alertView.transitionStyle = SIAlertViewTransitionStyleDropDown;
+        alertView.transitionStyle = SIAlertViewTransitionStyleFade;
         [alertView show];
         
         return;
@@ -97,7 +113,7 @@
                               [self deletePolaView:currentPage];
                           }];
     
-    alertView.transitionStyle = SIAlertViewTransitionStyleDropDown;
+    alertView.transitionStyle = SIAlertViewTransitionStyleFade;
     [alertView show];
     
     
@@ -163,7 +179,7 @@
     for (UIView *subview in actionSheet.subviews) {
         if ([subview isKindOfClass:[UIButton class]]) {
             UIButton *button = (UIButton *)subview;
-            [button setTitleColor:[UIColor colorWithRed:41.0/255.0 green:128.0/255.0 blue:185.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor colorWithRed:BTN_COLOR_R green:BTN_COLOR_G blue:BTN_COLOR_B alpha:1.0] forState:UIControlStateNormal];
         }
     }
 }
@@ -218,7 +234,7 @@
                               handler:^(SIAlertView *alert) {
                                   NSLog(@"확인 클릭!");
                               }];
-        alertView.transitionStyle = SIAlertViewTransitionStyleDropDown;
+        alertView.transitionStyle = SIAlertViewTransitionStyleFade;
         [alertView show];
         return;
     }
@@ -250,7 +266,7 @@
                           handler:^(SIAlertView *alert) {
                               NSLog(@"확인 클릭!");
                           }];
-    alertView.transitionStyle = SIAlertViewTransitionStyleDropDown;
+    alertView.transitionStyle = SIAlertViewTransitionStyleFade;
     [alertView show];
     
     

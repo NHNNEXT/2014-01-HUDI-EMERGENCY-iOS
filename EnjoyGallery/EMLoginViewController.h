@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface EMLoginViewController : UIViewController <UITextFieldDelegate>
+
 @property (weak, nonatomic) IBOutlet UIImageView *bgImage;
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *pwField;

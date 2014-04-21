@@ -13,14 +13,13 @@
                         <viewControllerLayoutGuide type="top" id="CWK-9P-hoT"/>
                         <viewControllerLayoutGuide type="bottom" id="rWL-Fm-5YR"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wi4-Mu-gaI">
                                 <rect key="frame" x="0.0" y="418" width="326" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view autoresizesSubviews="NO" contentMode="scaleToFill" fixedFrame="YES" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="355" translatesAutoresizingMaskIntoConstraints="NO" id="ElD-52-8o3" userLabel="갤러리뷰">
                                 <rect key="frame" x="0.0" y="106" width="320" height="355"/>
@@ -43,7 +42,9 @@
                                         <rect key="frame" x="130" y="21" width="60" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <state key="normal" title="삭제"/>
+                                        <state key="normal" title="삭제">
+                                            <color key="titleColor" red="0.94901960780000005" green="0.90588235289999997" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="deleteCurPola:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="7VP-Ae-G4j"/>
                                         </connections>
@@ -52,7 +53,9 @@
                                         <rect key="frame" x="20" y="21" width="60" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <state key="normal" title="추가"/>
+                                        <state key="normal" title="추가">
+                                            <color key="titleColor" red="0.94901960780000005" green="0.90588235289999997" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="BtnPressedz:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="w4C-42-fcc"/>
                                         </connections>
@@ -61,7 +64,9 @@
                                         <rect key="frame" x="240" y="21" width="60" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <state key="normal" title="저장"/>
+                                        <state key="normal" title="저장">
+                                            <color key="titleColor" red="0.94901960780000005" green="0.90588235289999997" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="saveToImage:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="LBq-uK-nFX"/>
                                         </connections>
@@ -70,7 +75,7 @@
                                 <color key="backgroundColor" red="0.1529411765" green="0.68235294120000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
