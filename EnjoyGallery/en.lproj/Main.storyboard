@@ -240,7 +240,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="exit:" destination="Lwn-J2-5WC" eventType="touchUpInside" id="Uic-wc-tgd"/>
+                                    <action selector="backButton:" destination="Lwn-J2-5WC" eventType="touchUpInside" id="Uul-xE-lun"/>
                                 </connections>
                             </button>
                         </subviews>

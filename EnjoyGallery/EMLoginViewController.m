@@ -105,16 +105,9 @@
 
 - (IBAction)moveSignUp:(id)sender {
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    EMSignUpViewController *signUpViewController = (EMSignUpViewController*)[storyBoard  instantiateViewControllerWithIdentifier:@"signUpViewController"];    
+    EMSignUpViewController *signUpViewController = (EMSignUpViewController*)[storyBoard  instantiateViewControllerWithIdentifier:@"signUpViewController"];
+    [self presentViewController:signUpViewController animated:YES completion:Nil];
 
-    [UIView beginAnimations:@"flipview" context:nil];
-    [UIView setAnimationDuration:1];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
-
-
-    [UIView commitAnimations];
-    [self.view addSubview:signUpViewController.view];
 }
 
 
