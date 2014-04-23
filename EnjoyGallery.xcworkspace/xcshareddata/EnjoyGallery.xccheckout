@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>B9790683-8283-4B7C-973D-C1BE25487EC0</string>
+	<string>E028EB4D-588C-4434-B7FC-B5C67D390759</string>
 	<key>IDESourceControlProjectName</key>
 	<string>EnjoyGallery</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>BF2D8F01-A36A-44A4-BF5F-9074FC5C9C15</key>
-		<string>https://github.com/NHNNEXT/2014-01-HUDI-EMERGENCY-iOS</string>
+		<key>80E38632-C2B3-4E4E-9F86-2B37BA289ED6</key>
+		<string>https://github.com/NHNNEXT/2014-01-HUDI-EMERGENCY-iOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>EnjoyGallery.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>BF2D8F01-A36A-44A4-BF5F-9074FC5C9C15</key>
+		<key>80E38632-C2B3-4E4E-9F86-2B37BA289ED6</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/NHNNEXT/2014-01-HUDI-EMERGENCY-iOS</string>
+	<string>https://github.com/NHNNEXT/2014-01-HUDI-EMERGENCY-iOS.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>BF2D8F01-A36A-44A4-BF5F-9074FC5C9C15</string>
+	<string>80E38632-C2B3-4E4E-9F86-2B37BA289ED6</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>BF2D8F01-A36A-44A4-BF5F-9074FC5C9C15</string>
+			<string>80E38632-C2B3-4E4E-9F86-2B37BA289ED6</string>
 			<key>IDESourceControlWCCName</key>
-			<string>2014-01-HUDI-EMERGENCY-iOS</string>
+			<string>EnjoyGallery</string>
 		</dict>
 	</array>
 </dict>
