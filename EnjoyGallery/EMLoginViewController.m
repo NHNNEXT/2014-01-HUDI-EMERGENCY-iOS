@@ -104,15 +104,10 @@
 
 
 - (IBAction)moveSignUp:(id)sender {
-    EMSignUpViewController *signUpViewController = [[EMSignUpViewController alloc]init];
-    [self.view addSubview:signUpViewController.view];
-    [UIView beginAnimations:@"flipview" context:nil];
-    [UIView setAnimationDuration:1];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    EMSignUpViewController *signUpViewController = (EMSignUpViewController*)[storyBoard  instantiateViewControllerWithIdentifier:@"signUpViewController"];
+    [self presentViewController:signUpViewController animated:YES completion:Nil];
 
-
-    [UIView commitAnimations];
 }
 
 
@@ -125,23 +120,21 @@
             [self alertStatus:@"Please enter Email and Password" :@"Login Failed :(" :0];
         } else {
             
-            //send
-            NSString *post =[[NSString alloc] initWithFormat:@"email=%@&password=%@",[self.emailField text],[self.pwField text]];
-            NSLog(@"PostData: %@",post);
-            
-            
-            //url text ...flask
-            NSURL *url=[NSURL URLWithString:@"http://127.0.0.1:5000/login"];
-            NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-            NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+            //set json
+            NSDictionary *newDatasetInfo = [NSDictionary dictionaryWithObjectsAndKeys:self.emailField.text, @"email", self.pwField.text, @"password", nil];
+            NSError *jsonError;
+            NSData* jsonData = [NSJSONSerialization dataWithJSONObject:newDatasetInfo options:kNilOptions error:&jsonError];
             
             NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+            NSURL *url=[NSURL URLWithString:@"http://10.73.39.78:8080/gradation/intro/login"];
             [request setURL:url];
             [request setHTTPMethod:@"POST"];
-            [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+            [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
             [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-            [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-            [request setHTTPBody:postData];
+            [request setHTTPBody:jsonData];
+            
+            NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+            [connection start];
             
             
             //reponse
@@ -158,13 +151,12 @@
                                           error:&error];
                 
                 result = [jsonData[@"code"] integerValue];
-                
                 if(result == 200)
                 {
                     [self alertStatus:@"login success" :@"gogogogo!" :0];
                     
                 }else if (result == 202){
-                  //이메일 인증해주세요로 연결.
+                    [self alertStatus:self.emailField.text :@"Plz verify email :)" :0];
                 } else { //로그인 실패처리
                     NSString *error_msg = (NSString *) jsonData[@"message"];
                     [self alertStatus:error_msg :@"Login Failed :(" :0];
