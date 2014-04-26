@@ -87,6 +87,8 @@
     [UIView setAnimationDuration:duration];
     [UIView setAnimationCurve:curve];
     [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationRepeatAutoreverses:true];
+    [UIView setAnimationRepeatCount:10000];
     
     // The transform matrix
     CGAffineTransform transform = CGAffineTransformMakeTranslation(x, y);

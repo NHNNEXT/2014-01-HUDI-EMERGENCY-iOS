@@ -10,7 +10,6 @@
 		1518690618FB79B000C8A19B /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 1518690518FB79B000C8A19B /* green.png */; };
 		1518690C18FB7E6100C8A19B /* polaroid-wall (1).jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1518690B18FB7E6100C8A19B /* polaroid-wall (1).jpg */; };
 		1518691218FB841700C8A19B /* arrowbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1518691118FB841700C8A19B /* arrowbg.png */; };
-		154C0DF918FAE4BA00D74851 /* EMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 154C0DF818FAE4BA00D74851 /* EMLoginViewController.m */; };
 		15900A5C18FB857B00097911 /* gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 15900A5B18FB857B00097911 /* gray.png */; };
 		15900A5E18FB8CF200097911 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 15900A5D18FB8CF200097911 /* arrow.png */; };
 		15AC54B51904D2E000EC7B9D /* xButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 15AC54B41904D2E000EC7B9D /* xButton.png */; };
@@ -33,6 +32,8 @@
 		1F86AA5618F1C582003D9791 /* EMPolaGalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F86AA5518F1C582003D9791 /* EMPolaGalleryView.m */; };
 		1F86AA6018F22B3D003D9791 /* default4.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F86AA5F18F22B3D003D9791 /* default4.png */; };
 		1F86AA6218F22B65003D9791 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F86AA6118F22B65003D9791 /* Default-568h@2x.png */; };
+		1F99EF54190C155E00755078 /* EMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F99EF51190C155E00755078 /* EMLoginViewController.m */; };
+		1F99EF55190C155E00755078 /* EMSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F99EF53190C155E00755078 /* EMSignUpViewController.m */; };
 		1FCF10F618E0228300440273 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FCF10F518E0228300440273 /* Foundation.framework */; };
 		1FCF10F818E0228300440273 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FCF10F718E0228300440273 /* CoreGraphics.framework */; };
 		1FCF10FA18E0228300440273 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FCF10F918E0228300440273 /* UIKit.framework */; };
@@ -64,8 +65,8 @@
 		1518690518FB79B000C8A19B /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
 		1518690B18FB7E6100C8A19B /* polaroid-wall (1).jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "polaroid-wall (1).jpg"; sourceTree = "<group>"; };
 		1518691118FB841700C8A19B /* arrowbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowbg.png; sourceTree = "<group>"; };
-		154C0DF718FAE4BA00D74851 /* EMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMLoginViewController.h; sourceTree = "<group>"; };
-		154C0DF818FAE4BA00D74851 /* EMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMLoginViewController.m; sourceTree = "<group>"; };
+		154C0DF718FAE4BA00D74851 /* EMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMLoginViewController.h; path = "/Users/retina15/Google 드라이브/Gradation.ME/EnjoyGallery/EnjoyGallery/EMLoginViewController.h"; sourceTree = "<absolute>"; };
+		154C0DF818FAE4BA00D74851 /* EMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EMLoginViewController.m; path = "/Users/retina15/Google 드라이브/Gradation.ME/EnjoyGallery/EnjoyGallery/EMLoginViewController.m"; sourceTree = "<absolute>"; };
 		15900A5B18FB857B00097911 /* gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray.png; sourceTree = "<group>"; };
 		15900A5D18FB8CF200097911 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		15AC54B41904D2E000EC7B9D /* xButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xButton.png; sourceTree = "<group>"; };
@@ -95,6 +96,10 @@
 		1F86AA5E18F22B19003D9791 /* default3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default3.png; path = ../default3.png; sourceTree = "<group>"; };
 		1F86AA5F18F22B3D003D9791 /* default4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default4.png; sourceTree = "<group>"; };
 		1F86AA6118F22B65003D9791 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		1F99EF50190C155E00755078 /* EMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMLoginViewController.h; sourceTree = "<group>"; };
+		1F99EF51190C155E00755078 /* EMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMLoginViewController.m; sourceTree = "<group>"; };
+		1F99EF52190C155E00755078 /* EMSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSignUpViewController.h; sourceTree = "<group>"; };
+		1F99EF53190C155E00755078 /* EMSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSignUpViewController.m; sourceTree = "<group>"; };
 		1FCF10F218E0228300440273 /* EnjoyGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnjoyGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FCF10F518E0228300440273 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1FCF10F718E0228300440273 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -146,10 +151,12 @@
 		15165F661904391A0071EE3B /* LoginSignUp */ = {
 			isa = PBXGroup;
 			children = (
+				1F99EF50190C155E00755078 /* EMLoginViewController.h */,
+				1F99EF51190C155E00755078 /* EMLoginViewController.m */,
+				1F99EF52190C155E00755078 /* EMSignUpViewController.h */,
+				1F99EF53190C155E00755078 /* EMSignUpViewController.m */,
 				154C0DF718FAE4BA00D74851 /* EMLoginViewController.h */,
 				154C0DF818FAE4BA00D74851 /* EMLoginViewController.m */,
-				15C61D2E18FE75FF00157BC1 /* EMSignUpViewController.h */,
-				15C61D2F18FE75FF00157BC1 /* EMSignUpViewController.m */,
 			);
 			name = LoginSignUp;
 			sourceTree = "<group>";
@@ -181,6 +188,31 @@
 				1F13CD4318E60A7C00E4208B /* blurBG.png */,
 			);
 			name = img;
+			sourceTree = "<group>";
+		};
+		1F99EF4E190C13A700755078 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1FCF110418E0228300440273 /* AppDelegate.h */,
+				1FCF110518E0228300440273 /* AppDelegate.m */,
+				1F86AA5418F1C582003D9791 /* EMPolaGalleryView.h */,
+				1F86AA5518F1C582003D9791 /* EMPolaGalleryView.m */,
+				1FCF110A18E0228300440273 /* EMPolaroidViewController.h */,
+				1FCF110B18E0228300440273 /* EMPolaroidViewController.m */,
+				15165F661904391A0071EE3B /* LoginSignUp */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1F99EF4F190C13C300755078 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1F40FB3718EBEE8400090511 /* Local.strings */,
+				1FCF110D18E0228300440273 /* Images.xcassets */,
+				1F86AA5118F1BE5B003D9791 /* Main.storyboard */,
+				1F40FB2418EBE4D400090511 /* img */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		1FCF10E918E0228300440273 = {
@@ -220,20 +252,9 @@
 		1FCF10FB18E0228300440273 /* EnjoyGallery */ = {
 			isa = PBXGroup;
 			children = (
-				15165F661904391A0071EE3B /* LoginSignUp */,
-				1F40FB2418EBE4D400090511 /* img */,
-				1FCF110418E0228300440273 /* AppDelegate.h */,
-				1FCF110518E0228300440273 /* AppDelegate.m */,
-				1F86AA5118F1BE5B003D9791 /* Main.storyboard */,
-				1F86AA5418F1C582003D9791 /* EMPolaGalleryView.h */,
-				1F86AA5518F1C582003D9791 /* EMPolaGalleryView.m */,
-				1FCF110A18E0228300440273 /* EMPolaroidViewController.h */,
-				1FCF110B18E0228300440273 /* EMPolaroidViewController.m */,
-				1FCF110D18E0228300440273 /* Images.xcassets */,
+				1F99EF4F190C13C300755078 /* Resources */,
+				1F99EF4E190C13A700755078 /* Classes */,
 				1FCF10FC18E0228300440273 /* Supporting Files */,
-				1F40FB3718EBEE8400090511 /* Local.strings */,
-				154C0DF718FAE4BA00D74851 /* EMLoginViewController.h */,
-				154C0DF818FAE4BA00D74851 /* EMLoginViewController.m */,
 			);
 			path = EnjoyGallery;
 			sourceTree = "<group>";
@@ -427,9 +448,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F86AA5618F1C582003D9791 /* EMPolaGalleryView.m in Sources */,
-				154C0DF918FAE4BA00D74851 /* EMLoginViewController.m in Sources */,
 				1FCF110C18E0228300440273 /* EMPolaroidViewController.m in Sources */,
+				1F99EF55190C155E00755078 /* EMSignUpViewController.m in Sources */,
 				1FCF110618E0228300440273 /* AppDelegate.m in Sources */,
+				1F99EF54190C155E00755078 /* EMLoginViewController.m in Sources */,
 				1FCF110218E0228300440273 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
