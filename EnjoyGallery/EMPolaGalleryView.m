@@ -47,8 +47,8 @@
     CGRect twineViewFrame = CGRectMake(-40, 20, 320, 10);
     CGRect woodenClipViewFrame = CGRectMake(105, 0, 20, 82);
     CGRect imageViewFrame = CGRectMake(10, 10, 220, 220);
-    CGRect polaViewFrame = CGRectMake(0,55, 240, 270);
-    CGRect dateLabelViewFrame = CGRectMake(10,235, 220, 30);
+    CGRect polaViewFrame = CGRectMake(0,55, 240, 240);
+    CGRect dateLabelViewFrame = CGRectMake(10,200, 220, 30);
     
     UIView *pageView = [[UIView alloc]initWithFrame:pageViewFrame];
     
@@ -81,7 +81,11 @@
     
     [dateLabel setText:dateString];
     [dateLabel setFont:[UIFont fontWithName:@"NanumBrush" size:25]];
-    [dateLabel setTextColor:[UIColor blackColor]];
+    [dateLabel setTextColor:[UIColor whiteColor]];
+    [dateLabel setBackgroundColor:[UIColor blackColor]];
+    [dateLabel setTextAlignment:NSTextAlignmentRight];
+    [dateLabel setAlpha:0.65f];
+//    [dateLabel setTextColor:[UIColor blackColor]];
     
     //이미지 기울기
 //    [UIView beginAnimations:nil context:nil];

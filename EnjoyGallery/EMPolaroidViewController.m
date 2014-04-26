@@ -52,8 +52,8 @@
 //    [self.touchableview setBackgroundColor:[UIColor colorWithRed:BG_COLOR_R green:BG_COLOR_G blue:BG_COLOR_B alpha:1]];
 //    [self.wrapView setBackgroundColor:[UIColor colorWithRed:BG_COLOR_R green:BG_COLOR_G blue:BG_COLOR_B alpha:1]];
     
-    [self.polaroidScrollView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"ricepaper-1.png"]]];
-    [self.touchableview setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"ricepaper-1.png"]]];
+    [self.polaroidScrollView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"blurBG.png"]]];
+    [self.touchableview setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"blurBG.png"]]];
 //    [self.wrapView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"ricepaper-1.png"]]];
     
 //    [self.polaroidScrollView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"blurBG.png"]]];
