@@ -45,9 +45,6 @@
     _emailField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Your Email" attributes:@{NSForegroundColorAttributeName: gray}];
     _pwField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Password" attributes:@{NSForegroundColorAttributeName: gray}];
     
-    _emailField.layer.borderColor = [[UIColor blackColor]CGColor];
-
-    
     //button color & radius
     _loginButton.backgroundColor = [UIColor colorWithRed:(231/255.0) green:(76/255.0) blue:(60/255.0) alpha:1];
     _loginButton.layer.cornerRadius = 5.0f;
@@ -64,7 +61,6 @@
     _pwField.returnKeyType = UIReturnKeyGo;
     
 }
-
 
 //keyboard return change -> next & login button
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
@@ -115,8 +111,16 @@
 
 - (IBAction)moveSignUp:(id)sender {
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    EMSignUpViewController *signUpViewController = (EMSignUpViewController*)[storyBoard  instantiateViewControllerWithIdentifier:@"signUpViewController"];
-    [self presentViewController:signUpViewController animated:YES completion:Nil];
+
+
+    if ([[UIScreen mainScreen]bounds].size.height !=1123) {
+        EMSignUpViewController *signUpViewController = (EMSignUpViewController*)[storyBoard  instantiateViewControllerWithIdentifier:@"signUpViewController"];
+        [self presentViewController:signUpViewController animated:YES completion:Nil];
+    }else{
+        EMSignUpViewController *signUpViewController = (EMSignUpViewController*)[storyBoard  instantiateViewControllerWithIdentifier:@"3.5signUpViewController"];
+        [self presentViewController:signUpViewController animated:YES completion:Nil];
+    }
+
 
 }
 
