@@ -41,8 +41,13 @@
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     }
     
+    //placehoder color chage
+    UIColor * gray =[UIColor colorWithRed:(102/255.0) green:(102/255.0) blue:(102/255.0) alpha:1];
+    _emailField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Your Email" attributes:@{NSForegroundColorAttributeName: gray}];
+    _pwField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Password" attributes:@{NSForegroundColorAttributeName: gray}];
+    
     //button color & radius
-    _loginButton.backgroundColor = [UIColor colorWithRed:(178/255.0) green:(177/255.0) blue:(201/255.0) alpha:1];
+    _loginButton.backgroundColor = [UIColor colorWithRed:(231/255.0) green:(76/255.0) blue:(60/255.0) alpha:1];
     _loginButton.layer.cornerRadius = 5.0f;
     
     //pwSet
@@ -57,7 +62,6 @@
     _pwField.returnKeyType = UIReturnKeyGo;
     
 }
-
 
 //keyboard return change -> next & login button
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
@@ -108,8 +112,16 @@
 
 - (IBAction)moveSignUp:(id)sender {
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    EMSignUpViewController *signUpViewController = (EMSignUpViewController*)[storyBoard  instantiateViewControllerWithIdentifier:@"signUpViewController"];
-    [self presentViewController:signUpViewController animated:YES completion:Nil];
+
+
+    if ([[UIScreen mainScreen]bounds].size.height == 568) {
+        EMSignUpViewController *signUpViewController = (EMSignUpViewController*)[storyBoard  instantiateViewControllerWithIdentifier:@"signUpViewController"];
+        [self presentViewController:signUpViewController animated:YES completion:Nil];
+    }else{
+        EMSignUpViewController *signUpViewController = (EMSignUpViewController*)[storyBoard  instantiateViewControllerWithIdentifier:@"3.5signUpViewController"];
+        [self presentViewController:signUpViewController animated:YES completion:Nil];
+    }
+
 
 }
 
