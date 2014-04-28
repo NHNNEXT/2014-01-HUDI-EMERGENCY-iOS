@@ -164,7 +164,7 @@
             NSData* jsonData = [NSJSONSerialization dataWithJSONObject:newDatasetInfo options:kNilOptions error:&jsonError];
             
             NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-            NSURL *url=[NSURL URLWithString:@"http://10.73.45.130:8080/gradation/develop/intro/signup"];
+            NSURL *url=[NSURL URLWithString:@"http://10.73.45.130:8080/gradation/intro/signup"];
             [request setURL:url];
             [request setHTTPMethod:@"POST"];
             [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];

@@ -8,6 +8,7 @@
 
 #import "EMLoginViewController.h"
 #import "EMSignUpViewController.h"
+#import "EMPolaroidViewController.h"
 
 @interface EMLoginViewController ()
 @end
@@ -128,7 +129,7 @@
             NSData* jsonData = [NSJSONSerialization dataWithJSONObject:newDatasetInfo options:kNilOptions error:&jsonError];
             
             NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-            NSURL *url=[NSURL URLWithString:@"http://10.73.45.130:8080/gradation/develop/intro/login"];
+            NSURL *url=[NSURL URLWithString:@"http://10.73.45.130:8080/gradation/intro/login"];
             [request setURL:url];
             [request setHTTPMethod:@"POST"];
             [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -158,8 +159,8 @@
                     [self alertStatus:@"login success" :@"gogogogo!" :0];
                     
                     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-                    EMSignUpViewController *signUpViewController = (EMSignUpViewController*)[storyBoard  instantiateViewControllerWithIdentifier:@"signUpViewController"];
-                    [self presentViewController:signUpViewController animated:YES completion:Nil];
+                    EMPolaroidViewController *polaroidViewController = (EMPolaroidViewController*)[storyBoard  instantiateViewControllerWithIdentifier:@"polaroidViewController"];
+                    [self presentViewController:polaroidViewController animated:YES completion:Nil];
 
                     
                     
