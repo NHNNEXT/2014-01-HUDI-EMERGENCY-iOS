@@ -114,7 +114,7 @@
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
 
 
-    if ([[UIScreen mainScreen]bounds].size.height !=1123) {
+    if ([[UIScreen mainScreen]bounds].size.height == 568) {
         EMSignUpViewController *signUpViewController = (EMSignUpViewController*)[storyBoard  instantiateViewControllerWithIdentifier:@"signUpViewController"];
         [self presentViewController:signUpViewController animated:YES completion:Nil];
     }else{

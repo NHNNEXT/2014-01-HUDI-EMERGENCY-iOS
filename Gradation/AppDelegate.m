@@ -7,15 +7,17 @@
 //
 
 #import "AppDelegate.h"
+#import "EMLoginViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    // Override point for customization after application launch.
-//    self.window.backgroundColor = [UIColor whiteColor];
-//    [self.window makeKeyAndVisible];
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    if ([[UIScreen mainScreen]bounds].size.height == 568) {
+        EMLoginViewController *loginViewController = (EMLoginViewController*)[storyBoard  instantiateViewControllerWithIdentifier:@"EMLoginViewController"];
+        self.window.rootViewController = loginViewController;
+    }
     return YES;
 }
 
