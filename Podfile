@@ -3,3 +3,4 @@ pod 'SIAlertView'
 pod 'APPhotolibrary'
 pod 'EAIntroView', '~> 2.4.0'
 pod 'SMPageControl'
+pod "AFNetworking", "~> 2.0"

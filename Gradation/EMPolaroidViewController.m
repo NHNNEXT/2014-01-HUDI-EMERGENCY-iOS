@@ -10,6 +10,7 @@
 #import "EMPolaroidGalleryView.h"
 #import "SIAlertView.h"
 #import "SMPageControl.h"
+#import "AFNetworking.h"
 
 #define BG_COLOR_R 233/255.0
 #define BG_COLOR_G 234/255.0
@@ -69,7 +70,12 @@
 //    [self.touchableview addGestureRecognizer:self.polaroidScrollView.panGestureRecognizer];
 //    [self.touchableview setClipsToBounds:TRUE];
     
+    [self showTutorial];
     
+}
+
+#pragma mark tutorial
+- (void)showTutorial{
     EAIntroPage *page1 = [EAIntroPage page];
     page1.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"intro1"]];
     page1.title = @"Tutorial";
@@ -125,14 +131,13 @@
     myPageControl.pageIndicatorImage = [UIImage imageNamed:@"pageDot"];
     myPageControl.currentPageIndicatorImage = [UIImage imageNamed:@"selectedPageDot"];
     [myPageControl sizeToFit];
-//    [self.view addSubview:pageControl];
+    //    [self.view addSubview:pageControl];
     intro.pageControl = (UIPageControl *)myPageControl;
     [intro addSubview:intro.pageControl];
     intro.pageControlY = 80.0f;
     
     [intro setDelegate:self];
     [intro showInView:self.view animateDuration:0.3];
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -419,6 +424,14 @@
     //    [self doSomethingWithImage:image]; // Developer-defined method that presents the final editing-resolution image to the user, perhaps.
     
     [self addImage:image date:myDate];
+    int i=0;
+    while (i<10) {
+        
+        [self imageUploadToServer:image :[NSString stringWithFormat:@"image%d.jpg",i]];
+        i++;
+    }
+    [self imageUploadToServer:image :@"myImage.jpg"];
+    
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -472,5 +485,44 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+
+
+#pragma mark 서버에 이미지 업로드
+- (void)imageUploadToServer:(UIImage*)image :(NSString*)filename{
+    NSData *imageData = UIImageJPEGRepresentation(image, 90);
+	NSString *urlString = @"http://10.73.42.238:8080/gradation/api/v1/albums/default";
+	
+	AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    [manager POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:imageData
+                                    name:@"filename"
+                                fileName:filename mimeType:@"image/jpeg"];
+        //임시로 1
+        [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"date"];
+        
+        [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"title"];
+        [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"contents"];
+        
+        [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"albumId"];
+        
+        
+        [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"userId"];
+        
+        
+        
+        // etc.
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Response: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+}
 
 @end
