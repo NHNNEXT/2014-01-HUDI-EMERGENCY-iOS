@@ -479,15 +479,16 @@
     
     [manager POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:imageData
-                                    name:@"filename"
+                                    name:@"fileName"
                                 fileName:filename mimeType:@"image/jpeg"];
         //임시로 1
-        [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding]
+        
+        [formData appendPartWithFormData:[@"1990-09-09" dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"date"];
         
-        [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding]
+        [formData appendPartWithFormData:[@"wow~ title" dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"title"];
-        [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding]
+        [formData appendPartWithFormData:[@"contents is ....." dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"contents"];
         
         [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding]

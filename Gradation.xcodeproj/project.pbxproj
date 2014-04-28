@@ -268,12 +268,12 @@
 			children = (
 				1F186929190D0F6900A2915D /* EMLoginViewController.h */,
 				1F18692A190D0F6900A2915D /* EMLoginViewController.m */,
+				1F18692F190D0F6900A2915D /* EMSignUpViewController.h */,
+				1F186930190D0F6900A2915D /* EMSignUpViewController.m */,
 				1F18692B190D0F6900A2915D /* EMPolaroidGalleryView.h */,
 				1F18692C190D0F6900A2915D /* EMPolaroidGalleryView.m */,
 				1F18692D190D0F6900A2915D /* EMPolaroidViewController.h */,
 				1F18692E190D0F6900A2915D /* EMPolaroidViewController.m */,
-				1F18692F190D0F6900A2915D /* EMSignUpViewController.h */,
-				1F186930190D0F6900A2915D /* EMSignUpViewController.m */,
 				1F186960190D152100A2915D /* EMPhotoEditorViewController.h */,
 				1F186961190D152100A2915D /* EMPhotoEditViewController.m */,
 			);
