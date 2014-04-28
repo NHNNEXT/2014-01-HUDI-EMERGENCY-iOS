@@ -1,1 +1,0 @@
-../../APPhotolibrary/Classes/Categories/ALAsset+Photo.h
