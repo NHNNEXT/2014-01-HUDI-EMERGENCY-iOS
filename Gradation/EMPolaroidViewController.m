@@ -146,21 +146,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-//#pragma mark statusBar희색으로.
-//-(UIStatusBarStyle)preferredStatusBarStyle{
-//    return UIStatusBarStyleLightContent;
-//}
-
 
 #pragma mark -
 #pragma mark Add PolaroidView
 - (void)addImage:(UIImage*)image date:(NSDate*)date{
-//    for (int i=0; i<100; i++) {
-//        PolaroidView *pola = [PolaroidView new];
-//        pola = [pola addPolaWithImage:image Date:date ScrollView:self.polaroidScrollView];
-//        [polaroidImageArray addObject:pola];
-//    }
-
     PolaroidView *pola = [PolaroidView new];
     pola = [pola addPolaWithImage:image Date:date ScrollView:self.polaroidScrollView];
     [polaroidImageArray addObject:pola];
@@ -424,12 +413,6 @@
     //    [self doSomethingWithImage:image]; // Developer-defined method that presents the final editing-resolution image to the user, perhaps.
     
     [self addImage:image date:myDate];
-    int i=0;
-    while (i<10) {
-        
-        [self imageUploadToServer:image :[NSString stringWithFormat:@"image%d.jpg",i]];
-        i++;
-    }
     [self imageUploadToServer:image :@"myImage.jpg"];
     
     
