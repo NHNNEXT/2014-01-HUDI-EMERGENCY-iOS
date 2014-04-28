@@ -71,7 +71,7 @@
     
     //나무 집게 생성
     UIImageView *woodenClipImageView = [[UIImageView alloc]initWithFrame:woodenClipViewFrame];
-    UIImage *woodenClipImage = [UIImage imageNamed:@"나무집게1.png"];
+    UIImage *woodenClipImage = [UIImage imageNamed:@"woodenClip.png"];
     [woodenClipImageView setImage:woodenClipImage];
     
     //라벨 생성

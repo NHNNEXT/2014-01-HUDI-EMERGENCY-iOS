@@ -27,7 +27,7 @@
 		1F186921190D0EFB00A2915D /* ico_save.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F18690B190D0EFB00A2915D /* ico_save.png */; };
 		1F186922190D0EFB00A2915D /* ico_save@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F18690C190D0EFB00A2915D /* ico_save@2x.png */; };
 		1F186923190D0EFB00A2915D /* twine.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F18690D190D0EFB00A2915D /* twine.png */; };
-		1F186924190D0EFB00A2915D /* 나무집게1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F18690E190D0EFB00A2915D /* 나무집게1.png */; };
+		1F186924190D0EFB00A2915D /* woodenClip.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F18690E190D0EFB00A2915D /* woodenClip.png */; };
 		1F186925190D0EFB00A2915D /* blurBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F18690F190D0EFB00A2915D /* blurBG.png */; };
 		1F186927190D0F0F00A2915D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F186926190D0F0F00A2915D /* Main.storyboard */; };
 		1F186931190D0F6900A2915D /* EMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F18692A190D0F6900A2915D /* EMLoginViewController.m */; };
@@ -108,7 +108,7 @@
 		1F18690B190D0EFB00A2915D /* ico_save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_save.png; sourceTree = "<group>"; };
 		1F18690C190D0EFB00A2915D /* ico_save@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_save@2x.png"; sourceTree = "<group>"; };
 		1F18690D190D0EFB00A2915D /* twine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twine.png; sourceTree = "<group>"; };
-		1F18690E190D0EFB00A2915D /* 나무집게1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "나무집게1.png"; sourceTree = "<group>"; };
+		1F18690E190D0EFB00A2915D /* woodenClip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = woodenClip.png; sourceTree = "<group>"; };
 		1F18690F190D0EFB00A2915D /* blurBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blurBG.png; sourceTree = "<group>"; };
 		1F186926190D0F0F00A2915D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		1F186929190D0F6900A2915D /* EMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMLoginViewController.h; sourceTree = "<group>"; };
@@ -250,7 +250,7 @@
 				1F18690B190D0EFB00A2915D /* ico_save.png */,
 				1F18690C190D0EFB00A2915D /* ico_save@2x.png */,
 				1F18690D190D0EFB00A2915D /* twine.png */,
-				1F18690E190D0EFB00A2915D /* 나무집게1.png */,
+				1F18690E190D0EFB00A2915D /* woodenClip.png */,
 				1F18690F190D0EFB00A2915D /* blurBG.png */,
 				1F186977190D65DA00A2915D /* intro1.png */,
 				1F186978190D65DA00A2915D /* intro2.png */,
@@ -469,7 +469,7 @@
 				1F186915190D0EFB00A2915D /* green.png in Resources */,
 				1F186984190D6E2B00A2915D /* intro7.png in Resources */,
 				1F792858190D0D4C00E2C061 /* Images.xcassets in Resources */,
-				1F186924190D0EFB00A2915D /* 나무집게1.png in Resources */,
+				1F186924190D0EFB00A2915D /* woodenClip.png in Resources */,
 				1F186922190D0EFB00A2915D /* ico_save@2x.png in Resources */,
 				1F186976190D601E00A2915D /* introBg@2x.png in Resources */,
 				1F186987190D767D00A2915D /* pageDot.png in Resources */,
