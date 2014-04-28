@@ -40,6 +40,15 @@
     _pwCheck.returnKeyType = UIReturnKeyNext;
     
     
+    //placehoder color change
+    UIColor * gray =[UIColor colorWithRed:(102/255.0) green:(102/255.0) blue:(102/255.0) alpha:1];
+    _email.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Your Email" attributes:@{NSForegroundColorAttributeName: gray}];
+    _name.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Name" attributes:@{NSForegroundColorAttributeName: gray}];
+    _pw.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Password" attributes:@{NSForegroundColorAttributeName: gray}];
+    _pwCheck.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Pasword Check" attributes:@{NSForegroundColorAttributeName: gray}];
+    _birth.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Birth" attributes:@{NSForegroundColorAttributeName: gray}];
+    _gender.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Gender" attributes:@{NSForegroundColorAttributeName: gray}];
+    
     //time bar hide
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
         // iOS 7
@@ -50,9 +59,9 @@
     }
     
     //button, bg color & radius
-    _signUpButton.backgroundColor = [UIColor colorWithRed:(178/255.0) green:(177/255.0) blue:(201/255.0) alpha:1];
+    _signUpButton.backgroundColor = [UIColor colorWithRed:(231/255.0) green:(70/255.0) blue:(60/255.0) alpha:1];
     _signUpButton.layer.cornerRadius = 5.0f;
-    _bg.backgroundColor = [UIColor colorWithRed:(95/255.0) green:(90/255.0) blue:(96/255.0) alpha:0.15];
+    _bg.backgroundColor = [UIColor colorWithRed:(102/255.0) green:(102/255.0) blue:(102/255.0) alpha:0.50];
     _bg.layer.cornerRadius = 5.0f;
     
     //pw set

@@ -40,8 +40,16 @@
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     }
     
+    //placehoder color chage
+    UIColor * gray =[UIColor colorWithRed:(102/255.0) green:(102/255.0) blue:(102/255.0) alpha:1];
+    _emailField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Your Email" attributes:@{NSForegroundColorAttributeName: gray}];
+    _pwField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Password" attributes:@{NSForegroundColorAttributeName: gray}];
+    
+    _emailField.layer.borderColor = [[UIColor blackColor]CGColor];
+
+    
     //button color & radius
-    _loginButton.backgroundColor = [UIColor colorWithRed:(178/255.0) green:(177/255.0) blue:(201/255.0) alpha:1];
+    _loginButton.backgroundColor = [UIColor colorWithRed:(231/255.0) green:(76/255.0) blue:(60/255.0) alpha:1];
     _loginButton.layer.cornerRadius = 5.0f;
     
     //pwSet
