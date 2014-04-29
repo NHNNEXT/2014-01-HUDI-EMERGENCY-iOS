@@ -32,6 +32,8 @@
     _name.delegate=self;
     _pw.delegate=self;
     _pwCheck.delegate=self;
+    _birth.delegate=self;
+    _gender.delegate=self;
     
     //textFiled return key chnage
     _email.returnKeyType = UIReturnKeyNext;
@@ -235,6 +237,32 @@
     [self dismissViewControllerAnimated:YES completion:Nil];
 }
 
+//화면 올리기
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    
+    if (textField==_gender) {
+        [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-200, self.view.frame.size.width, self.view.frame.size.height)];
+        
+        [_gender setText:@"male"];
+        return;
+    }
+    
+    else if (textField==_birth) {
+        [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-200, self.view.frame.size.width, self.view.frame.size.height)];
+        
+        return;
+    }
+    
+    [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-130, self.view.frame.size.width, self.view.frame.size.height)];
+}
 
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    if (textField==_gender || textField==_birth) {
+        [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+200, self.view.frame.size.width, self.view.frame.size.height)];
+        return;
+    }
+    [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+130, self.view.frame.size.width, self.view.frame.size.height)];
+}
 
 @end

@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *pwField;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *signUpButton;
+@property (strong, nonatomic) IBOutlet UIView *loginFormView;
+
 - (IBAction)moveSignUp:(id)sender;
 - (IBAction)actionLogin:(id)sender;
 

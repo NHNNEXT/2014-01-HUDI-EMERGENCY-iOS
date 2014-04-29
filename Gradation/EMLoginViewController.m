@@ -15,6 +15,8 @@
 
 @implementation EMLoginViewController
 
+@synthesize loginFormView;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -30,7 +32,7 @@
     [super viewDidLoad];
     _emailField.delegate = self;
     _pwField.delegate=self;
-    
+    [loginFormView setClipsToBounds:false];
     
     //time bar hide
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
@@ -62,6 +64,16 @@
     _pwField.returnKeyType = UIReturnKeyGo;
     
 }
+
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+        [loginFormView setFrame:CGRectMake(loginFormView.frame.origin.x, loginFormView.frame.origin.y-120, loginFormView.frame.size.width, loginFormView.frame.size.height)];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    [loginFormView setFrame:CGRectMake(loginFormView.frame.origin.x, loginFormView.frame.origin.y+120, loginFormView.frame.size.width, loginFormView.frame.size.height)];
+}
+
 
 //keyboard return change -> next & login button
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
