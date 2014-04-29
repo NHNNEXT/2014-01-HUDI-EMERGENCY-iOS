@@ -478,11 +478,17 @@
 	NSString *urlString = @"http://10.73.45.130:8080/gradation/api/v1/albums/default";
 	
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-    [timeFormatter setDateFormat:@"yyyy-mm-dd-HH-mm-ss"];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    [timeFormatter setDateFormat:@"MM-dd-yyyy-HH-mm-ss"];
     [timeFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
     
-    NSString *dateString = [timeFormatter stringFromDate:myDate ];
     NSString *fileString = [NSString stringWithFormat:@"%@%@",[timeFormatter stringFromDate:myDate ],@".jpg"];
+    
+    NSString *date = [dateFormatter stringFromDate:myDate];
+    NSLog(@"%@",date);
+    
     
 	AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
@@ -493,7 +499,12 @@
                                     name:@"fileName"
                                 fileName:fileString mimeType:@"image/jpeg"];
         
-        [formData appendPartWithFormData:[dateString dataUsingEncoding:NSUTF8StringEncoding]
+        
+        
+        
+        
+        
+        [formData appendPartWithFormData:[date dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"date"];
         
         [formData appendPartWithFormData:[@"wow~ title" dataUsingEncoding:NSUTF8StringEncoding]
