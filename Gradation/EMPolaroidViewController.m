@@ -20,6 +20,8 @@
 #define BTN_COLOR_G 73/255.0
 #define BTN_COLOR_B 83/255.0
 
+#define SERVER_IP @"http://10.73.45.130:8080/gradation/"
+
 @interface EMPolaroidViewController ()
 
 @end
@@ -475,15 +477,25 @@
     NSData *imageData = UIImageJPEGRepresentation(image, 90);
 	NSString *urlString = @"http://10.73.45.130:8080/gradation/api/v1/albums/default";
 	
+    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+    [timeFormatter setDateFormat:@"MM/dd/yyyy HH:mm:ss"];
+    [timeFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    
+    NSString *newTime = [timeFormatter stringFromDate:myDate ];
+    
 	AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     [manager POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:imageData
                                     name:@"fileName"
-                                fileName:filename mimeType:@"image/jpeg"];
-        //임시로 1
+                                fileName:newTime mimeType:@"image/jpeg"];
         
-        [formData appendPartWithFormData:[@"1990-09-09" dataUsingEncoding:NSUTF8StringEncoding]
+        
+        
+        
+        
+        
+        [formData appendPartWithFormData:[newTime dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"date"];
         
         [formData appendPartWithFormData:[@"wow~ title" dataUsingEncoding:NSUTF8StringEncoding]
@@ -517,9 +529,16 @@
     [manager GET:URLString
       parameters:nil
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSLog(@"%@",responseObject);
              for (int i=0; i<[[responseObject objectForKey:@"data"] count]; i++) {
                  NSDate *date = (NSDate*)[[[responseObject objectForKey:@"data"] objectForKey:[NSString stringWithFormat:@"%d",i]]objectForKey:@"date"];
-//                 NSURL *imageURL = [NSURL URLWithString:[[[responseObject objectForKey:@"data"] objectForKey:[NSString stringWithFormat:@"%d",i]]objectForKey:@"photoURL"]];
+                 
+                 
+                 NSURL *imageURLs = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SERVER_IP,[[[responseObject objectForKey:@"data"] objectForKey:[NSString stringWithFormat:@"%d",i]]objectForKey:@"photoURL"]]];
+                 
+                 NSLog(@"%@",imageURLs);
+                 
+                 
                  NSURL *imageURL = [NSURL URLWithString:@"http://cdn.theatlantic.com/static/infocus/ngpc112812/s_n01_nursingm.jpg"];
                  
                  [self addImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]] date:date];
