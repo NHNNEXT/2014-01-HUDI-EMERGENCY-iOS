@@ -478,28 +478,27 @@
 	NSString *urlString = @"http://10.73.45.130:8080/gradation/api/v1/albums/default";
 	
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-    [timeFormatter setDateFormat:@"MM/dd/yyyy HH:mm:ss"];
+    [timeFormatter setDateFormat:@"yyyy-mm-dd-HH-mm-ss"];
     [timeFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
     
-    NSString *newTime = [timeFormatter stringFromDate:myDate ];
+    NSString *dateString = [timeFormatter stringFromDate:myDate ];
+    NSString *fileString = [NSString stringWithFormat:@"%@%@",[timeFormatter stringFromDate:myDate ],@".jpg"];
     
 	AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     [manager POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+        
         [formData appendPartWithFileData:imageData
                                     name:@"fileName"
-                                fileName:newTime mimeType:@"image/jpeg"];
+                                fileName:fileString mimeType:@"image/jpeg"];
         
-        
-        
-        
-        
-        
-        [formData appendPartWithFormData:[newTime dataUsingEncoding:NSUTF8StringEncoding]
+        [formData appendPartWithFormData:[dateString dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"date"];
         
         [formData appendPartWithFormData:[@"wow~ title" dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"title"];
+        
         [formData appendPartWithFormData:[@"contents is ....." dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"contents"];
         
