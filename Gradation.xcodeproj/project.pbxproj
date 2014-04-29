@@ -47,7 +47,7 @@
 		1F18694C190D13E600A2915D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F18694B190D13E600A2915D /* CoreText.framework */; };
 		1F18694E190D13EC00A2915D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F18694D190D13EC00A2915D /* CoreData.framework */; };
 		1F186950190D13F600A2915D /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F18694F190D13F600A2915D /* Accelerate.framework */; };
-		1F186962190D152100A2915D /* EMPhotoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F186961190D152100A2915D /* EMPhotoEditViewController.m */; };
+		1F186962190D152100A2915D /* EMPhotoEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F186961190D152100A2915D /* EMPhotoEditorViewController.m */; };
 		1F18696B190D4D5700A2915D /* AviarySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F186969190D4D5700A2915D /* AviarySDK.framework */; };
 		1F18696C190D4D5700A2915D /* AviarySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1F18696A190D4D5700A2915D /* AviarySDKResources.bundle */; };
 		1F18696D190D506C00A2915D /* Local.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F18696F190D506C00A2915D /* Local.strings */; };
@@ -133,7 +133,7 @@
 		1F18694D190D13EC00A2915D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		1F18694F190D13F600A2915D /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		1F186960190D152100A2915D /* EMPhotoEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPhotoEditorViewController.h; sourceTree = "<group>"; };
-		1F186961190D152100A2915D /* EMPhotoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPhotoEditViewController.m; sourceTree = "<group>"; };
+		1F186961190D152100A2915D /* EMPhotoEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPhotoEditorViewController.m; sourceTree = "<group>"; };
 		1F186969190D4D5700A2915D /* AviarySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AviarySDK.framework; sourceTree = "<group>"; };
 		1F18696A190D4D5700A2915D /* AviarySDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AviarySDKResources.bundle; sourceTree = "<group>"; };
 		1F18696E190D506C00A2915D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Local.strings; sourceTree = "<group>"; };
@@ -275,7 +275,7 @@
 				1F18692D190D0F6900A2915D /* EMPolaroidViewController.h */,
 				1F18692E190D0F6900A2915D /* EMPolaroidViewController.m */,
 				1F186960190D152100A2915D /* EMPhotoEditorViewController.h */,
-				1F186961190D152100A2915D /* EMPhotoEditViewController.m */,
+				1F186961190D152100A2915D /* EMPhotoEditorViewController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -533,7 +533,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F186962190D152100A2915D /* EMPhotoEditViewController.m in Sources */,
+				1F186962190D152100A2915D /* EMPhotoEditorViewController.m in Sources */,
 				1F186933190D0F6900A2915D /* EMPolaroidViewController.m in Sources */,
 				1F792856190D0D4C00E2C061 /* AppDelegate.m in Sources */,
 				1F186934190D0F6900A2915D /* EMSignUpViewController.m in Sources */,

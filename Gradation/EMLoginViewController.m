@@ -141,7 +141,7 @@
             NSData* jsonData = [NSJSONSerialization dataWithJSONObject:newDatasetInfo options:kNilOptions error:&jsonError];
             
             NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-            NSURL *url=[NSURL URLWithString:@"http://localhost:8080/gradation/intro/login"];
+            NSURL *url=[NSURL URLWithString:@"http://10.73.45.130:8080/gradation/intro/login"];
             [request setURL:url];
             [request setHTTPMethod:@"POST"];
             [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -168,7 +168,7 @@
                 result = [jsonData[@"code"] integerValue];
                 if(result == 200)
                 {
-                    [self alertStatus:@"login success" :@"gogogogo!" :0];
+//                    [self alertStatus:@"login success" :@"gogogogo!" :0];
                     
                     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
                     EMPolaroidViewController *polaroidViewController = (EMPolaroidViewController*)[storyBoard  instantiateViewControllerWithIdentifier:@"polaroidViewController"];

@@ -413,7 +413,7 @@
     //    [self doSomethingWithImage:image]; // Developer-defined method that presents the final editing-resolution image to the user, perhaps.
     
     [self addImage:image date:myDate];
-    [self imageUploadToServer:image :@"myImage.jpg"];
+    [self imageUploadToServer:image :@"testImage.jpg"];
     
     
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -473,7 +473,7 @@
 #pragma mark 서버에 이미지 업로드
 - (void)imageUploadToServer:(UIImage*)image :(NSString*)filename{
     NSData *imageData = UIImageJPEGRepresentation(image, 90);
-	NSString *urlString = @"http://10.73.42.238:8080/gradation/api/v1/albums/default";
+	NSString *urlString = @"http://10.73.45.130:8080/gradation/api/v1/albums/default";
 	
 	AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
@@ -499,14 +499,35 @@
                                     name:@"userId"];
         
         
-        
-        // etc.
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Response: %@", responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
     
+}
+
+#pragma mark 사진 서버에서 불러오기.
+- (IBAction)imageLoadFromServer:(id)sender{
+    NSString *URLString = @"http://10.73.45.130:8080/gradation/api/v1/albums";
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    [manager.requestSerializer setValue:@"Content-Type" forHTTPHeaderField:@"application/json"];
+
+    [manager GET:URLString
+      parameters:nil
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             for (int i=0; i<[[responseObject objectForKey:@"data"] count]; i++) {
+                 NSDate *date = (NSDate*)[[[responseObject objectForKey:@"data"] objectForKey:[NSString stringWithFormat:@"%d",i]]objectForKey:@"date"];
+//                 NSURL *imageURL = [NSURL URLWithString:[[[responseObject objectForKey:@"data"] objectForKey:[NSString stringWithFormat:@"%d",i]]objectForKey:@"photoURL"]];
+                 NSURL *imageURL = [NSURL URLWithString:@"http://cdn.theatlantic.com/static/infocus/ngpc112812/s_n01_nursingm.jpg"];
+                 
+                 [self addImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]] date:date];
+             }
+    }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
 }
 
 @end
