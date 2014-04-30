@@ -11,6 +11,7 @@
 #import "SIAlertView.h"
 #import "SMPageControl.h"
 #import "AFNetworking.h"
+#import "EMLoginViewController.h"
 
 #define BG_COLOR_R 233/255.0
 #define BG_COLOR_G 234/255.0
@@ -30,6 +31,9 @@
 
 #pragma mark -
 #pragma mark viewDidLoand And StatusBar Setting
+
+
+
 
 - (void)viewDidLoad
 {
@@ -75,8 +79,27 @@
 //    [self.touchableview addGestureRecognizer:self.polaroidScrollView.panGestureRecognizer];
 //    [self.touchableview setClipsToBounds:TRUE];
     
-    [self showTutorial];
+    [self checkFirstLunch];
     
+    
+}
+
+#pragma mark checkFirstLunch
+- (void)checkFirstLunch{
+    
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
+    {
+        // app already launched
+        NSLog(@"처음실행아님둥!");
+    }
+    else
+    {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        NSLog(@"처음 실행임둥!");
+        [self showTutorial];
+    }
 }
 
 #pragma mark tutorial
@@ -154,9 +177,9 @@
 
 #pragma mark -
 #pragma mark Add PolaroidView
-- (void)addImage:(UIImage*)image date:(NSDate*)date{
+- (void)addImage:(UIImage*)image date:(NSDate*)date fileName:(NSString*)filename{
     PolaroidView *pola = [PolaroidView new];
-    pola = [pola addPolaWithImage:image Date:date ScrollView:self.polaroidScrollView];
+    pola = [pola addPolaWithImage:image Date:date ScrollView:self.polaroidScrollView FileName:filename];
     [polaroidImageArray addObject:pola];
 }
 
@@ -165,6 +188,8 @@
     //사진 없으면 에러창 띄움
     if (![polaroidImageArray count]) {
         SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Error!"  andMessage:NSLocalizedStringFromTable(@"NO PHOTO", @"Local", @"사진 없다")];
+        
+        
         
         [alertView addButtonWithTitle:NSLocalizedStringFromTable(@"OK", @"Local", @"확인")
                                  type:SIAlertViewButtonTypeCancel
@@ -193,6 +218,7 @@
                           handler:^(SIAlertView *alert) {
                               NSLog(@"확인 클릭!");
                               [self deletePolaroidView:currentPage];
+                              [self deleteImageServer:currentPage];
                           }];
     
     alertView.transitionStyle = SIAlertViewTransitionStyleFade;
@@ -417,7 +443,7 @@
     // Handle the result image here and dismiss the editor.
     //    [self doSomethingWithImage:image]; // Developer-defined method that presents the final editing-resolution image to the user, perhaps.
     
-    [self addImage:image date:myDate];
+    [self addImage:image date:myDate fileName:fileNameString];
     [self imageUploadToServer:image];
     
     
@@ -431,42 +457,6 @@
 }
 
 
-//
-//페이스북으로 공유
-//
-//- (IBAction)shareToFacebook:(id)sender{
-//    BOOL displayedNativeDialog = [FBNativeDialogs
-//                                  presentShareDialogModallyFrom:self
-//                                  initialText:@"-by EnjoyCamera"
-//                                  image:myImageView.image
-//                                  url:nil
-//                                  handler:^(FBNativeDialogResult result, NSError *error) {
-//                                      
-//                                      NSString *alertText = @"";
-//                                      if ([[error userInfo][FBErrorDialogReasonKey] isEqualToString:FBErrorDialogNotSupported]) {
-//                                          alertText = @"iOS Share Sheet not supported.";
-//                                      } else if (error) {
-//                                          alertText = [NSString stringWithFormat:@"error: domain = %@, code = %d", error.domain, error.code];
-//                                      } else if (result == FBNativeDialogResultSucceeded) {
-//                                          alertText = @"Posted successfully.";
-//                                      }
-//                                      
-//                                      if (![alertText isEqualToString:@""]) {
-//                                          // Show the result in an alert
-//                                          [[[UIAlertView alloc] initWithTitle:@"Result"
-//                                                                      message:alertText
-//                                                                     delegate:self
-//                                                            cancelButtonTitle:@"OK!"
-//                                                            otherButtonTitles:nil]
-//                                           show];
-//                                      }
-//                                  }];
-//    if (!displayedNativeDialog) {
-//        /*
-//         Fallback to web-based Feed dialog:
-//         https://developers.facebook.com/docs/howtos/feed-dialog-using-ios-sdk/
-//         */
-//    }}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -490,8 +480,8 @@
     NSString *fileString = [NSString stringWithFormat:@"%@%@",[timeFormatter stringFromDate:myDate ],@".jpg"];
     
     NSString *date = [dateFormatter stringFromDate:myDate];
-    NSLog(@"%@",date);
     
+    fileNameString = fileString;
     
 	AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
@@ -499,9 +489,11 @@
         
         
         [formData appendPartWithFileData:imageData
-                                    name:@"fileName"
+                                    name:@"imageFile"
                                 fileName:fileString mimeType:@"image/jpeg"];
         
+        [formData appendPartWithFormData:[fileString dataUsingEncoding:NSUTF8StringEncoding]
+                                    name:@"fileName"];
         
         [formData appendPartWithFormData:[date dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"date"];
@@ -530,7 +522,7 @@
 
 #pragma mark 사진 서버에서 불러오기.
 - (void)imageLoadFromServer{
-    NSString *URLString = @"http://10.73.45.130:8080/gradation/api/v1/albums";
+    NSString *URLString = @"http://10.73.45.130:8080/gradation/api/v1/albums/default/";
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -542,22 +534,50 @@
     [manager GET:URLString
       parameters:nil
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             NSLog(@"%@",responseObject);
+             NSLog(@"성공 %@",responseObject);
              for (int i=0; i<[[responseObject objectForKey:@"data"] count]; i++) {
                  NSDate *date =  [dateFormatter dateFromString:[[[responseObject objectForKey:@"data"] objectForKey:[NSString stringWithFormat:@"%d",i]]objectForKey:@"date"]];
                  
+                 fileNameString = [[[responseObject objectForKey:@"data"] objectForKey:[NSString stringWithFormat:@"%d",i]]objectForKey:@"fileName"];
                  
                  NSURL *imageURLs = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SERVER_IP,[[[responseObject objectForKey:@"data"] objectForKey:[NSString stringWithFormat:@"%d",i]]objectForKey:@"photoURL"]]];
                  
                  NSLog(@"과연 이 파일의 날짜눙????? %@",date);
+                 NSLog(@"이거능??? %@",[[[responseObject objectForKey:@"data"] objectForKey:[NSString stringWithFormat:@"%d",i]]objectForKey:@"date"]);
                  
-                 
-                 [self addImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:imageURLs]] date:date];
+                 [self addImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:imageURLs]] date:date fileName:fileNameString];
              }
     }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
+}
+
+#pragma mark 사진 서버에서 지우기.
+- (void)deleteImageServer:(NSUInteger)index{
+    NSString *URLString = [NSString stringWithFormat:@"%@%@",@"http://10.73.45.130:8080/gradation/api/v1/albums/default/",fileNameString];
+    
+    NSLog(@"이거 지운다 %@",URLString);
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    
+    
+    [manager DELETE:URLString
+         parameters:nil
+            success:^(AFHTTPRequestOperation *operation, id responseObject){
+                NSLog(@"석세스!!: %@",responseObject);
+            }
+            failure:^(AFHTTPRequestOperation *operation, NSError *error){
+                NSLog(@"Error!!!!!!: %@",error);
+            }];
+}
+
+
+-(IBAction)logout:(id)sender{
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    EMLoginViewController *loginViewController = (EMLoginViewController*)[storyBoard  instantiateViewControllerWithIdentifier:@"EMLoginViewController"];
+    [self presentViewController:loginViewController animated:YES completion:Nil];
 }
 
 @end

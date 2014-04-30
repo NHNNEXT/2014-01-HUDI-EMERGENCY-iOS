@@ -18,6 +18,9 @@
         EMLoginViewController *loginViewController = (EMLoginViewController*)[storyBoard  instantiateViewControllerWithIdentifier:@"EMLoginViewController"];
         self.window.rootViewController = loginViewController;
     }
+    
+    
+    
     return YES;
 }
 
@@ -47,5 +50,7 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
 
 @end

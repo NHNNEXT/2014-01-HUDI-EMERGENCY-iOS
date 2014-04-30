@@ -15,25 +15,25 @@
 @synthesize polaScrollView;
 
 
-//- (id) initWithImage: (UIImage*)image date:(NSDate*)date scrollview:(UIScrollView*)scrollView
-//{
-//    self = [super init];
-//    if (self) {
-//        [self setPolaImage:image];
-//        [self setPolaDate:date];
-//        [self setPolaImage:image];
-//    }
-//    
-//    return self;
-//}
-//
-//- (id)init
-//{
-//    return [self initWithImage:nil date:nil scrollview:nil];
-//}
+- (id) initWithImage: (UIImage*)image date:(NSDate*)date scrollview:(UIScrollView*)scrollView
+{
+    self = [super init];
+    if (self) {
+        [self setPolaImage:image];
+        [self setPolaDate:date];
+        [self setPolaImage:image];
+    }
+    
+    return self;
+}
+
+- (id)init
+{
+    return [self initWithImage:nil date:nil scrollview:nil];
+}
 
 
-- (id)addPolaWithImage:(UIImage*)image Date:(NSDate*)date ScrollView:(UIScrollView*)scrollview
+- (id)addPolaWithImage:(UIImage*)image Date:(NSDate*)date ScrollView:(UIScrollView*)scrollview FileName:(NSString*)filename
 {
     [self setPolaImage:image];
     [self setPolaDate:date];

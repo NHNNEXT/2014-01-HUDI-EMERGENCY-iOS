@@ -266,6 +266,8 @@
 		1F186928190D0F2900A2915D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1F792854190D0D4C00E2C061 /* AppDelegate.h */,
+				1F792855190D0D4C00E2C061 /* AppDelegate.m */,
 				1F186929190D0F6900A2915D /* EMLoginViewController.h */,
 				1F18692A190D0F6900A2915D /* EMLoginViewController.m */,
 				1F18692F190D0F6900A2915D /* EMSignUpViewController.h */,
@@ -341,8 +343,6 @@
 				1F79284E190D0D4C00E2C061 /* InfoPlist.strings */,
 				1F792851190D0D4C00E2C061 /* main.m */,
 				1F792853190D0D4C00E2C061 /* Gradation-Prefix.pch */,
-				1F792854190D0D4C00E2C061 /* AppDelegate.h */,
-				1F792855190D0D4C00E2C061 /* AppDelegate.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

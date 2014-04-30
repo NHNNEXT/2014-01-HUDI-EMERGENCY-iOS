@@ -8,6 +8,7 @@
 
 #import "EMSignUpViewController.h"
 #import "EMLoginViewController.h"
+#import "SIAlertView.h"
 
 @interface EMSignUpViewController ()
 
@@ -76,6 +77,8 @@
     [datePicker setDate:[NSDate date]];
     datePicker.datePickerMode = UIDatePickerModeDate;
     [datePicker addTarget:self action:@selector(updateTextField:) forControlEvents:UIControlEventValueChanged];
+    
+    [datePicker setBackgroundColor:[UIColor whiteColor]];
     [self.birth setInputView:datePicker];
     //remove cursor
     self.birth.tintColor = [UIColor clearColor];
@@ -92,12 +95,12 @@
 //keyboard return change -> next & login button
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
     if(theTextField==_email)
-        [_name becomeFirstResponder];
-    else if(theTextField == _name)
         [_pw becomeFirstResponder];
     else if(theTextField == _pw)
         [_pwCheck becomeFirstResponder];
-    else if(theTextField ==_pwCheck)
+    else if(theTextField == _pwCheck)
+        [_name becomeFirstResponder];
+    else if(theTextField ==_name)
         [_birth becomeFirstResponder];
     
     return YES;
@@ -111,6 +114,7 @@
     //hides keyboard when another part of layout was touched
     [self.view endEditing:YES];
     [super touchesBegan:touches withEvent:event];
+    [self moveView:self.view y:0.0];
 }
 
 
@@ -122,6 +126,7 @@
     [dateForm setDateFormat:@"yyyy-MM-dd"];
     self.birth.text = [dateForm stringFromDate:picker.date];
     [self.gender resignFirstResponder];
+//    [self moveView:self.view y:0.0];
 
 }
 
@@ -226,10 +231,16 @@
 //예외처리
 - (void) alertStatus:(NSString *)msg :(NSString *)title :(int) tag
 {
-    UIAlertView *alertView = [[UIAlertView alloc]
-                              initWithTitle:title message:msg delegate:self cancelButtonTitle:@"Ok"
-                              otherButtonTitles:nil, nil];
-    alertView.tag = tag;
+    
+    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:title  andMessage:msg];
+    
+    [alertView addButtonWithTitle:NSLocalizedStringFromTable(@"OK", @"Local", @"확인")
+                             type:SIAlertViewButtonTypeCancel
+                          handler:^(SIAlertView *alert) {
+                              NSLog(@"확인 클릭!");
+                          }];
+    
+    alertView.transitionStyle = SIAlertViewTransitionStyleFade;
     [alertView show];
 }
 
@@ -237,32 +248,59 @@
     [self dismissViewControllerAnimated:YES completion:Nil];
 }
 
-//화면 올리기
+#pragma mark -
+#pragma mark 텍스트 필드 수정시 뷰 올리기!
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
-    
-    
+
     if (textField==_gender) {
-        [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-200, self.view.frame.size.width, self.view.frame.size.height)];
-        
+        [self moveView:self.view y:-180];
         [_gender setText:@"male"];
         return;
     }
     
     else if (textField==_birth) {
-        [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-200, self.view.frame.size.width, self.view.frame.size.height)];
-        
+        [self moveView:self.view y:-160];
         return;
     }
     
-    [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-130, self.view.frame.size.width, self.view.frame.size.height)];
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField{
-    if (textField==_gender || textField==_birth) {
-        [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+200, self.view.frame.size.width, self.view.frame.size.height)];
+    else if (textField==_name) {
+        [self moveView:self.view y:-140];
         return;
     }
-    [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+130, self.view.frame.size.width, self.view.frame.size.height)];
+    
+    else if (textField==_pwCheck) {
+        [self moveView:self.view y:-120];
+        return;
+    }
+    
+    else if (textField==_pw) {
+        [self moveView:self.view y:-100];
+        return;
+    }
+    
+    else if (textField==_pw) {
+        [self moveView:self.view y:-80];
+        return;
+    }
+    
+    else if (textField==_email) {
+        [self moveView:self.view y:-60];
+        return;
+    }
+    
+    
 }
+
+#pragma mark 뷰 이동 메서드.
+- (void)moveView:(UIView*)view y:(CGFloat)yPos{
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.3];
+    
+    
+    [view setFrame:CGRectMake(view.frame.origin.x, yPos, view.frame.size.width, view.frame.size.height)];
+    
+    [UIView commitAnimations];
+}
+
 
 @end

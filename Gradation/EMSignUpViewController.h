@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface EMSignUpViewController : UIViewController <UITextFieldDelegate, UINavigationControllerDelegate, UINavigationBarDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UITextField *email;
 @property (weak, nonatomic) IBOutlet UITextField *name;
 @property (weak, nonatomic) IBOutlet UITextField *pw;

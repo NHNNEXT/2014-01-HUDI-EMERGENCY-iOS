@@ -9,6 +9,7 @@
 #import "EMLoginViewController.h"
 #import "EMSignUpViewController.h"
 #import "EMPolaroidViewController.h"
+#import "SIAlertView.h"
 
 @interface EMLoginViewController ()
 @end
@@ -38,15 +39,9 @@
     _emailField.delegate = self;
     _pwField.delegate=self;
     [loginFormView setClipsToBounds:false];
-    
-    //time bar hide
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        // iOS 7
-        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-    } else {
-        // iOS 6
-        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
-    }
+    [_emailField setKeyboardType:UIKeyboardTypeEmailAddress];
+    //statusBarUpdate
+    [self setNeedsStatusBarAppearanceUpdate];
     
     //placehoder color chage
     UIColor * gray =[UIColor colorWithRed:(102/255.0) green:(102/255.0) blue:(102/255.0) alpha:1];
@@ -72,12 +67,10 @@
 
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
-        [loginFormView setFrame:CGRectMake(loginFormView.frame.origin.x, loginFormView.frame.origin.y-120, loginFormView.frame.size.width, loginFormView.frame.size.height)];
+        [self moveView:self.view y:-100.0];
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField{
-    [loginFormView setFrame:CGRectMake(loginFormView.frame.origin.x, loginFormView.frame.origin.y+120, loginFormView.frame.size.width, loginFormView.frame.size.height)];
-}
+
 
 
 //keyboard return change -> next & login button
@@ -87,18 +80,24 @@
     }else{
         [theTextField resignFirstResponder];
         [self actionLogin:self];
+        [self moveView:self.view y:0.0];
     }
     return YES;
 }
 
-- (BOOL)prefersStatusBarHidden {
-    return YES;
+//- (BOOL)prefersStatusBarHidden {
+//    return YES;
+//}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     //hides keyboard when another part of layout was touched
     [self.view endEditing:YES];
     [super touchesBegan:touches withEvent:event];
+    [self moveView:self.view y:0.0];
 }
 
 - (void)moveImage:(UIImageView *)image duration:(NSTimeInterval)duration
@@ -215,11 +214,30 @@
 //예외처리
 - (void) alertStatus:(NSString *)msg :(NSString *)title :(int) tag
 {
-    UIAlertView *alertView = [[UIAlertView alloc]
-                              initWithTitle:title message:msg delegate:self cancelButtonTitle:@"Ok"
-                              otherButtonTitles:nil, nil];
-    alertView.tag = tag;
+   
+    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:title  andMessage:msg];
+    
+    [alertView addButtonWithTitle:NSLocalizedStringFromTable(@"OK", @"Local", @"확인")
+                             type:SIAlertViewButtonTypeCancel
+                          handler:^(SIAlertView *alert) {
+                              NSLog(@"확인 클릭!");
+                          }];
+    
+    alertView.transitionStyle = SIAlertViewTransitionStyleFade;
     [alertView show];
+    
+    
+}
+
+#pragma mark 뷰 이동 애니메이션 메서드.
+- (void)moveView:(UIView*)view y:(CGFloat)yPos{
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.3];
+    
+    
+    [view setFrame:CGRectMake(view.frame.origin.x, yPos, view.frame.size.width, view.frame.size.height)];
+    
+    [UIView commitAnimations];
 }
 
 

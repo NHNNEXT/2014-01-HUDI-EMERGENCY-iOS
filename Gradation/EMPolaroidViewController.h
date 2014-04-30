@@ -19,6 +19,7 @@
     NSUInteger currentPage;
     NSMutableArray *polaroidImageArray;
     NSDate *myDate;
+    NSString *fileNameString;
 }
 
 @property (strong, nonatomic) IBOutlet UIScrollView *polaroidScrollView;

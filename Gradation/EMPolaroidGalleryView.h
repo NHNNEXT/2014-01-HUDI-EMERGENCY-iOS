@@ -14,7 +14,7 @@
 @property NSDate *polaDate;
 @property UIScrollView *polaScrollView;
 
-- (id)addPolaWithImage:(UIImage*)image Date:(NSDate*)date ScrollView:(UIScrollView*)scrollview;
+- (id)addPolaWithImage:(UIImage*)image Date:(NSDate*)date ScrollView:(UIScrollView*)scrollview FileName:(NSString*)filename;
 - (void)deletePola:(NSMutableArray*)array index:(int)index;
 
 
