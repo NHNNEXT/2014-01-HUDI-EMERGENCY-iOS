@@ -496,6 +496,8 @@
 	AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     [manager POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+        
         [formData appendPartWithFileData:imageData
                                     name:@"fileName"
                                 fileName:fileString mimeType:@"image/jpeg"];
@@ -506,6 +508,7 @@
         
         [formData appendPartWithFormData:[@"wow~ title" dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"title"];
+        
         [formData appendPartWithFormData:[@"contents is ....." dataUsingEncoding:NSUTF8StringEncoding]
                                     name:@"contents"];
         
