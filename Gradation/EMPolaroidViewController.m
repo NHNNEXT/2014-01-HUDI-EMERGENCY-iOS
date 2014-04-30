@@ -20,7 +20,7 @@
 #define BTN_COLOR_G 73/255.0
 #define BTN_COLOR_B 83/255.0
 
-#define SERVER_IP @"http://10.73.45.130:8080/gradation/"
+#define SERVER_IP @"http://10.73.45.130:8080/"
 
 @interface EMPolaroidViewController ()
 
@@ -45,6 +45,9 @@
         // iOS 6
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     }
+    
+    //서버에 저장된 이미지 불러오기 실행
+    [self imageLoadFromServer];
     
     //폴라이미지배열 초기화
     polaroidImageArray = [[NSMutableArray alloc]init];
@@ -90,7 +93,7 @@
     page2.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"intro2"]];
     page2.title = @"사진 추가";
     page2.titleColor = [UIColor blackColor];
-    page2.desc = @"Add 버튼을 누르면 사진을 찍거나 앨범에서\n 사진을 선택할 수 있습니다.";
+    page2.desc = @"Add를 터치하면 사진 찍거나 앨범에서 \n 사진을 선택할 수 있습니다.";
     page2.descColor = [UIColor blackColor];
     page2.bgImage = [UIImage imageNamed:@"introBg.png"];
     
@@ -233,7 +236,7 @@
     // Update the page when more than 50% of the previous/next page is visible
     CGFloat pageWidth = self.polaroidScrollView.frame.size.width;
     currentPage = floor((self.polaroidScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    NSLog(@"%d",(int)currentPage);
+//    NSLog(@"%d",(int)currentPage);
 }
 
 
@@ -415,7 +418,7 @@
     //    [self doSomethingWithImage:image]; // Developer-defined method that presents the final editing-resolution image to the user, perhaps.
     
     [self addImage:image date:myDate];
-    [self imageUploadToServer:image :@"testImage.jpg"];
+    [self imageUploadToServer:image];
     
     
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -473,18 +476,18 @@
 
 
 #pragma mark 서버에 이미지 업로드
-- (void)imageUploadToServer:(UIImage*)image :(NSString*)filename{
+- (void)imageUploadToServer:(UIImage*)image{
     NSData *imageData = UIImageJPEGRepresentation(image, 90);
 	NSString *urlString = @"http://10.73.45.130:8080/gradation/api/v1/albums/default";
 	
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-DD hh:mm:ss"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     
-    [timeFormatter setDateFormat:@"MM-dd-yyyy-HH-mm-ss"];
+    [timeFormatter setDateFormat:@"yyyy-MM-dd-HH-mm-ss"];
     [timeFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
     
-    NSString *newTime = [NSString stringWithFormat:@"%@%@",[timeFormatter stringFromDate:myDate ],@".jpg"];
+    NSString *fileString = [NSString stringWithFormat:@"%@%@",[timeFormatter stringFromDate:myDate ],@".jpg"];
     
     NSString *date = [dateFormatter stringFromDate:myDate];
     NSLog(@"%@",date);
@@ -495,11 +498,7 @@
     [manager POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:imageData
                                     name:@"fileName"
-                                fileName:newTime mimeType:@"image/jpeg"];
-        
-        
-        
-        
+                                fileName:fileString mimeType:@"image/jpeg"];
         
         
         [formData appendPartWithFormData:[date dataUsingEncoding:NSUTF8StringEncoding]
@@ -527,8 +526,12 @@
 }
 
 #pragma mark 사진 서버에서 불러오기.
-- (IBAction)imageLoadFromServer:(id)sender{
+- (void)imageLoadFromServer{
     NSString *URLString = @"http://10.73.45.130:8080/gradation/api/v1/albums";
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     [manager.requestSerializer setValue:@"Content-Type" forHTTPHeaderField:@"application/json"];
@@ -538,17 +541,15 @@
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              NSLog(@"%@",responseObject);
              for (int i=0; i<[[responseObject objectForKey:@"data"] count]; i++) {
-                 NSDate *date = (NSDate*)[[[responseObject objectForKey:@"data"] objectForKey:[NSString stringWithFormat:@"%d",i]]objectForKey:@"date"];
+                 NSDate *date =  [dateFormatter dateFromString:[[[responseObject objectForKey:@"data"] objectForKey:[NSString stringWithFormat:@"%d",i]]objectForKey:@"date"]];
                  
                  
                  NSURL *imageURLs = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SERVER_IP,[[[responseObject objectForKey:@"data"] objectForKey:[NSString stringWithFormat:@"%d",i]]objectForKey:@"photoURL"]]];
                  
-                 NSLog(@"%@",imageURLs);
+                 NSLog(@"과연 이 파일의 날짜눙????? %@",date);
                  
                  
-                 NSURL *imageURL = [NSURL URLWithString:@"http://cdn.theatlantic.com/static/infocus/ngpc112812/s_n01_nursingm.jpg"];
-                 
-                 [self addImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]] date:date];
+                 [self addImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:imageURLs]] date:date];
              }
     }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {

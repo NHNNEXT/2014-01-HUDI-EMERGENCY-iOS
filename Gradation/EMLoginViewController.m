@@ -28,7 +28,12 @@
 
 - (void)viewDidLoad
 {
-
+    NSString *dateString = @"2014-04-30 11:06:09";
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSLog(@"%@",[dateFormatter dateFromString:dateString]);
+    
+    
     [super viewDidLoad];
     _emailField.delegate = self;
     _pwField.delegate=self;
