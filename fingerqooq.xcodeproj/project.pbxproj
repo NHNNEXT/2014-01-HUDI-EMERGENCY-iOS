@@ -1,0 +1,486 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1F55C3D1192246CE0021D8DE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F55C3D0192246CE0021D8DE /* Foundation.framework */; };
+		1F55C3D3192246CE0021D8DE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F55C3D2192246CE0021D8DE /* CoreGraphics.framework */; };
+		1F55C3D5192246CE0021D8DE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F55C3D4192246CE0021D8DE /* UIKit.framework */; };
+		1F55C3DB192246CE0021D8DE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F55C3D9192246CE0021D8DE /* InfoPlist.strings */; };
+		1F55C3DD192246CE0021D8DE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F55C3DC192246CE0021D8DE /* main.m */; };
+		1F55C3E1192246CE0021D8DE /* FQAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F55C3E0192246CE0021D8DE /* FQAppDelegate.m */; };
+		1F55C3E4192246CE0021D8DE /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F55C3E2192246CE0021D8DE /* Main_iPhone.storyboard */; };
+		1F55C3E7192246CE0021D8DE /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F55C3E5192246CE0021D8DE /* Main_iPad.storyboard */; };
+		1F55C3EA192246CE0021D8DE /* FQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F55C3E9192246CE0021D8DE /* FQViewController.m */; };
+		1F55C3EC192246CE0021D8DE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F55C3EB192246CE0021D8DE /* Images.xcassets */; };
+		1F55C3F3192246CE0021D8DE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F55C3F2192246CE0021D8DE /* XCTest.framework */; };
+		1F55C3F4192246CE0021D8DE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F55C3D0192246CE0021D8DE /* Foundation.framework */; };
+		1F55C3F5192246CE0021D8DE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F55C3D4192246CE0021D8DE /* UIKit.framework */; };
+		1F55C3FD192246CE0021D8DE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F55C3FB192246CE0021D8DE /* InfoPlist.strings */; };
+		1F55C3FF192246CE0021D8DE /* fingerqooqTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F55C3FE192246CE0021D8DE /* fingerqooqTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1F55C3F6192246CE0021D8DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1F55C3C5192246CE0021D8DE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1F55C3CC192246CE0021D8DE;
+			remoteInfo = fingerqooq;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1F55C3CD192246CE0021D8DE /* fingerqooq.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fingerqooq.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F55C3D0192246CE0021D8DE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1F55C3D2192246CE0021D8DE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1F55C3D4192246CE0021D8DE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1F55C3D8192246CE0021D8DE /* fingerqooq-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "fingerqooq-Info.plist"; sourceTree = "<group>"; };
+		1F55C3DA192246CE0021D8DE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1F55C3DC192246CE0021D8DE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1F55C3DE192246CE0021D8DE /* fingerqooq-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "fingerqooq-Prefix.pch"; sourceTree = "<group>"; };
+		1F55C3DF192246CE0021D8DE /* FQAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FQAppDelegate.h; sourceTree = "<group>"; };
+		1F55C3E0192246CE0021D8DE /* FQAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FQAppDelegate.m; sourceTree = "<group>"; };
+		1F55C3E3192246CE0021D8DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		1F55C3E6192246CE0021D8DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		1F55C3E8192246CE0021D8DE /* FQViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FQViewController.h; sourceTree = "<group>"; };
+		1F55C3E9192246CE0021D8DE /* FQViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FQViewController.m; sourceTree = "<group>"; };
+		1F55C3EB192246CE0021D8DE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		1F55C3F1192246CE0021D8DE /* fingerqooqTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fingerqooqTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F55C3F2192246CE0021D8DE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		1F55C3FA192246CE0021D8DE /* fingerqooqTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "fingerqooqTests-Info.plist"; sourceTree = "<group>"; };
+		1F55C3FC192246CE0021D8DE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1F55C3FE192246CE0021D8DE /* fingerqooqTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fingerqooqTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1F55C3CA192246CE0021D8DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F55C3D3192246CE0021D8DE /* CoreGraphics.framework in Frameworks */,
+				1F55C3D5192246CE0021D8DE /* UIKit.framework in Frameworks */,
+				1F55C3D1192246CE0021D8DE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F55C3EE192246CE0021D8DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F55C3F3192246CE0021D8DE /* XCTest.framework in Frameworks */,
+				1F55C3F5192246CE0021D8DE /* UIKit.framework in Frameworks */,
+				1F55C3F4192246CE0021D8DE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1F55C3C4192246CE0021D8DE = {
+			isa = PBXGroup;
+			children = (
+				1F55C3D6192246CE0021D8DE /* fingerqooq */,
+				1F55C3F8192246CE0021D8DE /* fingerqooqTests */,
+				1F55C3CF192246CE0021D8DE /* Frameworks */,
+				1F55C3CE192246CE0021D8DE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1F55C3CE192246CE0021D8DE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1F55C3CD192246CE0021D8DE /* fingerqooq.app */,
+				1F55C3F1192246CE0021D8DE /* fingerqooqTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1F55C3CF192246CE0021D8DE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1F55C3D0192246CE0021D8DE /* Foundation.framework */,
+				1F55C3D2192246CE0021D8DE /* CoreGraphics.framework */,
+				1F55C3D4192246CE0021D8DE /* UIKit.framework */,
+				1F55C3F2192246CE0021D8DE /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1F55C3D6192246CE0021D8DE /* fingerqooq */ = {
+			isa = PBXGroup;
+			children = (
+				1F55C3DF192246CE0021D8DE /* FQAppDelegate.h */,
+				1F55C3E0192246CE0021D8DE /* FQAppDelegate.m */,
+				1F55C3E2192246CE0021D8DE /* Main_iPhone.storyboard */,
+				1F55C3E5192246CE0021D8DE /* Main_iPad.storyboard */,
+				1F55C3E8192246CE0021D8DE /* FQViewController.h */,
+				1F55C3E9192246CE0021D8DE /* FQViewController.m */,
+				1F55C3EB192246CE0021D8DE /* Images.xcassets */,
+				1F55C3D7192246CE0021D8DE /* Supporting Files */,
+			);
+			path = fingerqooq;
+			sourceTree = "<group>";
+		};
+		1F55C3D7192246CE0021D8DE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1F55C3D8192246CE0021D8DE /* fingerqooq-Info.plist */,
+				1F55C3D9192246CE0021D8DE /* InfoPlist.strings */,
+				1F55C3DC192246CE0021D8DE /* main.m */,
+				1F55C3DE192246CE0021D8DE /* fingerqooq-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1F55C3F8192246CE0021D8DE /* fingerqooqTests */ = {
+			isa = PBXGroup;
+			children = (
+				1F55C3FE192246CE0021D8DE /* fingerqooqTests.m */,
+				1F55C3F9192246CE0021D8DE /* Supporting Files */,
+			);
+			path = fingerqooqTests;
+			sourceTree = "<group>";
+		};
+		1F55C3F9192246CE0021D8DE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1F55C3FA192246CE0021D8DE /* fingerqooqTests-Info.plist */,
+				1F55C3FB192246CE0021D8DE /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1F55C3CC192246CE0021D8DE /* fingerqooq */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F55C402192246CE0021D8DE /* Build configuration list for PBXNativeTarget "fingerqooq" */;
+			buildPhases = (
+				1F55C3C9192246CE0021D8DE /* Sources */,
+				1F55C3CA192246CE0021D8DE /* Frameworks */,
+				1F55C3CB192246CE0021D8DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = fingerqooq;
+			productName = fingerqooq;
+			productReference = 1F55C3CD192246CE0021D8DE /* fingerqooq.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1F55C3F0192246CE0021D8DE /* fingerqooqTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F55C405192246CE0021D8DE /* Build configuration list for PBXNativeTarget "fingerqooqTests" */;
+			buildPhases = (
+				1F55C3ED192246CE0021D8DE /* Sources */,
+				1F55C3EE192246CE0021D8DE /* Frameworks */,
+				1F55C3EF192246CE0021D8DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1F55C3F7192246CE0021D8DE /* PBXTargetDependency */,
+			);
+			name = fingerqooqTests;
+			productName = fingerqooqTests;
+			productReference = 1F55C3F1192246CE0021D8DE /* fingerqooqTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1F55C3C5192246CE0021D8DE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = FQ;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = EntusApps;
+				TargetAttributes = {
+					1F55C3F0192246CE0021D8DE = {
+						TestTargetID = 1F55C3CC192246CE0021D8DE;
+					};
+				};
+			};
+			buildConfigurationList = 1F55C3C8192246CE0021D8DE /* Build configuration list for PBXProject "fingerqooq" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1F55C3C4192246CE0021D8DE;
+			productRefGroup = 1F55C3CE192246CE0021D8DE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1F55C3CC192246CE0021D8DE /* fingerqooq */,
+				1F55C3F0192246CE0021D8DE /* fingerqooqTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1F55C3CB192246CE0021D8DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F55C3E7192246CE0021D8DE /* Main_iPad.storyboard in Resources */,
+				1F55C3EC192246CE0021D8DE /* Images.xcassets in Resources */,
+				1F55C3E4192246CE0021D8DE /* Main_iPhone.storyboard in Resources */,
+				1F55C3DB192246CE0021D8DE /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F55C3EF192246CE0021D8DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F55C3FD192246CE0021D8DE /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1F55C3C9192246CE0021D8DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F55C3DD192246CE0021D8DE /* main.m in Sources */,
+				1F55C3E1192246CE0021D8DE /* FQAppDelegate.m in Sources */,
+				1F55C3EA192246CE0021D8DE /* FQViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F55C3ED192246CE0021D8DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F55C3FF192246CE0021D8DE /* fingerqooqTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1F55C3F7192246CE0021D8DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1F55C3CC192246CE0021D8DE /* fingerqooq */;
+			targetProxy = 1F55C3F6192246CE0021D8DE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1F55C3D9192246CE0021D8DE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1F55C3DA192246CE0021D8DE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1F55C3E2192246CE0021D8DE /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1F55C3E3192246CE0021D8DE /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		1F55C3E5192246CE0021D8DE /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1F55C3E6192246CE0021D8DE /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		1F55C3FB192246CE0021D8DE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1F55C3FC192246CE0021D8DE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1F55C400192246CE0021D8DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1F55C401192246CE0021D8DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1F55C403192246CE0021D8DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "fingerqooq/fingerqooq-Prefix.pch";
+				INFOPLIST_FILE = "fingerqooq/fingerqooq-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1F55C404192246CE0021D8DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "fingerqooq/fingerqooq-Prefix.pch";
+				INFOPLIST_FILE = "fingerqooq/fingerqooq-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		1F55C406192246CE0021D8DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/fingerqooq.app/fingerqooq";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "fingerqooq/fingerqooq-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "fingerqooqTests/fingerqooqTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		1F55C407192246CE0021D8DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/fingerqooq.app/fingerqooq";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "fingerqooq/fingerqooq-Prefix.pch";
+				INFOPLIST_FILE = "fingerqooqTests/fingerqooqTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1F55C3C8192246CE0021D8DE /* Build configuration list for PBXProject "fingerqooq" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F55C400192246CE0021D8DE /* Debug */,
+				1F55C401192246CE0021D8DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1F55C402192246CE0021D8DE /* Build configuration list for PBXNativeTarget "fingerqooq" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F55C403192246CE0021D8DE /* Debug */,
+				1F55C404192246CE0021D8DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		1F55C405192246CE0021D8DE /* Build configuration list for PBXNativeTarget "fingerqooqTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F55C406192246CE0021D8DE /* Debug */,
+				1F55C407192246CE0021D8DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1F55C3C5192246CE0021D8DE /* Project object */;
+}
