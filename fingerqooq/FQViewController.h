@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreText/CoreText.h>
+#import "FQTextView.h"
+#import "GKLParallaxPicturesViewController.h"
 
-@interface FQViewController : UIViewController
+@interface FQViewController : UIViewController<UITextViewDelegate>{
+    FQTextView *myTextView,*myTextView2,*myTextView3;
+    
+    UIImageView *testImageView;
+    UIView *blurView;
+    UILabel *testTitle;
+}
+@property (strong, nonatomic) IBOutlet UITextView *contentsTextView;
+@property (strong, nonatomic) IBOutlet UIScrollView *mainScrollView;
 
 @end
