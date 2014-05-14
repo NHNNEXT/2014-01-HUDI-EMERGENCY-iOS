@@ -8,8 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FQTextView : UITextView
+@interface FQTextView : UITextView<UITextViewDelegate,UIScrollViewDelegate>{
+    UIImageView *titleImageView;
+    UIView *blurView, *whiteBgView;
+    UILabel *titleLabel;
+    BOOL isHighlightMenuSet, isSelection;
+}
+
+-(id)initWithFrame:(CGRect)frame title:(NSString*)title image:(UIImage*)image contents:(NSString*)contents;
 -(void)setHighlightText;
 -(void)setTextWithHtmlString:(id)string;
 -(void)initInset;
+
+-(void)initHighlightMenu;
+
+
+
 @end
