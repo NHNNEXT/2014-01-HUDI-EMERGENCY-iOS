@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FQTextView : UITextView<UITextViewDelegate,UIScrollViewDelegate>{
+@interface FQTextView : UITextView<UITextViewDelegate>{
     UIImageView *titleImageView;
     UIView *blurView, *whiteBgView;
     UILabel *titleLabel;

@@ -21,8 +21,9 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     
     self = [super init];
     if (self) {
-        
         self = [[FQTextView alloc]initWithFrame:frame];
+        
+        [self setScrollsToTop:true];
         
         self.delegate = self;
         [self initInset];
@@ -61,6 +62,12 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         [titleLabel sizeToFit];
 //        [titleLabel setMinimumScaleFactor:2.0];
 //        titleLabel.adjustsFontSizeToFitWidth = YES;
+        
+        titleLabel.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tapGesture =
+        [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelTap)];
+        [titleLabel addGestureRecognizer:tapGesture];
+        
         
         [self addSubview:titleLabel];
         
@@ -144,14 +151,19 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     return NO;
 }
 
--(void)textViewDidBeginEditing:(UITextView *)textView{
-    NSLog(@"시작됨?");
-}
 
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    NSString *selectedString = [self textInRange:[self selectedTextRange]];
+    
+    //선택된 텍스트가 있으면
+//    if (![selectedString isEqualToString:@""]) {
+//        NSLog(@"select 된거 : %@",selectedString);
+//        return;
+//    }
     
     
+//    NSLog(@"선택된 텍스트 없음");
     
     double scrollOffsetY = scrollView.contentOffset.y;
     if (scrollOffsetY<=0) {
@@ -179,8 +191,13 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 }
 
 
-- (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated{
-    
+- (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated {
+    NSLog(@"scrollRectToVisible");
 }
+
+- (void)labelTap{
+    [self setContentOffset:CGPointMake(0, CGRectGetHeight(titleImageView.frame)) animated:true];
+}
+
 
 @end
