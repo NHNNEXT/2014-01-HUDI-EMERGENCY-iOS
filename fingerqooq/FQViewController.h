@@ -10,10 +10,11 @@
 #import <CoreText/CoreText.h>
 #import "FQTextView.h"
 
-@interface FQViewController : UIViewController{
-   
+@interface FQViewController : UIViewController<UIScrollViewDelegate>{
+    UIView *contentsView, *touchableView;
+    NSMutableArray *contentsViews;
 }
-@property (strong, nonatomic) IBOutlet UITextView *contentsTextView;
+
 @property (strong, nonatomic) IBOutlet UIScrollView *mainScrollView;
 
 @end

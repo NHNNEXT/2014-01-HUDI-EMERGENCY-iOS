@@ -19,10 +19,13 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @implementation FQTextView
 
--(id)initWithFrame:(CGRect)frame title:(NSString*)title image:(UIImage*)image contents:(NSString*)contents{
+
+-(id)initWithFrame:(CGRect)frame titleString:(NSString*)title titleImage:(UIImage*)image contentsString:(NSString*)contents{
     
     self = [super init];
     if (self) {
+        
+        
         self = [[FQTextView alloc]initWithFrame:frame];
         
         [self setScrollsToTop:true];
@@ -53,6 +56,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
                        completionBlock:^(){
                            NSLog(@"The blurred image has been set");
                        }];
+//        [titleImageView setImage:image];
+        
         
         [self addSubview:titleImageView];
         
@@ -62,21 +67,28 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         [blurView setAlpha:0.4];
         [self addSubview:blurView];
         
+
+        
         //제목
-        titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, CGRectGetHeight(frame)-150, 300, 150)];
+        titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 300, CGRectGetHeight(frame))];
         [titleLabel setText:title];
         [titleLabel setFont:[UIFont boldSystemFontOfSize:34]];
         [titleLabel setTextColor:[UIColor whiteColor]];
         [titleLabel setNumberOfLines:0];
         [titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
         [titleLabel sizeToFit];
-//        [titleLabel setMinimumScaleFactor:2.0];
-//        titleLabel.adjustsFontSizeToFitWidth = YES;
+        
+        
+        [titleLabel setFrame:CGRectMake(10, (CGRectGetHeight(frame)-CGRectGetHeight(titleLabel.frame)), 300, CGRectGetHeight(titleLabel.frame))];
+//        [titleLabel setBackgroundColor:UIColorFromRGB(0x444444)];
+        //        [titleLabel setMinimumScaleFactor:2.0];
+        //        titleLabel.adjustsFontSizeToFitWidth = YES;
         
         titleLabel.userInteractionEnabled = YES;
         UITapGestureRecognizer *tapGesture =
         [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelTap)];
         [titleLabel addGestureRecognizer:tapGesture];
+        
         
         
         [self addSubview:titleLabel];
@@ -198,7 +210,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     if (scrollOffsetY<=0) {
         [titleImageView setFrame:CGRectMake(0, scrollOffsetY, CGRectGetWidth(titleImageView.frame), CGRectGetHeight(titleImageView.frame))];
         [blurView setFrame:CGRectMake(0, scrollOffsetY, CGRectGetWidth(titleImageView.frame), CGRectGetHeight(titleImageView.frame))];
-        [titleLabel setFrame:CGRectMake(10, (CGRectGetHeight(titleImageView.frame)-150)-(scrollOffsetY*0.8), CGRectGetWidth(titleLabel.frame), CGRectGetHeight(titleLabel.frame))];
+        [titleLabel setFrame:CGRectMake(10, (CGRectGetHeight(titleImageView.frame)-CGRectGetHeight(titleLabel.frame))-(scrollOffsetY*0.8), CGRectGetWidth(titleLabel.frame), CGRectGetHeight(titleLabel.frame))];
         return;
     }
 
@@ -228,6 +240,11 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #pragma mark 타이틀 라벨 터치시 본문으로 이동 함수
 - (void)labelTap{
     [self setContentOffset:CGPointMake(0, CGRectGetHeight(titleImageView.frame)) animated:true];
+}
+
+-(void)test{
+//    NSLog(@"%@",titleString);
+//    [titleLabel setText:titleString];
 }
 
 
