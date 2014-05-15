@@ -7,6 +7,8 @@
 //
 
 #import "FQTextView.h"
+#import "UIImageView+LBBlurredImage.h"
+
 
 #define UIColorFromRGB(rgbValue) [UIColor \
 colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
@@ -32,6 +34,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         
         
         [self setFont:[UIFont systemFontOfSize:20]];
+        
         [self setTextColor:UIColorFromRGB(0x444444)];
         [self setEditable:false];
         
@@ -40,9 +43,16 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         //타이틀 이미지.
         CGRect titleImageFrame = CGRectMake(0, 0, 320, CGRectGetHeight(frame));
         
-        titleImageView = [[UIImageView alloc]initWithImage:image];
+//        UIImage *blurImage = [self applyBlurOnImage:image withRadius:2.0];
         
-        [titleImageView setFrame:titleImageFrame];
+        
+        titleImageView = [[UIImageView alloc]initWithFrame:titleImageFrame];
+        
+        [titleImageView setImageToBlur:image
+                            blurRadius:kLBBlurredImageDefaultBlurRadius
+                       completionBlock:^(){
+                           NSLog(@"The blurred image has been set");
+                       }];
         
         [self addSubview:titleImageView];
         
@@ -89,10 +99,27 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     
 }
 
+- (UIImage *)applyBlurOnImage: (UIImage *)imageToBlur withRadius: (CGFloat)blurRadius {
+    CIImage *originalImage = [CIImage imageWithCGImage: imageToBlur.CGImage];
+    CIFilter *filter = [CIFilter filterWithName: @"CIGaussianBlur"
+                                  keysAndValues: kCIInputImageKey, originalImage, @"inputRadius", @(blurRadius), nil];
+    CIImage *outputImage = filter.outputImage; CIContext *context = [CIContext contextWithOptions:nil];
+    CGImageRef outImage = [context createCGImage: outputImage fromRect: [outputImage extent]];
+    
+    return [UIImage imageWithCGImage: outImage];
+}
+
+
+
+
+#pragma mark 본문 초기 텍스트 여백 설정 함수.
 -(void)initInset{
     self.textContainerInset = UIEdgeInsetsMake(self.frame.size.height+20, 0.0f, 0.0f, 0.0f);
 }
 
+
+
+#pragma mark 본문 하이라이트 메뉴 설정 함수.
 -(void)initHighlightMenu{
     //하이라이트 메뉴 부분
     
@@ -111,13 +138,15 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     isHighlightMenuSet = YES;
 }
 
+
+#pragma mark 본문 텍스트 설정 함수.
 -(void)setTextWithHtmlString:(NSString*)string{
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[string dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
     
     self.attributedText = attributedString;
 }
 
-
+#pragma mark 텍스트 하이라이트 설정 함수.
 -(void)setHighlightText{
     
     //set highlighted
@@ -142,7 +171,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     return;
 }
 
-//기본 메뉴 삭제용.
+#pragma mark 기본 메뉴 삭제용.
 -(BOOL)canPerformAction:(SEL)action withSender:(id)sender{
     if (action == @selector(highlightText:)) {
         return YES;
@@ -152,7 +181,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 }
 
 
-
+#pragma mark 스크롤시 처리 함수
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
 //    NSString *selectedString = [self textInRange:[self selectedTextRange]];
     
@@ -172,8 +201,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         [titleLabel setFrame:CGRectMake(10, (CGRectGetHeight(titleImageView.frame)-150)-(scrollOffsetY*0.8), CGRectGetWidth(titleLabel.frame), CGRectGetHeight(titleLabel.frame))];
         return;
     }
-    //
-    //
+
     [titleImageView setFrame:CGRectMake(0, (scrollOffsetY*0.3), CGRectGetWidth(titleImageView.frame), CGRectGetHeight(titleImageView.frame))];
     [blurView setFrame:CGRectMake(0, (scrollOffsetY*0.3), CGRectGetWidth(titleImageView.frame), CGRectGetHeight(titleImageView.frame))];
     //    [testTitle setFrame:CGRectMake(10, (self.view.frame.size.height-150)-(scrollOffsetY*1), CGRectGetWidth(testTitle.frame), CGRectGetHeight(testTitle.frame))];
@@ -191,10 +219,13 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 }
 
 
+
 - (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated {
     NSLog(@"scrollRectToVisible");
 }
 
+
+#pragma mark 타이틀 라벨 터치시 본문으로 이동 함수
 - (void)labelTap{
     [self setContentOffset:CGPointMake(0, CGRectGetHeight(titleImageView.frame)) animated:true];
 }

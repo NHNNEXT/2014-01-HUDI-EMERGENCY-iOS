@@ -27,6 +27,7 @@
 		1F5E44BF1922991600548118 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1F5E44BE1922991600548118 /* background.jpg */; };
 		1F5E44C51922E3E300548118 /* titleImage1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1F5E44C31922E3E300548118 /* titleImage1.jpg */; };
 		1F5E44C61922E3E300548118 /* titleImage2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1F5E44C41922E3E300548118 /* titleImage2.jpg */; };
+		1F5E44CC19243B6900548118 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5E44CB19243B6900548118 /* Accelerate.framework */; };
 		AED71E782EDC4A94A861EADD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 345B8C48C90B4962A6AAD185 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		1F5E44BE1922991600548118 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		1F5E44C31922E3E300548118 /* titleImage1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = titleImage1.jpg; sourceTree = "<group>"; };
 		1F5E44C41922E3E300548118 /* titleImage2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = titleImage2.jpg; sourceTree = "<group>"; };
+		1F5E44CB19243B6900548118 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		345B8C48C90B4962A6AAD185 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C36B0D0B9B3A40C79F43B017 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F5E44CC19243B6900548118 /* Accelerate.framework in Frameworks */,
 				1F5E44BA192255A900548118 /* CoreText.framework in Frameworks */,
 				1F55C3D3192246CE0021D8DE /* CoreGraphics.framework in Frameworks */,
 				1F55C3D5192246CE0021D8DE /* UIKit.framework in Frameworks */,
@@ -120,6 +123,7 @@
 		1F55C3CF192246CE0021D8DE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1F5E44CB19243B6900548118 /* Accelerate.framework */,
 				1F5E44B9192255A900548118 /* CoreText.framework */,
 				1F55C3D0192246CE0021D8DE /* Foundation.framework */,
 				1F55C3D2192246CE0021D8DE /* CoreGraphics.framework */,
