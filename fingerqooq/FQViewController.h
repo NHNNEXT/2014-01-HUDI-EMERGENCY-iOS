@@ -13,7 +13,9 @@
 @interface FQViewController : UIViewController<UIScrollViewDelegate>{
     UIView *contentsView, *touchableView;
     NSMutableArray *contentsViews;
+    NSObject *articlesObject;
 }
+
 
 @property (strong, nonatomic) IBOutlet UIScrollView *mainScrollView;
 

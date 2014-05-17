@@ -31,7 +31,6 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         [self setScrollsToTop:true];
         
         self.delegate = self;
-        [self initInset];
         
         [self setTextWithHtmlString:contents];
         
@@ -51,12 +50,12 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         
         titleImageView = [[UIImageView alloc]initWithFrame:titleImageFrame];
         
-        [titleImageView setImageToBlur:image
-                            blurRadius:kLBBlurredImageDefaultBlurRadius
-                       completionBlock:^(){
-                           NSLog(@"The blurred image has been set");
-                       }];
-//        [titleImageView setImage:image];
+//        [titleImageView setImageToBlur:image
+//                            blurRadius:kLBBlurredImageDefaultBlurRadius
+//                       completionBlock:^(){
+//                           NSLog(@"블러블라");
+//                       }];
+        [titleImageView setImage:image];
         
         
         [self addSubview:titleImageView];
@@ -64,7 +63,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         //블러뷰
         blurView = [[UIView alloc]initWithFrame:titleImageFrame];
         [blurView setBackgroundColor:[UIColor blackColor]];
-        [blurView setAlpha:0.4];
+        [blurView setAlpha:0.3];
         [self addSubview:blurView];
         
 
@@ -79,7 +78,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         [titleLabel sizeToFit];
         
         
-        [titleLabel setFrame:CGRectMake(10, (CGRectGetHeight(frame)-CGRectGetHeight(titleLabel.frame)), 300, CGRectGetHeight(titleLabel.frame))];
+        [titleLabel setFrame:CGRectMake(10, (CGRectGetHeight(frame)-CGRectGetHeight(titleLabel.frame)-10), 300, CGRectGetHeight(titleLabel.frame))];
 //        [titleLabel setBackgroundColor:UIColorFromRGB(0x444444)];
         //        [titleLabel setMinimumScaleFactor:2.0];
         //        titleLabel.adjustsFontSizeToFitWidth = YES;
@@ -105,6 +104,10 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         [self sendSubviewToBack:titleImageView];
         
         
+        
+        
+        [self initInset];
+        
     }
     return self;
     
@@ -126,7 +129,18 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 #pragma mark 본문 초기 텍스트 여백 설정 함수.
 -(void)initInset{
-    self.textContainerInset = UIEdgeInsetsMake(self.frame.size.height+20, 0.0f, 0.0f, 0.0f);
+//    UIBezierPath *path = [UIBezierPath bezierPathWithRect:titleImageView.frame];
+//    self.textContainer.exclusionPaths = @[path];
+    
+    
+//    UIBezierPath *exclusionPath = [UIBezierPath    bezierPathWithRect:CGRectMake(CGRectGetMinX(titleImageView.frame),
+//                                                                                 CGRectGetMinY(titleImageView.frame), CGRectGetWidth(titleImageView.frame),
+//                                                                                 CGRectGetHeight(titleImageView.frame))];
+    
+//    self.textContainer.exclusionPaths = @[exclusionPath];
+    //    NSLog(@"%@",exclusionPath);
+    self.textContainerInset = UIEdgeInsetsMake(0, 0.0f, 0.0f, 0.0f);
+//    self.textContainerInset = UIEdgeInsetsMake(578+20, 0.0f, 0.0f, 0.0f);
 }
 
 
@@ -153,9 +167,13 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 #pragma mark 본문 텍스트 설정 함수.
 -(void)setTextWithHtmlString:(NSString*)string{
-    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[string dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithData:[string dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
     
     self.attributedText = attributedString;
+//    [self setValue:string forKey:@"contentToHTMLString"];
+    
+//    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[string dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+//    self.attributedText = attributedString;
 }
 
 #pragma mark 텍스트 하이라이트 설정 함수.
@@ -209,8 +227,10 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     double scrollOffsetY = scrollView.contentOffset.y;
     if (scrollOffsetY<=0) {
         [titleImageView setFrame:CGRectMake(0, scrollOffsetY, CGRectGetWidth(titleImageView.frame), CGRectGetHeight(titleImageView.frame))];
+        
         [blurView setFrame:CGRectMake(0, scrollOffsetY, CGRectGetWidth(titleImageView.frame), CGRectGetHeight(titleImageView.frame))];
-        [titleLabel setFrame:CGRectMake(10, (CGRectGetHeight(titleImageView.frame)-CGRectGetHeight(titleLabel.frame))-(scrollOffsetY*0.8), CGRectGetWidth(titleLabel.frame), CGRectGetHeight(titleLabel.frame))];
+        
+        [titleLabel setFrame:CGRectMake(10, (CGRectGetHeight(titleImageView.frame)-CGRectGetHeight(titleLabel.frame)-10)-(scrollOffsetY*0.8), CGRectGetWidth(titleLabel.frame), CGRectGetHeight(titleLabel.frame))];
         return;
     }
 
@@ -218,7 +238,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     [blurView setFrame:CGRectMake(0, (scrollOffsetY*0.3), CGRectGetWidth(titleImageView.frame), CGRectGetHeight(titleImageView.frame))];
     //    [testTitle setFrame:CGRectMake(10, (self.view.frame.size.height-150)-(scrollOffsetY*1), CGRectGetWidth(testTitle.frame), CGRectGetHeight(testTitle.frame))];
     
-    if (scrollOffsetY/CGRectGetHeight(titleImageView.frame)*1.2 >= 0.4) {
+    if (scrollOffsetY/CGRectGetHeight(titleImageView.frame) >= 0.3) {
         
         [blurView setAlpha:scrollOffsetY/CGRectGetHeight(titleImageView.frame)*1.2];
     }
@@ -233,7 +253,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 
 - (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated {
-    NSLog(@"scrollRectToVisible");
+    
 }
 
 
@@ -247,5 +267,9 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 //    [titleLabel setText:titleString];
 }
 
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    
+}
 
 @end
