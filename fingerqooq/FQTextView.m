@@ -8,7 +8,7 @@
 
 #import "FQTextView.h"
 #import "UIImageView+LBBlurredImage.h"
-
+#import <CoreText/CoreText.h>
 
 #define UIColorFromRGB(rgbValue) [UIColor \
 colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
@@ -24,7 +24,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     
     self = [super init];
     if (self) {
-        
+
         
         self = [[FQTextView alloc]initWithFrame:frame];
         
@@ -39,8 +39,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         
         [self setTextColor:UIColorFromRGB(0x444444)];
         [self setEditable:false];
-        
-        
+
         
         //타이틀 이미지.
         CGRect titleImageFrame = CGRectMake(0, 0, 320, CGRectGetHeight(frame));
@@ -94,7 +93,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         
         //흰 배경용 뷰
         whiteBgView = [UIView new];
-        [whiteBgView setFrame:CGRectMake(0, CGRectGetHeight(frame), 320, CGRectGetHeight(frame))];
+        [whiteBgView setFrame:CGRectMake(0, CGRectGetHeight(frame), 320, CGRectGetHeight(titleImageView.frame))];
         [whiteBgView setBackgroundColor:[UIColor whiteColor]];
         [self addSubview:whiteBgView];
         
@@ -102,11 +101,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         [self sendSubviewToBack:whiteBgView];
         [self sendSubviewToBack:blurView];
         [self sendSubviewToBack:titleImageView];
-        
-        
-        
-        
-        [self initInset];
+
         
     }
     return self;
@@ -125,23 +120,6 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 }
 
 
-
-
-#pragma mark 본문 초기 텍스트 여백 설정 함수.
--(void)initInset{
-//    UIBezierPath *path = [UIBezierPath bezierPathWithRect:titleImageView.frame];
-//    self.textContainer.exclusionPaths = @[path];
-    
-    
-//    UIBezierPath *exclusionPath = [UIBezierPath    bezierPathWithRect:CGRectMake(CGRectGetMinX(titleImageView.frame),
-//                                                                                 CGRectGetMinY(titleImageView.frame), CGRectGetWidth(titleImageView.frame),
-//                                                                                 CGRectGetHeight(titleImageView.frame))];
-    
-//    self.textContainer.exclusionPaths = @[exclusionPath];
-    //    NSLog(@"%@",exclusionPath);
-    self.textContainerInset = UIEdgeInsetsMake(0, 0.0f, 0.0f, 0.0f);
-//    self.textContainerInset = UIEdgeInsetsMake(578+20, 0.0f, 0.0f, 0.0f);
-}
 
 
 
@@ -167,23 +145,25 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 #pragma mark 본문 텍스트 설정 함수.
 -(void)setTextWithHtmlString:(NSString*)string{
+    string = [NSString stringWithFormat:@"%@%f%@%@",@"<img src=http://gradation.me/blank.png width=310 height=",CGRectGetHeight(self.frame)+10,@">",string];
+    
+    NSLog(@"%@",string);
+    
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithData:[string dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
     
     self.attributedText = attributedString;
-//    [self setValue:string forKey:@"contentToHTMLString"];
-    
-//    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[string dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
-//    self.attributedText = attributedString;
 }
 
 #pragma mark 텍스트 하이라이트 설정 함수.
 -(void)setHighlightText{
     
-    //set highlighted
     
     __block BOOL textIsHighlited = YES;
     
     [self.attributedText enumerateAttributesInRange:[self selectedRange] options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(NSDictionary *attrs, NSRange range, BOOL *stop) {
+        
+        NSLog(@"왜? %@",@(range.location));
+        
         if ([attrs valueForKey:@"NSBackgroundColor"] == Nil) {
             textIsHighlited = NO;
         }
@@ -213,16 +193,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 #pragma mark 스크롤시 처리 함수
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-//    NSString *selectedString = [self textInRange:[self selectedTextRange]];
-    
-    //선택된 텍스트가 있으면
-//    if (![selectedString isEqualToString:@""]) {
-//        NSLog(@"select 된거 : %@",selectedString);
-//        return;
-//    }
-    
-    
-//    NSLog(@"선택된 텍스트 없음");
+
     
     double scrollOffsetY = scrollView.contentOffset.y;
     if (scrollOffsetY<=0) {
@@ -252,24 +223,11 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 
 
-- (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated {
-    
-}
-
-
 #pragma mark 타이틀 라벨 터치시 본문으로 이동 함수
 - (void)labelTap{
     [self setContentOffset:CGPointMake(0, CGRectGetHeight(titleImageView.frame)) animated:true];
 }
 
--(void)test{
-//    NSLog(@"%@",titleString);
-//    [titleLabel setText:titleString];
-}
 
-
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    
-}
 
 @end

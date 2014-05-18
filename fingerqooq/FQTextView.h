@@ -12,18 +12,16 @@
     UIImageView *titleImageView;
     UIView *blurView, *whiteBgView;
     UILabel *titleLabel;
-    BOOL isHighlightMenuSet, isSelection;
+    BOOL isHighlightMenuSet;
     
 }
 
 -(id)initWithFrame:(CGRect)frame titleString:(NSString*)title titleImage:(UIImage*)image contentsString:(NSString*)contents;
 -(void)setHighlightText;
 -(void)setTextWithHtmlString:(id)string;
--(void)initInset;
 
 -(void)initHighlightMenu;
 
--(void)test;
 
 
 
