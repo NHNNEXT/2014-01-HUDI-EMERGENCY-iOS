@@ -7,9 +7,8 @@
 //
 
 #import "FQViewController.h"
-#import "AFNetworking.h"
 #import "ProgressHUD.h"
-
+#import "FQTableView.h"
 
 #define UIColorFromRGB(rgbValue) [UIColor \
 colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
@@ -31,6 +30,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
     [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
 	// Do any additional setup after loading the view, typically from a nib.
     
@@ -39,19 +40,41 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
     
     [mainScrollView setDelegate:self];
-    [mainScrollView setContentSize:CGSizeMake(320*3, VIEW_HEIGHT)];
+    [mainScrollView setContentSize:CGSizeMake(320*2, VIEW_HEIGHT)];
     [mainScrollView setScrollEnabled:YES];
 //    [mainScrollView setContentOffset:CGPointMake(320, 0) animated:false];
     [mainScrollView setBounces:false];
     [mainScrollView setShowsHorizontalScrollIndicator:false];
     
-    contentsView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320*3, VIEW_HEIGHT)];
+    contentsView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320*2, VIEW_HEIGHT)];
     [contentsView setBackgroundColor:[UIColor colorWithRed:233/255.0 green:234/255.0 blue:237/255.0 alpha:1]];
     
     [mainScrollView addSubview:contentsView];
 
 
-    [self getArticlesFromServer];
+    
+    //dataArray설정
+    dataArray = [NSMutableArray new];
+    
+    //AFNetwork 설정
+    manager = [AFHTTPRequestOperationManager manager];
+    
+    [manager GET:@"http://10.73.45.130:8080/gradation/api/v1/articles" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        for (int i = 0; i<[responseObject count]; i++) {
+            [dataArray addObject:responseObject[i]];
+        }
+        [self initTableView];
+        [self getArticlesFromServer:[[dataArray firstObject] objectForKey:@"id"]];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        [ProgressHUD showError:@"에라이 에라다!"];
+    }];
+    
+    articleView = [FQTextView new];
+    [articleView initHighlightMenu];
+    
 //    [self test];
     
     
@@ -67,7 +90,42 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 }
 
 
-
+-(void)initTableView{
+    /////테이블뷰
+    
+    CGRect fMain = CGRectMake(0, 0, 320, VIEW_HEIGHT);
+    
+    FQTableView *listTableView = [[FQTableView alloc]initWithFrame:CGRectMake(0, 0, 320, VIEW_HEIGHT)];
+    UIView *overlayView = [[UIView alloc]initWithFrame:fMain];
+    [overlayView setBackgroundColor:[UIColor blackColor]];
+    [overlayView setAlpha:0.8f];
+    
+    
+    UIImageView *listBackgroundImageView = [[UIImageView alloc]initWithFrame:fMain];
+    [listBackgroundImageView setImage:[UIImage imageNamed:@"titleImage1.jpg"]];
+    [listBackgroundImageView addSubview:overlayView];
+    
+    [listTableView setBackgroundView:listBackgroundImageView];
+    
+    
+    [listTableView setDelegate:self];
+    [listTableView setDataSource:self];
+    
+    
+    //    [listTableView setDataSource:[NSArray arrayWithObjects:@"하나", nil]];
+    
+    // tableFooterView를 정의. 사전에 tableFooterView가 기획되지 않았으므로 작은 영역으로 정의한다.
+    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 10)];
+    
+    // footerView가 화면에 보이지 않도록 배경은 투명하게
+    footerView.backgroundColor = [UIColor clearColor];
+    
+    [listTableView setTableFooterView:footerView];
+    
+    listTableView.SeparatorInset = UIEdgeInsetsZero;
+    
+    [contentsView addSubview:listTableView];
+}
 
 
 - (void)didReceiveMemoryWarning
@@ -124,15 +182,22 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     }
 }
 
--(void)getArticlesFromServer{
+-(void)getArticlesFromServer:(id)articleId{
 //    __block id response;
     
 //    __block int index = 0;
-
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:@"http://10.73.45.130:8080/gradation/api/v1/articles/33" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    
+    if ([contentsViews count]) {
+        NSLog(@"%d",(int)[contentsViews count]);
+        [[contentsViews lastObject] removeFromSuperview];
+        [contentsViews removeLastObject];
+    }
+    
+    NSString *articleUrl = [NSString stringWithFormat:@"%@%@",@"http://10.73.45.130:8080/gradation/api/v1/articles/",articleId];
+    
+    [manager GET:articleUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        CGRect firstArticleFrame = CGRectMake(320*0, 0, 320, self.view.frame.size.height);
+        CGRect firstArticleFrame = CGRectMake(320*1, 0, 320, self.view.frame.size.height);
         
         
         NSString *htmlString= [responseObject objectForKey:@"contents"];
@@ -144,13 +209,12 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         NSString *imgString= [responseObject objectForKey:@"titleImg"];
         UIImage *titleImg = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imgString]]];
         
-        FQTextView *articleView = [[FQTextView alloc]initWithFrame:firstArticleFrame titleString:titleString titleImage:titleImg contentsString:htmlString];
+        articleView = [[FQTextView alloc]initWithFrame:firstArticleFrame titleString:titleString titleImage:titleImg contentsString:htmlString];
         
-        [articleView initHighlightMenu];
+        
         [contentsViews addObject:articleView];
         [contentsView addSubview:articleView];
-
-        
+        [mainScrollView setContentOffset:CGPointMake(320, 0) animated:true];
         
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -163,35 +227,48 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 
 #pragma mark -
-#pragma mark 테스트
--(void)test{
-    CGRect articleFrame = CGRectMake(320*0, 0, 320, self.view.frame.size.height);
-    CGRect imgFrame = CGRectMake(0, 0, 320, 578);
+#pragma mark 테이블뷰
+
+//섹션과 row로 cell의 높이 설정
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-//    NSString *sTitle = @"제목이라능";
-    NSString *sContents = @"내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능내용이라능";
-    UIImage *imgTitle = [UIImage imageNamed:@"titleImage1.jpg"];
-    UIImageView *imgView = [[UIImageView alloc] initWithFrame:imgFrame];
-    [imgView setImage:imgTitle];
-
-    UITextView *testTextView = [[UITextView alloc] initWithFrame:articleFrame];
-
-   
-    
-    UIBezierPath *exclusionPath = [UIBezierPath bezierPathWithRect:CGRectMake(CGRectGetMinX(imgView.frame), CGRectGetMinY(imgView.frame), CGRectGetWidth(imgView.frame), CGRectGetHeight(imgView.frame))];
-    
-    testTextView.textContainer.exclusionPaths = @[exclusionPath];
-    
-
-    [testTextView addSubview:imgView];
-    [testTextView setText:sContents];
-    [testTextView setFont:[UIFont systemFontOfSize:20]];
-
-
-
-
-    [contentsViews addObject:testTextView];
-    [contentsView addSubview:testTextView];
+    int cellHeight = 50;
+    return cellHeight;
 }
+
+
+
+//셀선택
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [self getArticlesFromServer:[[dataArray objectAtIndex:indexPath.row] objectForKey:@"id"]];
+    
+}
+
+//셀 표시
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    static NSString *CellIdentifier = @"CELL";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil){
+        cell = [[UITableViewCell alloc]
+                initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    cell.backgroundColor = [UIColor clearColor];
+    [cell.textLabel setTextColor:[UIColor whiteColor]];
+    cell.textLabel.text = [[dataArray objectAtIndex:indexPath.row] objectForKey:@"title"];
+//    [cell.textLabel sizeToFit];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    return cell;
+}
+
+//섹션내아이템이몇개?
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return dataArray.count;
+}
+
 
 @end

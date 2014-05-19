@@ -9,11 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <CoreText/CoreText.h>
 #import "FQTextView.h"
+#import "AFNetworking.h"
 
-@interface FQViewController : UIViewController<UIScrollViewDelegate>{
+@interface FQViewController : UIViewController<UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>{
     UIView *contentsView, *touchableView;
     NSMutableArray *contentsViews;
     NSObject *articlesObject;
+    NSMutableArray *dataArray;
+    AFHTTPRequestOperationManager *manager;
+    FQTextView *articleView;
 }
 
 

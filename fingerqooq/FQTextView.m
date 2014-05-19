@@ -17,6 +17,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 #define MAIN_COLOR 0xe74c3c
 
+
 @implementation FQTextView
 
 
@@ -35,7 +36,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         [self setTextWithHtmlString:contents];
         
         
-        [self setFont:[UIFont systemFontOfSize:20]];
+        [self setFont:[UIFont fontWithName:@"NanumMyeongjo" size:17]];
+        
         
         [self setTextColor:UIColorFromRGB(0x444444)];
         [self setEditable:false];
@@ -54,6 +56,10 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 //                       completionBlock:^(){
 //                           NSLog(@"블러블라");
 //                       }];
+        if (!image) {
+            image = [UIImage imageNamed:@"titleImage2.jpg"];
+        }
+        
         [titleImageView setImage:image];
         
         
@@ -70,7 +76,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         //제목
         titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 300, CGRectGetHeight(frame))];
         [titleLabel setText:title];
-        [titleLabel setFont:[UIFont boldSystemFontOfSize:34]];
+        [titleLabel setFont:[UIFont boldSystemFontOfSize:30]];
         [titleLabel setTextColor:[UIColor whiteColor]];
         [titleLabel setNumberOfLines:0];
         [titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
@@ -83,9 +89,9 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         //        titleLabel.adjustsFontSizeToFitWidth = YES;
         
         titleLabel.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tapGesture =
+        UITapGestureRecognizer *tapGestureForTitleLabel =
         [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelTap)];
-        [titleLabel addGestureRecognizer:tapGesture];
+        [titleLabel addGestureRecognizer:tapGestureForTitleLabel];
         
         
         
@@ -101,28 +107,63 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         [self sendSubviewToBack:whiteBgView];
         [self sendSubviewToBack:blurView];
         [self sendSubviewToBack:titleImageView];
-
         
+        //메뉴뷰
+        menuView = [[UIView alloc]initWithFrame:CGRectMake(0, -51, 320, 50)];
+        menuView.backgroundColor = [UIColor whiteColor];
+        
+        isShowMenu = false;
+        
+        [self addSubview:menuView];
+        
+        CALayer *bottomBorder = [CALayer layer];
+        bottomBorder.frame = CGRectMake(0.0f, menuView.frame.size.height, menuView.frame.size.width, 1.0f);
+        bottomBorder.backgroundColor = UIColorFromRGB(0x888888).CGColor;
+        [menuView.layer addSublayer:bottomBorder];
+        
+        
+        
+        UILabel *menuLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+        [menuLabel setText:@"Go To Top"];
+        [menuLabel setTextAlignment:NSTextAlignmentCenter];
+        [menuLabel setFont:[UIFont systemFontOfSize:15]];
+        [menuView addSubview:menuLabel];
+        
+        menuLabel.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tapGestureForMenuView =
+        [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(menuTap)];
+        [menuLabel addGestureRecognizer:tapGestureForMenuView];
+
     }
     return self;
     
     
 }
 
-- (UIImage *)applyBlurOnImage: (UIImage *)imageToBlur withRadius: (CGFloat)blurRadius {
-    CIImage *originalImage = [CIImage imageWithCGImage: imageToBlur.CGImage];
-    CIFilter *filter = [CIFilter filterWithName: @"CIGaussianBlur"
-                                  keysAndValues: kCIInputImageKey, originalImage, @"inputRadius", @(blurRadius), nil];
-    CIImage *outputImage = filter.outputImage; CIContext *context = [CIContext contextWithOptions:nil];
-    CGImageRef outImage = [context createCGImage: outputImage fromRect: [outputImage extent]];
+
+#pragma mark -
+#pragma mark 컨텐츠 설정 부분(set).
+
+-(void)setTitleString:(NSString*)string{
+    [titleLabel setText:string];
+}
+
+-(void)setTitleImage:(UIImage*)image{
+    [titleImageView setImage:image];
+}
+
+-(void)setContents:(NSString*)string{
     
-    return [UIImage imageWithCGImage: outImage];
+    [self setTextWithHtmlString:string];
+}
+
+-(void)setContents:(NSString*)contentString titleImage:(UIImage*)titleImage titleString:(NSString*)titleString{
+    
 }
 
 
 
-
-
+#pragma mark -
 #pragma mark 본문 하이라이트 메뉴 설정 함수.
 -(void)initHighlightMenu{
     //하이라이트 메뉴 부분
@@ -145,9 +186,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 #pragma mark 본문 텍스트 설정 함수.
 -(void)setTextWithHtmlString:(NSString*)string{
-    string = [NSString stringWithFormat:@"%@%f%@%@",@"<img src=http://gradation.me/blank.png width=310 height=",CGRectGetHeight(self.frame)+10,@">",string];
-    
-    NSLog(@"%@",string);
+    string = [NSString stringWithFormat:@"%@%f%@%@%@",@"<head><style>img{width:310px;height:auto;} body{line-height:24px;vertical-align:middle;display:inline-block;}</style></head><body><img src=http://gradation.me/blank.png width=310 height=",CGRectGetHeight(self.frame)+10,@">",string,@"</body>"];
     
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithData:[string dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
     
@@ -160,21 +199,22 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     
     __block BOOL textIsHighlited = YES;
     
+    
     [self.attributedText enumerateAttributesInRange:[self selectedRange] options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(NSDictionary *attrs, NSRange range, BOOL *stop) {
         
-        NSLog(@"왜? %@",@(range.location));
         
         if ([attrs valueForKey:@"NSBackgroundColor"] == Nil) {
             textIsHighlited = NO;
         }
+        
     }];
     
     if (textIsHighlited) {
         [self.textStorage removeAttribute:NSBackgroundColorAttributeName range:[self selectedRange]];
         [self.textStorage removeAttribute:NSForegroundColorAttributeName range:[self selectedRange]];
     }else{
-        [self.textStorage addAttribute:NSBackgroundColorAttributeName value:UIColorFromRGB(MAIN_COLOR) range:[self selectedRange]];
-        [self.textStorage addAttribute:NSForegroundColorAttributeName value:UIColorFromRGB(0xffffff) range:[self selectedRange]];
+        [self.textStorage addAttribute:NSBackgroundColorAttributeName value:[UIColor yellowColor] range:[self selectedRange]];
+        [self.textStorage addAttribute:NSForegroundColorAttributeName value:UIColorFromRGB(0x000000) range:[self selectedRange]];
     }
 
     [self setSelectedRange:NSRangeFromString(@"")];
@@ -196,6 +236,13 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
     
     double scrollOffsetY = scrollView.contentOffset.y;
+    
+    
+    
+    
+    [menuView setFrame:CGRectMake(0, scrollOffsetY-51, 320, 50)];
+    isShowMenu = false;
+    
     if (scrollOffsetY<=0) {
         [titleImageView setFrame:CGRectMake(0, scrollOffsetY, CGRectGetWidth(titleImageView.frame), CGRectGetHeight(titleImageView.frame))];
         
@@ -228,6 +275,34 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     [self setContentOffset:CGPointMake(0, CGRectGetHeight(titleImageView.frame)) animated:true];
 }
 
+- (void)menuTap{
+    [self setContentOffset:CGPointMake(0, 0) animated:true];
+    [menuView setFrame:CGRectMake(0, menuView.frame.origin.y-51, 320, 50)];
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    if (menuView.frame.origin.y<-50) {
+        return;
+    }
+    [self toggleMenu];
+    
+}
+
+-(void)toggleMenu{
+    [UIView beginAnimations:@"ToggleSiblings" context:nil];
+    //    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self cache:YES];
+    [UIView setAnimationDuration:0.2];
+    if (!isShowMenu) {
+        [menuView setFrame:CGRectMake(0, menuView.frame.origin.y+51, 320, 50)];
+        isShowMenu=true;
+    }
+    else{
+        [menuView setFrame:CGRectMake(0, menuView.frame.origin.y-51, 320, 50)];
+        isShowMenu=false;
+    }
+    
+    [UIView commitAnimations];
+}
 
 
 @end

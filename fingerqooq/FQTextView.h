@@ -12,8 +12,9 @@
     UIImageView *titleImageView;
     UIView *blurView, *whiteBgView;
     UILabel *titleLabel;
-    BOOL isHighlightMenuSet;
-    
+    BOOL isHighlightMenuSet, isShowMenu;
+    CGRect fullFrame;
+    UIView *menuView;
 }
 
 -(id)initWithFrame:(CGRect)frame titleString:(NSString*)title titleImage:(UIImage*)image contentsString:(NSString*)contents;
@@ -22,7 +23,9 @@
 
 -(void)initHighlightMenu;
 
-
+-(void)setTitleString:(NSString*)string;
+-(void)setTitleImage:(UIImage*)image;
+-(void)setContents:(NSString*)string;
 
 
 @end
