@@ -186,7 +186,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 #pragma mark 본문 텍스트 설정 함수.
 -(void)setTextWithHtmlString:(NSString*)string{
-    string = [NSString stringWithFormat:@"%@%f%@%@%@",@"<head><style>img{width:310px;height:auto;} body{line-height:24px;vertical-align:middle;display:inline-block;}</style></head><body><img src=http://gradation.me/blank.png width=310 height=",CGRectGetHeight(self.frame)+10,@">",string,@"</body>"];
+    string = [NSString stringWithFormat:@"%@%f%@%@%@",@"<head><style>img{max-width:310px;height:auto;} body{line-height:24px;vertical-align:middle;display:inline-block;}</style></head><body><img src=http://gradation.me/blank.png width=310 height=",CGRectGetHeight(self.frame)+10,@">",string,@"</body>"];
     
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithData:[string dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
     

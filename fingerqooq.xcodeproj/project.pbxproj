@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F4061721937162F00A877DD /* blur.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F4061711937162F00A877DD /* blur.png */; };
+		1F4061741937173900A877DD /* blur2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F4061731937173900A877DD /* blur2.png */; };
+		1F406176193723BE00A877DD /* blur3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1F406175193723BE00A877DD /* blur3.jpg */; };
 		1F55C3D1192246CE0021D8DE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F55C3D0192246CE0021D8DE /* Foundation.framework */; };
 		1F55C3D3192246CE0021D8DE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F55C3D2192246CE0021D8DE /* CoreGraphics.framework */; };
 		1F55C3D5192246CE0021D8DE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F55C3D4192246CE0021D8DE /* UIKit.framework */; };
@@ -30,6 +33,8 @@
 		1F5E44CC19243B6900548118 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5E44CB19243B6900548118 /* Accelerate.framework */; };
 		1FA312FC192950D8007EA677 /* FQTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA312FB192950D8007EA677 /* FQTableView.m */; };
 		1FA312FE1929A16A007EA677 /* NanumMyeongjo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1FA312FD1929A16A007EA677 /* NanumMyeongjo.ttf */; };
+		1FB0DD4A19370AF0007EB61D /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB0DD4919370AF0007EB61D /* FacebookSDK.framework */; };
+		1FB0DD4D19370C93007EB61D /* FQLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB0DD4C19370C93007EB61D /* FQLoginViewController.m */; };
 		26CB1F08CAD847CA9C99C913 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 345B8C48C90B4962A6AAD185 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +49,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F4061711937162F00A877DD /* blur.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blur.png; sourceTree = "<group>"; };
+		1F4061731937173900A877DD /* blur2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blur2.png; sourceTree = "<group>"; };
+		1F406175193723BE00A877DD /* blur3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blur3.jpg; sourceTree = "<group>"; };
 		1F55C3CD192246CE0021D8DE /* fingerqooq.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fingerqooq.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F55C3D0192246CE0021D8DE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1F55C3D2192246CE0021D8DE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -74,6 +82,9 @@
 		1FA312FA192950D8007EA677 /* FQTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FQTableView.h; sourceTree = "<group>"; };
 		1FA312FB192950D8007EA677 /* FQTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FQTableView.m; sourceTree = "<group>"; };
 		1FA312FD1929A16A007EA677 /* NanumMyeongjo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumMyeongjo.ttf; sourceTree = "<group>"; };
+		1FB0DD4919370AF0007EB61D /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		1FB0DD4B19370C93007EB61D /* FQLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FQLoginViewController.h; sourceTree = "<group>"; };
+		1FB0DD4C19370C93007EB61D /* FQLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FQLoginViewController.m; sourceTree = "<group>"; };
 		345B8C48C90B4962A6AAD185 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		66876E0915E440068C113790 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		ED0898B2B599754473AF3E84 /* Pods.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Pods.xcconfig; sourceTree = "<group>"; };
@@ -90,6 +101,7 @@
 				1F55C3D5192246CE0021D8DE /* UIKit.framework in Frameworks */,
 				1F55C3D1192246CE0021D8DE /* Foundation.framework in Frameworks */,
 				26CB1F08CAD847CA9C99C913 /* libPods.a in Frameworks */,
+				1FB0DD4A19370AF0007EB61D /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +141,7 @@
 		1F55C3CF192246CE0021D8DE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1FB0DD4919370AF0007EB61D /* FacebookSDK.framework */,
 				1F5E44CB19243B6900548118 /* Accelerate.framework */,
 				1F5E44B9192255A900548118 /* CoreText.framework */,
 				1F55C3D0192246CE0021D8DE /* Foundation.framework */,
@@ -143,6 +156,9 @@
 		1F55C3D6192246CE0021D8DE /* fingerqooq */ = {
 			isa = PBXGroup;
 			children = (
+				1F4061711937162F00A877DD /* blur.png */,
+				1F4061731937173900A877DD /* blur2.png */,
+				1F406175193723BE00A877DD /* blur3.jpg */,
 				1FA312FD1929A16A007EA677 /* NanumMyeongjo.ttf */,
 				1F5E44BE1922991600548118 /* background.jpg */,
 				1F5E44C31922E3E300548118 /* titleImage1.jpg */,
@@ -157,6 +173,8 @@
 				1FA312FB192950D8007EA677 /* FQTableView.m */,
 				1F5E44BB19228B3100548118 /* FQTextView.h */,
 				1F5E44BC19228B3100548118 /* FQTextView.m */,
+				1FB0DD4B19370C93007EB61D /* FQLoginViewController.h */,
+				1FB0DD4C19370C93007EB61D /* FQLoginViewController.m */,
 				1F55C3EB192246CE0021D8DE /* Images.xcassets */,
 				1F55C3D7192246CE0021D8DE /* Supporting Files */,
 				ED0898B2B599754473AF3E84 /* Pods.xcconfig */,
@@ -272,8 +290,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F406176193723BE00A877DD /* blur3.jpg in Resources */,
 				1F5E44C61922E3E300548118 /* titleImage2.jpg in Resources */,
 				1F55C3E7192246CE0021D8DE /* Main_iPad.storyboard in Resources */,
+				1F4061721937162F00A877DD /* blur.png in Resources */,
+				1F4061741937173900A877DD /* blur2.png in Resources */,
 				1F5E44BF1922991600548118 /* background.jpg in Resources */,
 				1F5E44C51922E3E300548118 /* titleImage1.jpg in Resources */,
 				1FA312FE1929A16A007EA677 /* NanumMyeongjo.ttf in Resources */,
@@ -334,6 +355,7 @@
 				1F55C3DD192246CE0021D8DE /* main.m in Sources */,
 				1F55C3E1192246CE0021D8DE /* FQAppDelegate.m in Sources */,
 				1F5E44BD19228B3100548118 /* FQTextView.m in Sources */,
+				1FB0DD4D19370C93007EB61D /* FQLoginViewController.m in Sources */,
 				1F55C3EA192246CE0021D8DE /* FQViewController.m in Sources */,
 				1FA312FC192950D8007EA677 /* FQTableView.m in Sources */,
 			);
@@ -471,6 +493,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fingerqooq/fingerqooq-Prefix.pch";
 				INFOPLIST_FILE = "fingerqooq/fingerqooq-Info.plist";
@@ -485,6 +511,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fingerqooq/fingerqooq-Prefix.pch";
 				INFOPLIST_FILE = "fingerqooq/fingerqooq-Info.plist";
