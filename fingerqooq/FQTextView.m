@@ -133,12 +133,17 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         UITapGestureRecognizer *tapGestureForMenuView =
         [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(menuTap)];
         [menuLabel addGestureRecognizer:tapGestureForMenuView];
+        
+        
 
     }
     return self;
     
     
 }
+
+
+
 
 
 #pragma mark -

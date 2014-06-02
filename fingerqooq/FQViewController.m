@@ -31,7 +31,6 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 {
     [super viewDidLoad];
     
-    
     [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
 	// Do any additional setup after loading the view, typically from a nib.
     
@@ -73,6 +72,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     }];
     
     articleView = [FQTextView new];
+    articleView.viewControllerRef = self;
     [articleView initHighlightMenu];
     
 //    [self test];
@@ -86,6 +86,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 //    [touchableView addGestureRecognizer:mainScrollView.panGestureRecognizer];
 //    [touchableView removeGestureRecognizer:mainScrollView.panGestureRecognizer];
 //    [self.view addSubview:touchableView];
+    
+//    [self dismissViewControllerAnimated:NO completion:nil];
     
 }
 
@@ -268,6 +270,11 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 //섹션내아이템이몇개?
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return dataArray.count;
+}
+
+- (IBAction)logout:(id)sender {
+    [[FBSession activeSession]closeAndClearTokenInformation];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

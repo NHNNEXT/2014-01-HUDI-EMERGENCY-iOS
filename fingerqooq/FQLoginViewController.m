@@ -122,6 +122,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
         [self presentViewController:contentsViewController animated:false completion:nil];
         
+        
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];

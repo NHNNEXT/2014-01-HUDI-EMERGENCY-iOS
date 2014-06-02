@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface FQTextView : UITextView<UITextViewDelegate>{
     UIImageView *titleImageView;
     UIView *blurView, *whiteBgView;
@@ -16,6 +17,8 @@
     CGRect fullFrame;
     UIView *menuView;
 }
+
+@property (strong, nonatomic) UIViewController *viewControllerRef;
 
 -(id)initWithFrame:(CGRect)frame titleString:(NSString*)title titleImage:(UIImage*)image contentsString:(NSString*)contents;
 -(void)setHighlightText;

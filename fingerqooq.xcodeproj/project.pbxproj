@@ -118,6 +118,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F406177193879CD00A877DD /* Img */ = {
+			isa = PBXGroup;
+			children = (
+				1F55C3EB192246CE0021D8DE /* Images.xcassets */,
+				1F4061711937162F00A877DD /* blur.png */,
+				1F4061731937173900A877DD /* blur2.png */,
+				1F406175193723BE00A877DD /* blur3.jpg */,
+				1F5E44BE1922991600548118 /* background.jpg */,
+				1F5E44C31922E3E300548118 /* titleImage1.jpg */,
+				1F5E44C41922E3E300548118 /* titleImage2.jpg */,
+			);
+			name = Img;
+			sourceTree = "<group>";
+		};
+		1F406178193879FF00A877DD /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1F55C3DF192246CE0021D8DE /* FQAppDelegate.h */,
+				1F55C3E0192246CE0021D8DE /* FQAppDelegate.m */,
+				1F55C3E8192246CE0021D8DE /* FQViewController.h */,
+				1F55C3E9192246CE0021D8DE /* FQViewController.m */,
+				1FA312FA192950D8007EA677 /* FQTableView.h */,
+				1FA312FB192950D8007EA677 /* FQTableView.m */,
+				1F5E44BB19228B3100548118 /* FQTextView.h */,
+				1F5E44BC19228B3100548118 /* FQTextView.m */,
+				1FB0DD4B19370C93007EB61D /* FQLoginViewController.h */,
+				1FB0DD4C19370C93007EB61D /* FQLoginViewController.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
 		1F55C3C4192246CE0021D8DE = {
 			isa = PBXGroup;
 			children = (
@@ -156,26 +187,8 @@
 		1F55C3D6192246CE0021D8DE /* fingerqooq */ = {
 			isa = PBXGroup;
 			children = (
-				1F4061711937162F00A877DD /* blur.png */,
-				1F4061731937173900A877DD /* blur2.png */,
-				1F406175193723BE00A877DD /* blur3.jpg */,
-				1FA312FD1929A16A007EA677 /* NanumMyeongjo.ttf */,
-				1F5E44BE1922991600548118 /* background.jpg */,
-				1F5E44C31922E3E300548118 /* titleImage1.jpg */,
-				1F5E44C41922E3E300548118 /* titleImage2.jpg */,
-				1F55C3DF192246CE0021D8DE /* FQAppDelegate.h */,
-				1F55C3E0192246CE0021D8DE /* FQAppDelegate.m */,
-				1F55C3E2192246CE0021D8DE /* Main_iPhone.storyboard */,
-				1F55C3E5192246CE0021D8DE /* Main_iPad.storyboard */,
-				1F55C3E8192246CE0021D8DE /* FQViewController.h */,
-				1F55C3E9192246CE0021D8DE /* FQViewController.m */,
-				1FA312FA192950D8007EA677 /* FQTableView.h */,
-				1FA312FB192950D8007EA677 /* FQTableView.m */,
-				1F5E44BB19228B3100548118 /* FQTextView.h */,
-				1F5E44BC19228B3100548118 /* FQTextView.m */,
-				1FB0DD4B19370C93007EB61D /* FQLoginViewController.h */,
-				1FB0DD4C19370C93007EB61D /* FQLoginViewController.m */,
-				1F55C3EB192246CE0021D8DE /* Images.xcassets */,
+				1F406177193879CD00A877DD /* Img */,
+				1F406178193879FF00A877DD /* Classes */,
 				1F55C3D7192246CE0021D8DE /* Supporting Files */,
 				ED0898B2B599754473AF3E84 /* Pods.xcconfig */,
 			);
@@ -185,6 +198,9 @@
 		1F55C3D7192246CE0021D8DE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1F55C3E2192246CE0021D8DE /* Main_iPhone.storyboard */,
+				1F55C3E5192246CE0021D8DE /* Main_iPad.storyboard */,
+				1FA312FD1929A16A007EA677 /* NanumMyeongjo.ttf */,
 				1F55C3D8192246CE0021D8DE /* fingerqooq-Info.plist */,
 				1F55C3D9192246CE0021D8DE /* InfoPlist.strings */,
 				1F55C3DC192246CE0021D8DE /* main.m */,

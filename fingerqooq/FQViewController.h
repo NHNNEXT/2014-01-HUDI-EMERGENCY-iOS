@@ -11,6 +11,8 @@
 #import "FQTextView.h"
 #import "AFNetworking.h"
 
+#import <FacebookSDK/FacebookSDK.h>
+
 @interface FQViewController : UIViewController<UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>{
     UIView *contentsView, *touchableView;
     NSMutableArray *contentsViews;
@@ -19,7 +21,7 @@
     AFHTTPRequestOperationManager *manager;
     FQTextView *articleView;
 }
-
+- (IBAction)logout:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UIScrollView *mainScrollView;
 
