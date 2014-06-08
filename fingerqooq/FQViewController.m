@@ -265,6 +265,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         [contentsView addSubview:articleView];
         [mainScrollView setContentOffset:CGPointMake(320, 0) animated:true];
         
+        [ProgressHUD dismiss];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
@@ -289,7 +290,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 //셀선택
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    [ProgressHUD show:@"로딩중..."];
     [self getArticlesFromServer:[[dataArray objectAtIndex:indexPath.row] objectForKey:@"id"]];
     
 }
