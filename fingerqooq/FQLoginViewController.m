@@ -111,6 +111,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 -(void)loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user{
     NSDictionary *parameters = @{@"FBid":user.id,@"FBname":user.name};
+    
     FBID = user.id;
     
     

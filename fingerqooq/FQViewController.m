@@ -259,7 +259,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         UIImage *titleImg = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imgString]]];
         
         articleView = [[FQTextView alloc]initWithFrame:firstArticleFrame titleString:titleString titleImage:titleImg contentsString:htmlString];
-        
+        articleView.articleId = articleId;
         
         [contentsViews addObject:articleView];
         [contentsView addSubview:articleView];

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AFNetworking.h"
 
 
 @interface FQTextView : UITextView<UITextViewDelegate>{
@@ -16,9 +17,11 @@
     BOOL isHighlightMenuSet, isShowMenu;
     CGRect fullFrame;
     UIView *menuView;
+    AFHTTPRequestOperationManager *manager;
 }
 
 @property (strong, nonatomic) UIViewController *viewControllerRef;
+@property id articleId;
 
 -(id)initWithFrame:(CGRect)frame titleString:(NSString*)title titleImage:(UIImage*)image contentsString:(NSString*)contents;
 -(void)setHighlightText;

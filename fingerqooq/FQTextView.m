@@ -9,6 +9,7 @@
 #import "FQTextView.h"
 #import "UIImageView+LBBlurredImage.h"
 #import <CoreText/CoreText.h>
+#import "ProgressHUD.h"
 
 #define UIColorFromRGB(rgbValue) [UIColor \
 colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
@@ -16,11 +17,12 @@ green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 #define MAIN_COLOR 0xe74c3c
-
+#define VIEW_WIDTH self.frame.size.width
 
 @implementation FQTextView
 
 @synthesize viewControllerRef;
+@synthesize articleId;
 
 -(id)initWithFrame:(CGRect)frame titleString:(NSString*)title titleImage:(UIImage*)image contentsString:(NSString*)contents{
     
@@ -122,18 +124,23 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         bottomBorder.backgroundColor = UIColorFromRGB(0x888888).CGColor;
         [menuView.layer addSublayer:bottomBorder];
         
+        UIButton *btnToTop = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, VIEW_WIDTH/2, 50)];
+        [btnToTop setTitle:@"Go To Top" forState:UIControlStateNormal];
+        [btnToTop setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [btnToTop addTarget:self action:@selector(goToTop) forControlEvents:UIControlEventTouchUpInside];
         
+        UIButton *btnQooq = [[UIButton alloc]initWithFrame:CGRectMake(VIEW_WIDTH/2, 0, VIEW_WIDTH/2, 50)];
+        [btnQooq setTitle:@"Qooq!" forState:UIControlStateNormal];
+        [btnQooq setTitleColor:UIColorFromRGB(MAIN_COLOR) forState:UIControlStateNormal];
+        [btnQooq addTarget:self action:@selector(qooq) forControlEvents:UIControlEventTouchUpInside];
         
-        UILabel *menuLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
-        [menuLabel setText:@"Go To Top"];
-        [menuLabel setTextAlignment:NSTextAlignmentCenter];
-        [menuLabel setFont:[UIFont systemFontOfSize:15]];
-        [menuView addSubview:menuLabel];
+        [menuView addSubview:btnQooq];
+        [menuView addSubview:btnToTop];
         
-        menuLabel.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tapGestureForMenuView =
-        [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(menuTap)];
-        [menuLabel addGestureRecognizer:tapGestureForMenuView];
+//        menuLabel.userInteractionEnabled = YES;
+//        UITapGestureRecognizer *tapGestureForMenuView =
+//        [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(menuTap)];
+//        [menuLabel addGestureRecognizer:tapGestureForMenuView];
         
         
 
@@ -281,9 +288,24 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     [self setContentOffset:CGPointMake(0, CGRectGetHeight(titleImageView.frame)) animated:true];
 }
 
-- (void)menuTap{
+- (void)goToTop{
     [self setContentOffset:CGPointMake(0, 0) animated:true];
     [menuView setFrame:CGRectMake(0, menuView.frame.origin.y-51, 320, 50)];
+}
+
+- (void)qooq{
+    manager = [AFHTTPRequestOperationManager manager];
+    
+//    NSLog(@"FBID = %@",FBID);
+    
+    [manager GET:@"http://localhost:8080/gradation/qooq" parameters:@{@"id":articleId} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [ProgressHUD showSuccess:@"Qooq 성공!" Interaction:YES];
+        NSLog(@"석섹스!");
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        [ProgressHUD showError:@"에라이 에라다!"];
+    }];
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
