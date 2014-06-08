@@ -18,6 +18,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define MAIN_COLOR 0xe74c3c
 
 #define VIEW_HEIGHT self.view.frame.size.height
+#define VIEW_WIDTH self.view.frame.size.width
 
 @interface FQViewController ()
 
@@ -26,6 +27,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 @implementation FQViewController
 
 @synthesize mainScrollView;
+@synthesize FBID;
 
 - (void)viewDidLoad
 {
@@ -49,7 +51,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     [contentsView setBackgroundColor:[UIColor colorWithRed:233/255.0 green:234/255.0 blue:237/255.0 alpha:1]];
     
     [mainScrollView addSubview:contentsView];
-
+    
 
     
     //dataArray설정
@@ -95,6 +97,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 -(void)initTableView{
     /////테이블뷰
     
+    
     CGRect fMain = CGRectMake(0, 0, 320, VIEW_HEIGHT);
     
     FQTableView *listTableView = [[FQTableView alloc]initWithFrame:CGRectMake(0, 0, 320, VIEW_HEIGHT)];
@@ -127,6 +130,50 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     listTableView.SeparatorInset = UIEdgeInsetsZero;
     
     [contentsView addSubview:listTableView];
+    
+    //메뉴바
+    menuBar = [[UIView alloc]initWithFrame:CGRectMake(0, 0, VIEW_WIDTH, 44)];
+    [menuBar setBackgroundColor:[UIColor whiteColor]];
+    UIButton *btnLogout = [[UIButton alloc]init];
+    UIButton *btnMyArticles = [[UIButton alloc]init];
+    UIButton *btnAllArticles = [[UIButton alloc]init];
+    
+    //로그아웃버튼
+    [btnLogout setFrame:CGRectMake(0, 0, 80, 44)];
+    
+    [btnLogout setTitle:@"Logout" forState:UIControlStateNormal];
+    [btnLogout setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
+    [btnLogout addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [menuBar addSubview:btnLogout];
+    
+    //마이아티클즈 버튼
+    
+    [btnMyArticles setFrame:CGRectMake(VIEW_WIDTH-110, 0, 100, 44)];
+    
+    [btnMyArticles setTitle:@"My Articles" forState:UIControlStateNormal];
+    [btnMyArticles setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
+    [btnMyArticles addTarget:self action:@selector(myArticles) forControlEvents:UIControlEventTouchUpInside];
+    
+    [menuBar addSubview:btnMyArticles];
+    
+    //올아티클즈 버튼
+    [btnAllArticles setFrame:CGRectMake(btnMyArticles.frame.origin.x-110, 0, 100, 44)];
+    
+    [btnAllArticles setTitle:@"All Articles" forState:UIControlStateNormal];
+    [btnAllArticles setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
+    [btnAllArticles addTarget:self action:@selector(allArticles) forControlEvents:UIControlEventTouchUpInside];
+    
+    [menuBar addSubview:btnAllArticles];
+    
+    
+    [listTableView setTableHeaderView:menuBar];
+//    [contentsView addSubview:menuBar];
+    
+//    [listTableView reloadData];
 }
 
 
@@ -272,10 +319,51 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     return dataArray.count;
 }
 
-- (IBAction)logout:(id)sender {
+
+#pragma mark -
+#pragma mark 메뉴바 버튼 셀렉터들
+- (void)logout:(id)sender {
+    NSLog(@"눌림");
     [[FBSession activeSession]closeAndClearTokenInformation];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)myArticles{
+    NSString *myarticleGetURL = [NSString stringWithFormat:@"http://10.73.45.130:8080/gradation/api/v1/myarticles/%@",FBID];
+
+    [manager GET:myarticleGetURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        [dataArray removeAllObjects];
+        
+        for (int i = 0; i<[responseObject count]; i++) {
+            [dataArray addObject:responseObject[i]];
+        }
+        [self initTableView];
+//        [self getArticlesFromServer:[[dataArray firstObject] objectForKey:@"id"]];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        [ProgressHUD showError:@"에라이 에라다!"];
+    }];
+}
+
+- (void)allArticles{
+    NSString *articleGetURL = @"http://10.73.45.130:8080/gradation/api/v1/articles";
+
+    [manager GET:articleGetURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        [dataArray removeAllObjects];
+        
+        for (int i = 0; i<[responseObject count]; i++) {
+            [dataArray addObject:responseObject[i]];
+        }
+        [self initTableView];
+        //        [self getArticlesFromServer:[[dataArray firstObject] objectForKey:@"id"]];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        [ProgressHUD showError:@"에라이 에라다!"];
+    }];
+}
 
 @end

@@ -20,9 +20,11 @@
     NSMutableArray *dataArray;
     AFHTTPRequestOperationManager *manager;
     FQTextView *articleView;
+    UIView *menuBar;
 }
-- (IBAction)logout:(id)sender;
+- (void)logout:(id)sender;
 
+@property id FBID;
 @property (strong, nonatomic) IBOutlet UIScrollView *mainScrollView;
 
 @end

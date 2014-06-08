@@ -14,6 +14,7 @@
 @interface FQLoginViewController : UIViewController<UITextFieldDelegate,FBLoginViewDelegate>{
     FBProfilePictureView *profilePictureView;
     AFHTTPRequestOperationManager *manager;
+    id FBID;
 }
 @property (weak, nonatomic) IBOutlet UITextField *pwField;
 @property (weak, nonatomic) IBOutlet UITextField *idField;
