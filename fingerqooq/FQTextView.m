@@ -7,7 +7,6 @@
 //
 
 #import "FQTextView.h"
-#import "UIImageView+LBBlurredImage.h"
 #import <CoreText/CoreText.h>
 #import "ProgressHUD.h"
 
@@ -17,12 +16,15 @@ green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 #define MAIN_COLOR 0xe74c3c
+
 #define VIEW_WIDTH self.frame.size.width
+#define VIEW_HEIGHT self.frame.size.height
 
 @implementation FQTextView
 
 @synthesize viewControllerRef;
 @synthesize articleId;
+@synthesize mainScrollView;
 
 -(id)initWithFrame:(CGRect)frame titleString:(NSString*)title titleImage:(UIImage*)image contentsString:(NSString*)contents{
     
@@ -31,7 +33,6 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
         
         self = [[FQTextView alloc]initWithFrame:frame];
-        
         [self setScrollsToTop:true];
         
         self.delegate = self;
@@ -47,72 +48,69 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
         
         //타이틀 이미지.
-        CGRect titleImageFrame = CGRectMake(0, 0, 320, CGRectGetHeight(frame));
+//        CGRect titleImageFrame = CGRectMake(0, 0, 320, CGRectGetHeight(frame));
+//        
+////        UIImage *blurImage = [self applyBlurOnImage:image withRadius:2.0];
+//        
+//        
+//        titleImageView = [[UIImageView alloc]initWithFrame:titleImageFrame];
+//        
+////        [titleImageView setImageToBlur:image
+////                            blurRadius:kLBBlurredImageDefaultBlurRadius
+////                       completionBlock:^(){
+////                           NSLog(@"블러블라");
+////                       }];
+//        if (!image) {
+//            image = [UIImage imageNamed:@"titleImage2.jpg"];
+//        }
+//        
+//        [titleImageView setImage:image];
+//        
+//        
+//        [self addSubview:titleImageView];
         
-//        UIImage *blurImage = [self applyBlurOnImage:image withRadius:2.0];
-        
-        
-        titleImageView = [[UIImageView alloc]initWithFrame:titleImageFrame];
-        
-//        [titleImageView setImageToBlur:image
-//                            blurRadius:kLBBlurredImageDefaultBlurRadius
-//                       completionBlock:^(){
-//                           NSLog(@"블러블라");
-//                       }];
-        if (!image) {
-            image = [UIImage imageNamed:@"titleImage2.jpg"];
-        }
-        
-        [titleImageView setImage:image];
-        
-        
-        [self addSubview:titleImageView];
-        
-        //블러뷰
-        blurView = [[UIView alloc]initWithFrame:titleImageFrame];
-        [blurView setBackgroundColor:[UIColor blackColor]];
-        [blurView setAlpha:0.3];
-        [self addSubview:blurView];
-        
+//        //블러뷰
+//        blurView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, VIEW_WIDTH, VIEW_HEIGHT)];
+//        [blurView setBackgroundColor:[UIColor blackColor]];
+//        [blurView setAlpha:0.3];
+//        [self addSubview:blurView];
+//        
 
         
         //제목
-        titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 300, CGRectGetHeight(frame))];
-        [titleLabel setText:title];
-        [titleLabel setFont:[UIFont boldSystemFontOfSize:30]];
-        [titleLabel setTextColor:[UIColor whiteColor]];
-        [titleLabel setNumberOfLines:0];
-        [titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
-        [titleLabel sizeToFit];
-        
-        
-        [titleLabel setFrame:CGRectMake(10, (CGRectGetHeight(frame)-CGRectGetHeight(titleLabel.frame)-10), 300, CGRectGetHeight(titleLabel.frame))];
-//        [titleLabel setBackgroundColor:UIColorFromRGB(0x444444)];
-        //        [titleLabel setMinimumScaleFactor:2.0];
-        //        titleLabel.adjustsFontSizeToFitWidth = YES;
-        
-        titleLabel.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tapGestureForTitleLabel =
-        [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelTap)];
-        [titleLabel addGestureRecognizer:tapGestureForTitleLabel];
-        
-        
-        
-        [self addSubview:titleLabel];
-        
-        //흰 배경용 뷰
-        whiteBgView = [UIView new];
-        [whiteBgView setFrame:CGRectMake(0, CGRectGetHeight(frame), 320, CGRectGetHeight(titleImageView.frame))];
-        [whiteBgView setBackgroundColor:[UIColor whiteColor]];
-        [self addSubview:whiteBgView];
-        
-        //순서 설정.
-        [self sendSubviewToBack:whiteBgView];
-        [self sendSubviewToBack:blurView];
-        [self sendSubviewToBack:titleImageView];
+//        titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, -VIEW_HEIGHT, VIEW_WIDTH, VIEW_HEIGHT/2)];
+//        [titleLabel setText:title];
+//        [titleLabel setBackgroundColor:UIColorFromRGB(MAIN_COLOR)];
+//        [titleLabel setFont:[UIFont boldSystemFontOfSize:24]];
+//        [titleLabel setTextColor:[UIColor whiteColor]];
+//        [titleLabel setNumberOfLines:0];
+//        [titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
+//        [titleLabel sizeToFit];
+//        
+//        
+//        
+//        titleLabel.userInteractionEnabled = YES;
+//        UITapGestureRecognizer *tapGestureForTitleLabel =
+//        [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelTap)];
+//        [titleLabel addGestureRecognizer:tapGestureForTitleLabel];
+//        
+//        
+//        
+//        [self addSubview:titleLabel];
+//        
+//        //흰 배경용 뷰
+//        whiteBgView = [UIView new];
+//        [whiteBgView setFrame:CGRectMake(0, CGRectGetHeight(frame), VIEW_WIDTH, CGRectGetHeight(titleImageView.frame))];
+//        [whiteBgView setBackgroundColor:[UIColor whiteColor]];
+//        [self addSubview:whiteBgView];
+//        
+//        //순서 설정.
+//        [self sendSubviewToBack:whiteBgView];
+//        [self sendSubviewToBack:blurView];
+//        [self sendSubviewToBack:titleImageView];
         
         //메뉴뷰
-        menuView = [[UIView alloc]initWithFrame:CGRectMake(0, -51, 320, 50)];
+        menuView = [[UIView alloc]initWithFrame:CGRectMake(0, -51, VIEW_WIDTH, 44)];
         menuView.backgroundColor = [UIColor whiteColor];
         
         isShowMenu = false;
@@ -121,21 +119,28 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         
         CALayer *bottomBorder = [CALayer layer];
         bottomBorder.frame = CGRectMake(0.0f, menuView.frame.size.height, menuView.frame.size.width, 1.0f);
-        bottomBorder.backgroundColor = UIColorFromRGB(0x888888).CGColor;
+        bottomBorder.backgroundColor = UIColorFromRGB(MAIN_COLOR).CGColor;
         [menuView.layer addSublayer:bottomBorder];
         
-        UIButton *btnToTop = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, VIEW_WIDTH/2, 50)];
+        UIButton *btnToTop = [[UIButton alloc]initWithFrame:CGRectMake(40, 0, VIEW_WIDTH/2-20, 44)];
         [btnToTop setTitle:@"Go To Top" forState:UIControlStateNormal];
         [btnToTop setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [btnToTop addTarget:self action:@selector(goToTop) forControlEvents:UIControlEventTouchUpInside];
         
-        UIButton *btnQooq = [[UIButton alloc]initWithFrame:CGRectMake(VIEW_WIDTH/2, 0, VIEW_WIDTH/2, 50)];
-        [btnQooq setTitle:@"Qooq!" forState:UIControlStateNormal];
+        UIButton *btnQooq = [[UIButton alloc]initWithFrame:CGRectMake(VIEW_WIDTH/2+20, 0, VIEW_WIDTH/2-20, 44)];
+        [btnQooq setTitle:@"QooQ!" forState:UIControlStateNormal];
         [btnQooq setTitleColor:UIColorFromRGB(MAIN_COLOR) forState:UIControlStateNormal];
         [btnQooq addTarget:self action:@selector(qooq) forControlEvents:UIControlEventTouchUpInside];
         
+        UIButton *btnBack = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 44)];
+        [btnBack setTitle:@"<" forState:UIControlStateNormal];
+        [btnBack setTitleColor:UIColorFromRGB(MAIN_COLOR) forState:UIControlStateNormal];
+        [btnBack addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+        
+        
         [menuView addSubview:btnQooq];
         [menuView addSubview:btnToTop];
+        [menuView addSubview:btnBack];
         
 //        menuLabel.userInteractionEnabled = YES;
 //        UITapGestureRecognizer *tapGestureForMenuView =
@@ -199,7 +204,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 #pragma mark 본문 텍스트 설정 함수.
 -(void)setTextWithHtmlString:(NSString*)string{
-    string = [NSString stringWithFormat:@"%@%f%@%@%@",@"<head><style>img{max-width:310px;height:auto;} body{line-height:24px;vertical-align:middle;display:inline-block;}</style></head><body><img src=http://gradation.me/blank.png width=310 height=",CGRectGetHeight(self.frame)+10,@">",string,@"</body>"];
+    string = [NSString stringWithFormat:@"%@%@%@",@"<head><style>img{max-width:310px;height:auto;} body{line-height:24px;vertical-align:middle;display:inline-block;}</style></head><body>",string,@"</body>"];
     
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithData:[string dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
     
@@ -251,29 +256,32 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     double scrollOffsetY = scrollView.contentOffset.y;
     
     
-    
-    
-    [menuView setFrame:CGRectMake(0, scrollOffsetY-51, 320, 50)];
+    [menuView setFrame:CGRectMake(0, scrollOffsetY-51, VIEW_WIDTH, 44)];
     isShowMenu = false;
     
-    if (scrollOffsetY<=0) {
-        [titleImageView setFrame:CGRectMake(0, scrollOffsetY, CGRectGetWidth(titleImageView.frame), CGRectGetHeight(titleImageView.frame))];
-        
-        [blurView setFrame:CGRectMake(0, scrollOffsetY, CGRectGetWidth(titleImageView.frame), CGRectGetHeight(titleImageView.frame))];
-        
-        [titleLabel setFrame:CGRectMake(10, (CGRectGetHeight(titleImageView.frame)-CGRectGetHeight(titleLabel.frame)-10)-(scrollOffsetY*0.8), CGRectGetWidth(titleLabel.frame), CGRectGetHeight(titleLabel.frame))];
-        return;
+    if (scrollOffsetY<0) {
+        [scrollView setContentOffset:CGPointMake(0, 0)];
     }
-
-    [titleImageView setFrame:CGRectMake(0, (scrollOffsetY*0.3), CGRectGetWidth(titleImageView.frame), CGRectGetHeight(titleImageView.frame))];
-    [blurView setFrame:CGRectMake(0, (scrollOffsetY*0.3), CGRectGetWidth(titleImageView.frame), CGRectGetHeight(titleImageView.frame))];
-    //    [testTitle setFrame:CGRectMake(10, (self.view.frame.size.height-150)-(scrollOffsetY*1), CGRectGetWidth(testTitle.frame), CGRectGetHeight(testTitle.frame))];
     
-    if (scrollOffsetY/CGRectGetHeight(titleImageView.frame) >= 0.3) {
+//    if (scrollOffsetY<=0 &&scrollOffsetY>-CGRectGetHeight(titleLabel.frame)/3) {
+//        NSLog(@"%f",scrollOffsetY);
+//        NSLog(@"%f",CGRectGetHeight(titleLabel.frame)/3);
+//        [titleLabel setFrame:CGRectMake(0, -scrollOffsetY*2-CGRectGetHeight(titleLabel.frame), VIEW_WIDTH, CGRectGetHeight(titleLabel.frame))];
+//        return;
+//    }
+//    
+//    else if (scrollOffsetY<=-CGRectGetHeight(titleLabel.frame)/3){
+//        [scrollView setContentOffset:CGPointMake(0, scrollOffsetY)];
+//        return;
+//    }
+
+    
+    if (scrollOffsetY+scrollView.frame.size.height>=scrollView.contentSize.height) {
+        isShowMenu=false;
+        [self toggleMenu];
+        NSLog(@"바텀?");
         
-        [blurView setAlpha:scrollOffsetY/CGRectGetHeight(titleImageView.frame)*1.2];
     }
-    //    NSLog(@"%f",scrollOffsetY);
 }
 
 
@@ -290,15 +298,14 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 - (void)goToTop{
     [self setContentOffset:CGPointMake(0, 0) animated:true];
-    [menuView setFrame:CGRectMake(0, menuView.frame.origin.y-51, 320, 50)];
+    [menuView setFrame:CGRectMake(0, menuView.frame.origin.y-51, VIEW_WIDTH, 50)];
 }
 
 - (void)qooq{
     manager = [AFHTTPRequestOperationManager manager];
     
-//    NSLog(@"FBID = %@",FBID);
     
-    [manager GET:@"http://localhost:8080/gradation/qooq" parameters:@{@"id":articleId} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:@"http://10.73.39.130:8080/gradation/qooq" parameters:@{@"id":articleId} success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [ProgressHUD showSuccess:@"Qooq 성공!" Interaction:YES];
         NSLog(@"석섹스!");
         
@@ -307,13 +314,13 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         [ProgressHUD showError:@"에라이 에라다!"];
     }];
 }
+- (void)back{
+    NSLog(@"bakc");
+    [mainScrollView setContentOffset:CGPointMake(0, 0) animated:true];
+}
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    if (menuView.frame.origin.y<-50) {
-        return;
-    }
     [self toggleMenu];
-    
 }
 
 -(void)toggleMenu{
@@ -321,11 +328,11 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     //    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self cache:YES];
     [UIView setAnimationDuration:0.2];
     if (!isShowMenu) {
-        [menuView setFrame:CGRectMake(0, menuView.frame.origin.y+51, 320, 50)];
+        [menuView setFrame:CGRectMake(0, menuView.frame.origin.y+51, VIEW_WIDTH, 44)];
         isShowMenu=true;
     }
     else{
-        [menuView setFrame:CGRectMake(0, menuView.frame.origin.y-51, 320, 50)];
+        [menuView setFrame:CGRectMake(0, menuView.frame.origin.y-51, VIEW_WIDTH, 44)];
         isShowMenu=false;
     }
     

@@ -10,6 +10,7 @@
 #import <CoreText/CoreText.h>
 #import "FQTextView.h"
 #import "AFNetworking.h"
+#import "FQTableView.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 
@@ -21,6 +22,9 @@
     AFHTTPRequestOperationManager *manager;
     FQTextView *articleView;
     UIView *menuBar;
+    BOOL btnFlag;
+    UIButton *btnArticles;
+    FQTableView *listTableView;
 }
 - (void)logout:(id)sender;
 

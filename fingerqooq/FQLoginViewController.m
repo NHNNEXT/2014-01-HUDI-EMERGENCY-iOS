@@ -116,7 +116,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     
     
     
-    [manager POST:@"http://localhost:8080/gradation/FBLogin" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:@"http://10.73.39.130:8080/gradation/FBLogin" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Success: %@", responseObject);
         UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:[NSBundle mainBundle]];
         FQViewController *contentsViewController = (FQViewController*)[storyBoard instantiateViewControllerWithIdentifier:@"contentsViewController"];

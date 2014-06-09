@@ -34,24 +34,23 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     [super viewDidLoad];
     
     [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-	// Do any additional setup after loading the view, typically from a nib.
     
     contentsViews = [[NSMutableArray alloc]init];
-    
+    btnFlag = true;
 
     
     [mainScrollView setDelegate:self];
-    [mainScrollView setContentSize:CGSizeMake(320*2, VIEW_HEIGHT)];
+    [mainScrollView setContentSize:CGSizeMake(VIEW_WIDTH, VIEW_HEIGHT)];
     [mainScrollView setScrollEnabled:YES];
-//    [mainScrollView setContentOffset:CGPointMake(320, 0) animated:false];
     [mainScrollView setBounces:false];
     [mainScrollView setShowsHorizontalScrollIndicator:false];
     
-    contentsView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320*2, VIEW_HEIGHT)];
+    contentsView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, VIEW_WIDTH*2, VIEW_HEIGHT)];
     [contentsView setBackgroundColor:[UIColor colorWithRed:233/255.0 green:234/255.0 blue:237/255.0 alpha:1]];
     
     [mainScrollView addSubview:contentsView];
     
+    [self initMenuBar];
 
     
     //dataArray설정
@@ -66,7 +65,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
             [dataArray addObject:responseObject[i]];
         }
         [self initTableView];
-        [self getArticlesFromServer:[[dataArray firstObject] objectForKey:@"id"]];
+        
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
@@ -75,21 +74,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     
     articleView = [FQTextView new];
     articleView.viewControllerRef = self;
+    articleView.mainScrollView = mainScrollView;
     [articleView initHighlightMenu];
-    
-//    [self test];
-    
-    
-//    touchableView = [[UIView alloc]initWithFrame:self.view.bounds];
-//    [touchableView setBackgroundColor:UIColorFromRGB(MAIN_COLOR)];
-//    [touchableView setAlpha:0.10];
-//    [touchableView addGestureRecognizer:firstArticle.panGestureRecognizer];
-//    [touchableView addGestureRecognizer:secondArticle.panGestureRecognizer];
-//    [touchableView addGestureRecognizer:mainScrollView.panGestureRecognizer];
-//    [touchableView removeGestureRecognizer:mainScrollView.panGestureRecognizer];
-//    [self.view addSubview:touchableView];
-    
-//    [self dismissViewControllerAnimated:NO completion:nil];
     
 }
 
@@ -98,16 +84,15 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     /////테이블뷰
     
     
-    CGRect fMain = CGRectMake(0, 0, 320, VIEW_HEIGHT);
+    CGRect fMain = CGRectMake(0, 0, VIEW_WIDTH, VIEW_HEIGHT);
     
-    FQTableView *listTableView = [[FQTableView alloc]initWithFrame:CGRectMake(0, 0, 320, VIEW_HEIGHT)];
+    listTableView = [[FQTableView alloc]initWithFrame:CGRectMake(0, 44, VIEW_WIDTH, VIEW_HEIGHT-44)];
     UIView *overlayView = [[UIView alloc]initWithFrame:fMain];
-    [overlayView setBackgroundColor:[UIColor blackColor]];
+    [overlayView setBackgroundColor:[UIColor whiteColor]];
     [overlayView setAlpha:0.8f];
     
     
     UIImageView *listBackgroundImageView = [[UIImageView alloc]initWithFrame:fMain];
-    [listBackgroundImageView setImage:[UIImage imageNamed:@"titleImage1.jpg"]];
     [listBackgroundImageView addSubview:overlayView];
     
     [listTableView setBackgroundView:listBackgroundImageView];
@@ -117,10 +102,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     [listTableView setDataSource:self];
     
     
-    //    [listTableView setDataSource:[NSArray arrayWithObjects:@"하나", nil]];
-    
-    // tableFooterView를 정의. 사전에 tableFooterView가 기획되지 않았으므로 작은 영역으로 정의한다.
-    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 10)];
+    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, VIEW_WIDTH, 10)];
     
     // footerView가 화면에 보이지 않도록 배경은 투명하게
     footerView.backgroundColor = [UIColor clearColor];
@@ -130,13 +112,23 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     listTableView.SeparatorInset = UIEdgeInsetsZero;
     
     [contentsView addSubview:listTableView];
+    [contentsView sendSubviewToBack:listTableView];
+    
+}
+
+
+-(void)initMenuBar{
     
     //메뉴바
     menuBar = [[UIView alloc]initWithFrame:CGRectMake(0, 0, VIEW_WIDTH, 44)];
     [menuBar setBackgroundColor:[UIColor whiteColor]];
     UIButton *btnLogout = [[UIButton alloc]init];
-    UIButton *btnMyArticles = [[UIButton alloc]init];
-    UIButton *btnAllArticles = [[UIButton alloc]init];
+    btnArticles = [[UIButton alloc]init];
+    
+    CALayer *bottomBorder = [CALayer layer];
+    bottomBorder.frame = CGRectMake(0.0f, menuBar.frame.size.height, menuBar.frame.size.width, 1.0f);
+    bottomBorder.backgroundColor = UIColorFromRGB(MAIN_COLOR).CGColor;
+    [menuBar.layer addSublayer:bottomBorder];
     
     //로그아웃버튼
     [btnLogout setFrame:CGRectMake(0, 0, 80, 44)];
@@ -148,39 +140,23 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     
     [menuBar addSubview:btnLogout];
     
-    //마이아티클즈 버튼
+    //아티클즈 버튼
     
-    [btnMyArticles setFrame:CGRectMake(VIEW_WIDTH-110, 0, 100, 44)];
+    [btnArticles setFrame:CGRectMake(VIEW_WIDTH-80, 0, 70, 44)];
     
-    [btnMyArticles setTitle:@"My Articles" forState:UIControlStateNormal];
-    [btnMyArticles setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btnArticles setTitle:@"My Q" forState:UIControlStateNormal];
+    [btnArticles setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
-    [btnMyArticles addTarget:self action:@selector(myArticles) forControlEvents:UIControlEventTouchUpInside];
+    [btnArticles addTarget:self action:@selector(sBtn) forControlEvents:UIControlEventTouchUpInside];
     
-    [menuBar addSubview:btnMyArticles];
+    [menuBar addSubview:btnArticles];
     
-    //올아티클즈 버튼
-    [btnAllArticles setFrame:CGRectMake(btnMyArticles.frame.origin.x-110, 0, 100, 44)];
-    
-    [btnAllArticles setTitle:@"All Articles" forState:UIControlStateNormal];
-    [btnAllArticles setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    
-    [btnAllArticles addTarget:self action:@selector(allArticles) forControlEvents:UIControlEventTouchUpInside];
-    
-    [menuBar addSubview:btnAllArticles];
-    
-    
-    [listTableView setTableHeaderView:menuBar];
-//    [contentsView addSubview:menuBar];
-    
-//    [listTableView reloadData];
+    [contentsView addSubview:menuBar];
 }
-
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (BOOL)prefersStatusBarHidden{
@@ -191,62 +167,15 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     NSLog(@"터치다.");
 }
 
-#pragma mark -
-#pragma mark 스크롤뷰 루프
--(void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
-//    if(scrollView.contentOffset.x == 0) {
-//        CGPoint newOffset = CGPointMake(scrollView.bounds.size.width+scrollView.contentOffset.x, scrollView.contentOffset.y);
-//        [scrollView setContentOffset:newOffset];
-//        [self rotateViewsRight];
-//    }
-//    else if(scrollView.contentOffset.x == scrollView.bounds.size.width*2) {
-//        CGPoint newOffset = CGPointMake(scrollView.contentOffset.x-scrollView.bounds.size.width, scrollView.contentOffset.y);
-//        [scrollView setContentOffset:newOffset];
-//        [self rotateViewsLeft];
-//    }
-}
-
--(void)rotateViewsRight {
-    
-    FQTextView *endView = [contentsViews lastObject];
-    [contentsViews removeLastObject];
-    [contentsViews insertObject:endView atIndex:0];
-    [self setContentViewFrames];
-    
-}
-
--(void)rotateViewsLeft {
-    FQTextView *endView = contentsViews[0];
-    [contentsViews removeObjectAtIndex:0];
-    [contentsViews addObject:endView];
-    [self setContentViewFrames];
-    
-}
-
--(void) setContentViewFrames {
-    for(int i = 0; i < 3; i++) {
-        FQTextView * view = contentsViews[i];
-        [view setFrame:CGRectMake(self.view.bounds.size.width*i, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-    }
-}
 
 -(void)getArticlesFromServer:(id)articleId{
-//    __block id response;
-    
-//    __block int index = 0;
-    
-    if ([contentsViews count]) {
-        NSLog(@"%d",(int)[contentsViews count]);
-        [[contentsViews lastObject] removeFromSuperview];
-        [contentsViews removeLastObject];
-    }
+
     
     NSString *articleUrl = [NSString stringWithFormat:@"%@%@",@"http://10.73.45.130:8080/gradation/api/v1/articles/",articleId];
     
     [manager GET:articleUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        CGRect firstArticleFrame = CGRectMake(320*1, 0, 320, self.view.frame.size.height);
+        CGRect firstArticleFrame = CGRectMake(VIEW_WIDTH*1, 0, VIEW_WIDTH, self.view.frame.size.height);
         
         
         NSString *htmlString= [responseObject objectForKey:@"contents"];
@@ -260,10 +189,9 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         
         articleView = [[FQTextView alloc]initWithFrame:firstArticleFrame titleString:titleString titleImage:titleImg contentsString:htmlString];
         articleView.articleId = articleId;
-        
-        [contentsViews addObject:articleView];
+        articleView.mainScrollView = mainScrollView;
         [contentsView addSubview:articleView];
-        [mainScrollView setContentOffset:CGPointMake(320, 0) animated:true];
+        [mainScrollView setContentOffset:CGPointMake(VIEW_WIDTH, 0) animated:true];
         
         [ProgressHUD dismiss];
         
@@ -291,6 +219,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 //셀선택
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [ProgressHUD show:@"로딩중..."];
+    [mainScrollView setContentSize:CGSizeMake(VIEW_WIDTH*2, VIEW_HEIGHT)];
     [self getArticlesFromServer:[[dataArray objectAtIndex:indexPath.row] objectForKey:@"id"]];
     
 }
@@ -307,9 +236,9 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
                 initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.backgroundColor = [UIColor clearColor];
-    [cell.textLabel setTextColor:[UIColor whiteColor]];
+    [cell.textLabel setTextColor:[UIColor blackColor]];
     cell.textLabel.text = [[dataArray objectAtIndex:indexPath.row] objectForKey:@"title"];
-//    [cell.textLabel sizeToFit];
+    cell.textLabel.font = [UIFont systemFontOfSize:16];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
@@ -323,6 +252,23 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 #pragma mark -
 #pragma mark 메뉴바 버튼 셀렉터들
+
+-(void)sBtn{
+    NSLog(@"??");
+    if (btnFlag==true) {
+        [self myArticles];
+        [btnArticles setTitle:@"All Q" forState:UIControlStateNormal];
+        
+        btnFlag = false;
+    }
+    else {
+        [self allArticles];
+        [btnArticles setTitle:@"My Q" forState:UIControlStateNormal];
+        
+        btnFlag = true;
+    }
+}
+
 - (void)logout:(id)sender {
     NSLog(@"눌림");
     [[FBSession activeSession]closeAndClearTokenInformation];
@@ -339,7 +285,9 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         for (int i = 0; i<[responseObject count]; i++) {
             [dataArray addObject:responseObject[i]];
         }
-        [self initTableView];
+//        [listTableView reloadData];
+        [listTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+
 //        [self getArticlesFromServer:[[dataArray firstObject] objectForKey:@"id"]];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -358,8 +306,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         for (int i = 0; i<[responseObject count]; i++) {
             [dataArray addObject:responseObject[i]];
         }
-        [self initTableView];
-        //        [self getArticlesFromServer:[[dataArray firstObject] objectForKey:@"id"]];
+        [listTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);

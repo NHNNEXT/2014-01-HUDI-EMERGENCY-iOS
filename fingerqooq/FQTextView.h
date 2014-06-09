@@ -22,6 +22,7 @@
 
 @property (strong, nonatomic) UIViewController *viewControllerRef;
 @property id articleId;
+@property UIScrollView *mainScrollView;
 
 -(id)initWithFrame:(CGRect)frame titleString:(NSString*)title titleImage:(UIImage*)image contentsString:(NSString*)contents;
 -(void)setHighlightText;
