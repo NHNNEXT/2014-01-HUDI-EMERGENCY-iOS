@@ -20,6 +20,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define VIEW_HEIGHT self.view.frame.size.height
 #define VIEW_WIDTH self.view.frame.size.width
 
+#define SERVERIP fingqooq.com
+
 @interface FQViewController ()
 
 @end
@@ -59,7 +61,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     //AFNetwork 설정
     manager = [AFHTTPRequestOperationManager manager];
     
-    [manager GET:@"http://10.73.45.130:8080/gradation/api/v1/articles" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:@"http://fingqooq.com/api/v1/articles" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         for (int i = 0; i<[responseObject count]; i++) {
             [dataArray addObject:responseObject[i]];
@@ -170,8 +172,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 -(void)getArticlesFromServer:(id)articleId{
 
-    
-    NSString *articleUrl = [NSString stringWithFormat:@"%@%@",@"http://10.73.45.130:8080/gradation/api/v1/articles/",articleId];
+    NSString *articleUrl = [NSString stringWithFormat:@"%@%@",@"http://fingqooq.com/api/v1/articles/",articleId];
     
     [manager GET:articleUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
@@ -276,7 +277,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 }
 
 - (void)myArticles{
-    NSString *myarticleGetURL = [NSString stringWithFormat:@"http://10.73.45.130:8080/gradation/api/v1/myarticles/%@",FBID];
+    NSString *myarticleGetURL = [NSString stringWithFormat:@"http://fingqooq.com/api/v1/myarticles/%@",FBID];
 
     [manager GET:myarticleGetURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
@@ -297,7 +298,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 }
 
 - (void)allArticles{
-    NSString *articleGetURL = @"http://10.73.45.130:8080/gradation/api/v1/articles";
+    NSString *articleGetURL = @"http://fingqooq.com/api/v1/articles";
 
     [manager GET:articleGetURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         

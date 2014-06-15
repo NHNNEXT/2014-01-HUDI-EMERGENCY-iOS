@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F334764194C7F930086337F /* FQFlickrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F334763194C7F930086337F /* FQFlickrViewController.m */; };
 		1F4061721937162F00A877DD /* blur.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F4061711937162F00A877DD /* blur.png */; };
 		1F4061741937173900A877DD /* blur2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F4061731937173900A877DD /* blur2.png */; };
 		1F406176193723BE00A877DD /* blur3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1F406175193723BE00A877DD /* blur3.jpg */; };
@@ -49,6 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F334762194C7F930086337F /* FQFlickrViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FQFlickrViewController.h; sourceTree = "<group>"; };
+		1F334763194C7F930086337F /* FQFlickrViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FQFlickrViewController.m; sourceTree = "<group>"; };
 		1F4061711937162F00A877DD /* blur.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blur.png; sourceTree = "<group>"; };
 		1F4061731937173900A877DD /* blur2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blur2.png; sourceTree = "<group>"; };
 		1F406175193723BE00A877DD /* blur3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blur3.jpg; sourceTree = "<group>"; };
@@ -145,6 +148,8 @@
 				1F5E44BC19228B3100548118 /* FQTextView.m */,
 				1FB0DD4B19370C93007EB61D /* FQLoginViewController.h */,
 				1FB0DD4C19370C93007EB61D /* FQLoginViewController.m */,
+				1F334762194C7F930086337F /* FQFlickrViewController.h */,
+				1F334763194C7F930086337F /* FQFlickrViewController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -369,6 +374,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F55C3DD192246CE0021D8DE /* main.m in Sources */,
+				1F334764194C7F930086337F /* FQFlickrViewController.m in Sources */,
 				1F55C3E1192246CE0021D8DE /* FQAppDelegate.m in Sources */,
 				1F5E44BD19228B3100548118 /* FQTextView.m in Sources */,
 				1FB0DD4D19370C93007EB61D /* FQLoginViewController.m in Sources */,

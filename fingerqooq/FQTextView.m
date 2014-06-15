@@ -307,7 +307,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     
     [manager GET:@"http://10.73.39.130:8080/gradation/qooq" parameters:@{@"id":articleId} success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [ProgressHUD showSuccess:@"Qooq 성공!" Interaction:YES];
-        NSLog(@"석섹스!");
+        NSLog(@"석세스!");
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
